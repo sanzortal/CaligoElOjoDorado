@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     //Jump
     [SerializeField] float jumpForce;
     private bool inAir;
+    [SerializeField] LayerMask mask;
 
     //crouch
     private bool isCrouching;
@@ -55,6 +56,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         slideVector = Move();
+        InAir();
 
         if (Keyboard.current.leftShiftKey.isPressed && isMoving && !inAir)
         {
@@ -165,11 +167,17 @@ public class PlayerController : MonoBehaviour
         inAir = true;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void InAir()
     {
-        if (collision.gameObject.tag.Equals("floor"))
+        Debug.DrawRay(transform.position, Vector3.down * 1.1f, Color.green);
+
+        if (Physics.Raycast(transform.position, Vector3.down, 1.1f, mask))
         {
             inAir = false;
+        }
+        else
+        {
+            inAir = true;
         }
     }
 
