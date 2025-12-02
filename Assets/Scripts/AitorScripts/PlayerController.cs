@@ -40,6 +40,20 @@ public class PlayerController : MonoBehaviour
     private Vector3 initSize;
     private Vector3 initCenter;
 
+    //emotions
+    public enum emotions
+    {
+        NORMAL,
+        SAD,
+        HAPPY,
+        ANGRY,
+        CALM
+    }
+
+    private emotions emotion;
+    private bool differentEmotion;
+
+    private SceneInteractableBehaviour interactableObject;
     private void Start()
     {
         rb = this.gameObject.GetComponent<Rigidbody>();
@@ -51,40 +65,54 @@ public class PlayerController : MonoBehaviour
         isCrouching = false;
         isMoving = false;
         slideVector = Vector3.zero;
+        emotion = emotions.NORMAL;
+        differentEmotion = false;
     }
     // Update is called once per frame
     void Update()
     {
+        if (Keyboard.current.mKey.wasPressedThisFrame)
+        {
+            SadEmotion();
+        }
+
         slideVector = Move();
         InAir();
-
-        if (Keyboard.current.leftShiftKey.isPressed && isMoving && !inAir)
+        if (emotion == emotions.NORMAL)
         {
-            Run();
-
-            if (Keyboard.current.leftCtrlKey.wasPressedThisFrame && !inAir && movementSpeed > initialSpeed + 2f)
+            if (Keyboard.current.leftShiftKey.isPressed && isMoving && !inAir)
             {
-               slide(slideVector);
+                Run();
+
+                if (Keyboard.current.leftCtrlKey.wasPressedThisFrame && !inAir && movementSpeed > initialSpeed + 2f)
+                {
+                    slide(slideVector);
+                }
+            }
+
+            if (Keyboard.current.leftShiftKey.wasReleasedThisFrame)
+            {
+                crouched();
+            }
+
+            if (Keyboard.current.spaceKey.wasPressedThisFrame && !inAir && !isCrouching)
+            {
+                Jump();
+            }
+
+            if (Keyboard.current.leftCtrlKey.wasPressedThisFrame && !inAir) 
+            {
+                Crouch();
+            }
+            else if (Keyboard.current.leftCtrlKey.wasReleasedThisFrame)
+            {
+                StandUp();
             }
         }
-        
-        if(Keyboard.current.leftShiftKey.wasReleasedThisFrame)
-        {
-            crouched();
-        }
 
-        if (Keyboard.current.spaceKey.wasPressedThisFrame && !inAir && !isCrouching)
+        if (interactableObject != null && Keyboard.current.eKey.wasPressedThisFrame)
         {
-            Jump();
-        }
-
-        if (Keyboard.current.leftCtrlKey.wasPressedThisFrame && !inAir) //preguntar que se quiere, si que si le da en el aire despues se agache o lo tenga que soltar y volverle a dar
-        {
-            Crouch();
-        }
-        else if (Keyboard.current.leftCtrlKey.wasReleasedThisFrame)
-        {
-            StandUp();
+            interactableObject.Interact(this.emotion);
         }
 
     }
@@ -149,14 +177,17 @@ public class PlayerController : MonoBehaviour
         {
             isMoving = false;
 
-            crouched();
+            if (!differentEmotion)
+            {
+                crouched();
+            }
         }
         else
         {
             isMoving = true;
         }
 
-            moveNormalized = moveVector.normalized;
+        moveNormalized = moveVector.normalized;
 
         return moveNormalized;
     }
@@ -183,7 +214,6 @@ public class PlayerController : MonoBehaviour
 
     private void Crouch()
     {
-        //this.transform.localScale = new Vector3(this.transform.localScale.x, this.transform.localScale.y/2, this.transform.localScale.z);
         bc.size = new Vector3(initSize.x, initSize.y / 2, initSize.z);
         bc.center = new Vector3(initCenter.x, -(bc.size.y) / 2, initCenter.z);
         movementSpeed = crouchSpeed;
@@ -192,7 +222,6 @@ public class PlayerController : MonoBehaviour
 
     private void StandUp()
     {
-        //this.transform.localScale = new Vector3(this.transform.localScale.x, this.transform.localScale.y * 2, this.transform.localScale.z);
         bc.size = initSize;
         bc.center = initCenter;
         movementSpeed = initialSpeed;
@@ -231,4 +260,44 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(moveDirection * slideForce, ForceMode.Impulse);
     }
 
+    void SadEmotion()
+    {
+        if (isCrouching)
+        {
+            StandUp();
+        }
+
+        if (!differentEmotion)
+        {
+            emotion = emotions.SAD;
+            differentEmotion = true;
+            movementSpeed = initialSpeed - 2;
+        }
+        else
+        {
+            emotion = emotions.NORMAL;
+            differentEmotion = false;
+            movementSpeed = initialSpeed;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        SceneInteractableBehaviour aux = collision.gameObject.GetComponent<SceneInteractableBehaviour>(); 
+
+        if (aux != null )
+        {
+            interactableObject = aux;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        SceneInteractableBehaviour aux = collision.gameObject.GetComponent<SceneInteractableBehaviour>();
+
+        if (aux != null)
+        {
+            interactableObject = null;
+        }
+    }
 }
