@@ -210,7 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0062e63656f7cc40815bf6d3d10d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 2
+  movementSpeed: 5
   aceleration: 0.5
   rotationSpeed: 700
   fowardKey: 37
@@ -221,7 +221,7 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 256
-  crouchSpeed: 1
+  crouchSpeed: 2
   slideForce: 4
 --- !u!54 &4357455930217671864
 Rigidbody:

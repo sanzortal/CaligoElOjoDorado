@@ -2065,6 +2065,10 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 48
       objectReference: {fileID: 0}
+    - target: {fileID: 4357455930217671864, guid: 103edeab878b88f428a39193d1b2e6c7, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4888301617533243317, guid: 103edeab878b88f428a39193d1b2e6c7, type: 3}
       propertyPath: m_Name
       value: Player main

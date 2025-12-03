@@ -638,6 +638,7 @@ MonoBehaviour:
   - {fileID: 1729386324}
   - {fileID: 992292937}
   - {fileID: 876269049}
+  door: {fileID: 2093791078}
 --- !u!4 &1655251721
 Transform:
   m_ObjectHideFlags: 0
