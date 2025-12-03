@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7849051177994412476}
   - component: {fileID: 5891547199151845077}
   - component: {fileID: 8754427828442811688}
-  - component: {fileID: 6409626469663383197}
   m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
@@ -87,27 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6409626469663383197
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4762975176658200540}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4888301617533243317
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,6 +100,7 @@ GameObject:
   - component: {fileID: 8453605015627848433}
   - component: {fileID: 8285419182702627094}
   - component: {fileID: 4357455930217671864}
+  - component: {fileID: 6449016871918265146}
   m_Layer: 6
   m_Name: Player main
   m_TagString: Player
@@ -139,7 +118,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.99, y: 4.02, z: -5.1011}
-  m_LocalScale: {x: 1.9962949, y: 1.9962949, z: 1.9962949}
+  m_LocalScale: {x: 0.5, y: 1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7849051177994412476}
@@ -231,7 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0062e63656f7cc40815bf6d3d10d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 5
+  movementSpeed: 2
   aceleration: 0.5
   rotationSpeed: 700
   fowardKey: 37
@@ -239,8 +218,11 @@ MonoBehaviour:
   leftKey: 15
   rightKey: 18
   jumpForce: 5
-  crouchSpeed: 2
-  slideForce: 10
+  mask:
+    serializedVersion: 2
+    m_Bits: 256
+  crouchSpeed: 1
+  slideForce: 4
 --- !u!54 &4357455930217671864
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -266,5 +248,22 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!111 &6449016871918265146
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4888301617533243317}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 0}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_UpdateMode: 0
+  m_CullingType: 0
