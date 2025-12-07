@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float jumpForce;
     private bool inAir;
     [SerializeField] LayerMask mask;
+    [SerializeField] float airDistance;
 
     //crouch
     private bool isCrouching;
@@ -200,9 +201,9 @@ public class PlayerController : MonoBehaviour
 
     private void InAir()
     {
-        Debug.DrawRay(transform.position, Vector3.down * 1.1f, Color.green);
+        Debug.DrawRay(transform.position, Vector3.down * airDistance, Color.green);
 
-        if (Physics.Raycast(transform.position, Vector3.down, 1.1f, mask))
+        if (Physics.Raycast(transform.position, Vector3.down, airDistance, mask))
         {
             inAir = false;
         }

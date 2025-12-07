@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class DeathsController:MonoBehaviour
 {
-    [SerializeField] Image blackPanel;
+    [SerializeField] Canvas blackPanel;
     [SerializeField] Transform respawnPoint;
 
     private void Start()
