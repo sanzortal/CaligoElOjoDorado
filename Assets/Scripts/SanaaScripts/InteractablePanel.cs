@@ -1,15 +1,30 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class InteractablePanel : MonoBehaviour
 {
     [SerializeField] GameObject interactablePanel;
     [SerializeField] Key interactKey;
-    bool interacting = false;
+    private bool interacting = false;
+
+    //code
+    [SerializeField] GameObject wall;
+    [SerializeField] TMP_InputField textField;
+    [SerializeField] string correctCode;
+    private bool done;
+    private string playerAnswer;
+    private AudioSource[] audios;
+    private MeshRenderer meshRend;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        done = false;
+        playerAnswer = "";
+        meshRend = this.gameObject.GetComponent<MeshRenderer>();
+        audios = this.gameObject.GetComponents<AudioSource>();
     }
 
     // Update is called once per frame
@@ -36,7 +51,7 @@ public class InteractablePanel : MonoBehaviour
 
     public void OpenPanel()
     {
-        if (Keyboard.current[interactKey].wasPressedThisFrame && interacting)
+        if (Keyboard.current[interactKey].wasPressedThisFrame && interacting && !done)
         {
             interactablePanel.SetActive(true);
         }
@@ -45,5 +60,47 @@ public class InteractablePanel : MonoBehaviour
     public void ClosePanel()
     {
         interactablePanel.SetActive(false);
+        playerAnswer = "";
+        SetText();
+    }
+
+    public void AddNumber(string number)
+    {
+        if (playerAnswer.Length <= 3)
+        {
+            playerAnswer += number;
+            SetText();
+        }
+    }
+
+    public void DeleteNumber()
+    {
+        if (playerAnswer.Length > 0)
+        {
+            playerAnswer = playerAnswer.Substring(0, playerAnswer.Length - 1);
+            SetText();
+        }
+    }
+
+    public void Confirm()
+    {
+        if (playerAnswer.Equals(correctCode))
+        {
+            done = true;
+            meshRend.material.color = Color.green;
+            wall.SetActive(false);
+            audios[0].Play();
+            ClosePanel();
+        }
+        else
+        {
+            audios[1].Play();
+            meshRend.material.color = Color.red;
+        }
+    }
+
+    public void SetText()
+    {
+        textField.text = playerAnswer;
     }
 }
