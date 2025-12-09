@@ -10,7 +10,7 @@ public class SceneInteractableBehaviour : MonoBehaviour
     {
         isOpen = false;
     }
-    public void Interact(PlayerController.emotions playerEmotion)
+    public void Open(PlayerController.emotions playerEmotion)
     {
         if (playerEmotion == emotionNeeded)
         {
@@ -24,6 +24,14 @@ public class SceneInteractableBehaviour : MonoBehaviour
                 this.transform.position = new Vector3(this.transform.position.x - 4, this.transform.position.y, this.transform.position.z);
                 isOpen = false;
             }
+        }
+    }
+
+    public void Move(Vector3 moveDirection, float speed, PlayerController.emotions playerEmotion)
+    {
+        if (playerEmotion == emotionNeeded)
+        {
+            this.transform.position = transform.position + moveDirection * speed * Time.deltaTime;
         }
     }
 }

@@ -30,8 +30,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float crouchSpeed;
 
     //slide
-    private Vector3 slideVector;
+    private Vector3 moveVector;
     [SerializeField] float slideForce;
+
+    //grab
+    private bool isGrabbing;
 
     //RigidBody
     private Rigidbody rb;
@@ -65,9 +68,10 @@ public class PlayerController : MonoBehaviour
         maxSpeed = movementSpeed + 4;
         isCrouching = false;
         isMoving = false;
-        slideVector = Vector3.zero;
+        moveVector = Vector3.zero;
         emotion = emotions.NORMAL;
         differentEmotion = false;
+        isGrabbing = false;
     }
     // Update is called once per frame
     void Update()
@@ -77,9 +81,39 @@ public class PlayerController : MonoBehaviour
             SadEmotion();
         }
 
-        slideVector = Move();
+        moveVector = Move();
         InAir();
-        if (emotion == emotions.NORMAL)
+
+        if (interactableObject != null)
+        {
+            if (Keyboard.current.eKey.wasPressedThisFrame)
+            {
+                interactableObject.Open(this.emotion);
+            }
+
+            if (Keyboard.current.qKey.wasPressedThisFrame && !inAir)
+            {
+                if (isCrouching)
+                {
+                    StandUp();
+                }
+                movementSpeed = initialSpeed - 2;
+            }
+
+            if (Keyboard.current.qKey.isPressed && !inAir)
+            {
+                interactableObject.Move(moveVector, movementSpeed, this.emotion);
+                isGrabbing = true;
+            }
+        }
+
+        if (Keyboard.current.qKey.wasReleasedThisFrame && isGrabbing)
+        {
+            isGrabbing = false;
+            movementSpeed = initialSpeed;
+        }
+
+        if (emotion == emotions.NORMAL && !isGrabbing)
         {
             if (Keyboard.current.leftShiftKey.isPressed && isMoving && !inAir)
             {
@@ -87,7 +121,7 @@ public class PlayerController : MonoBehaviour
 
                 if (Keyboard.current.leftCtrlKey.wasPressedThisFrame && !inAir && movementSpeed > initialSpeed + 2f)
                 {
-                    slide(slideVector);
+                    slide(moveVector);
                 }
             }
 
@@ -111,11 +145,6 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (interactableObject != null && Keyboard.current.eKey.wasPressedThisFrame)
-        {
-            interactableObject.Interact(this.emotion);
-        }
-
     }
 
     Vector3 Move()
@@ -126,7 +155,10 @@ public class PlayerController : MonoBehaviour
 
         if (moveDirection.magnitude != 0)
         {
-            LookAt(moveDirection);
+            if (!isGrabbing)
+            {
+                LookAt(moveDirection);
+            }
 
             return moveDirection;
         }
@@ -178,7 +210,7 @@ public class PlayerController : MonoBehaviour
         {
             isMoving = false;
 
-            if (!differentEmotion)
+            if (!differentEmotion && !isGrabbing)
             {
                 crouched();
             }
@@ -298,6 +330,10 @@ public class PlayerController : MonoBehaviour
 
         if (aux != null)
         {
+            if (isGrabbing)
+            {
+                isGrabbing = false;
+            }
             interactableObject = null;
         }
     }

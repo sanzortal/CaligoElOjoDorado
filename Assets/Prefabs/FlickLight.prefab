@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flickCount: 5
-  timebetweenFlicks: 0.08
+  timebetweenFlicks: 0.1
   flickShutDownDuration: 0.1
   flick: 1
   lastFlickDuration: 1
