@@ -18,6 +18,8 @@ public class InteractuableObjects : MonoBehaviour
 
     [SerializeField] PuzzleManager manager;
 
+    private bool locked = false;
+
 
   
 
@@ -30,6 +32,11 @@ public class InteractuableObjects : MonoBehaviour
 
     void Update()
     {
+        if(locked)
+        {
+            return;
+        }
+
         if (touchPlayer && Keyboard.current[interactionKey].wasPressedThisFrame && !active)
         {
             PressButton();
@@ -67,10 +74,17 @@ public class InteractuableObjects : MonoBehaviour
         return active;
     }
 
+    public void LockButton()
+    {
+        locked = true;
+    }
+
 
     public void ResetButtons()
     {
         active = false;
         render.material.color = initColor;
     }
+
+    
 }

@@ -15,6 +15,8 @@ public class PuzzleManager : MonoBehaviour
 
     [SerializeField] DoorController door;
 
+    private bool puzzleCompleted = false;
+
 
     
     void Start()
@@ -40,6 +42,11 @@ public class PuzzleManager : MonoBehaviour
     public void ButtonChecker()
     {
 
+        if(puzzleCompleted)
+        {
+            return;
+        }
+
         if (!puzzleActive)
         {
             puzzleActive = true;
@@ -57,7 +64,14 @@ public class PuzzleManager : MonoBehaviour
 
         if(allPressed)
         {
+            puzzleCompleted = true;
             door.DoorOpen();
+            puzzleActive = false;
+
+            foreach (var button in buttons)
+            {
+                button.LockButton();
+            }
         }
     }
 
@@ -65,6 +79,11 @@ public class PuzzleManager : MonoBehaviour
 
     void ResetPuzzle()
     {
+        if(puzzleCompleted)
+        {
+            return;
+        }
+
         puzzleActive = false;
         foreach (var button in buttons)
         {

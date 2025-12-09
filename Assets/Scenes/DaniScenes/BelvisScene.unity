@@ -400,6 +400,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 338015702}
+  minX: -19
+  maxX: 8
+  minY: 15.6
+  maxY: 16
+  minZ: -15
+  maxZ: -10
 --- !u!114 &844914120
 MonoBehaviour:
   m_ObjectHideFlags: 0
