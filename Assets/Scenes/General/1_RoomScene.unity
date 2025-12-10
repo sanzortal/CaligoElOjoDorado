@@ -848,6 +848,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   emotionNeeded: 0
+  isMovable: 1
 --- !u!54 &618382178
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -856,7 +857,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 618382172}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 100
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -871,7 +872,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
@@ -963,7 +964,7 @@ Transform:
   m_GameObject: {fileID: 743919780}
   serializedVersion: 2
   m_LocalRotation: {x: 0.09504767, y: -0, z: -0, w: 0.9954727}
-  m_LocalPosition: {x: -0.7, y: 3.47, z: -4.14}
+  m_LocalPosition: {x: -3.065, y: 4.058, z: -5.003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1026,12 +1027,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 458528716}
-  minX: 0
-  maxX: 0
-  minY: 0
-  maxY: 0
-  minZ: 0
-  maxZ: 0
+  minX: -2.81
+  maxX: 2.91
+  minY: 3.37
+  maxY: 4.91
+  minZ: -5.19
+  maxZ: -3.16
 --- !u!1 &1059835063
 GameObject:
   m_ObjectHideFlags: 0

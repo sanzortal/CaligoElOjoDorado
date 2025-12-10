@@ -1054,7 +1054,7 @@ MonoBehaviour:
   m_Text: 
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
-  m_ReadOnly: 0
+  m_ReadOnly: 1
   m_RichText: 1
   m_GlobalFontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_OnFocusSelectAll: 1
@@ -2344,7 +2344,7 @@ Transform:
   m_GameObject: {fileID: 743919780}
   serializedVersion: 2
   m_LocalRotation: {x: 0.09504767, y: -0, z: -0, w: 0.9954727}
-  m_LocalPosition: {x: 0.76, y: 3.47, z: -4.14}
+  m_LocalPosition: {x: 4.69, y: 3.41, z: -4.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2407,6 +2407,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1958641468}
+  minX: 4.7
+  maxX: 25.23
+  minY: 3.14
+  maxY: 5.1
+  minZ: -4.14
+  maxZ: -2.92
 --- !u!1 &745390817
 GameObject:
   m_ObjectHideFlags: 0
