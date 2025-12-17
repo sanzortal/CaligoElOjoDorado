@@ -590,16 +590,28 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 15ab50f5f7dfb204a909da73b8485205, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.7283
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 15ab50f5f7dfb204a909da73b8485205, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.7283
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 15ab50f5f7dfb204a909da73b8485205, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.7283
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 15ab50f5f7dfb204a909da73b8485205, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.88
+      value: 6.74
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 15ab50f5f7dfb204a909da73b8485205, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.895194
+      value: 2.086
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 15ab50f5f7dfb204a909da73b8485205, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.58124405
+      value: -0.277
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 15ab50f5f7dfb204a909da73b8485205, type: 3}
       propertyPath: m_LocalRotation.w
@@ -681,7 +693,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 189217219}
   serializedVersion: 4
-  m_Mass: 100
+  m_Mass: 500
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -1389,7 +1401,7 @@ Transform:
   m_GameObject: {fileID: 743919780}
   serializedVersion: 2
   m_LocalRotation: {x: 0.09504767, y: -0, z: -0, w: 0.9954727}
-  m_LocalPosition: {x: -0.7, y: 3.47, z: -4.14}
+  m_LocalPosition: {x: -1.97, y: 3.51, z: -4.32}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1452,12 +1464,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 458528716}
-  minX: 0
-  maxX: 0
-  minY: 0
-  maxY: 0
-  minZ: 0
-  maxZ: 0
+  minX: -2.49
+  maxX: 2.61
+  minY: 3.48
+  maxY: 4.75
+  minZ: -2.17
+  maxZ: -4.13
 --- !u!1001 &814110986
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3255,8 +3267,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.9999999, y: 3.9999998, z: 0.7313103}
-  m_Center: {x: 0, y: 0, z: 0.004070639}
+  m_Size: {x: 1.9999999, y: 3.9999998, z: 0.29865235}
+  m_Center: {x: 0, y: 0, z: 0.009222005}
 --- !u!1 &1927659891
 GameObject:
   m_ObjectHideFlags: 0
