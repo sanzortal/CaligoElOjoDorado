@@ -4,6 +4,7 @@ using UnityEngine;
 public class SceneInteractableBehaviour : MonoBehaviour
 {
     [SerializeField] PlayerController.emotions emotionNeeded;
+    [SerializeField] bool isMovable;
     private bool isOpen;
 
     private void Start()
@@ -12,7 +13,7 @@ public class SceneInteractableBehaviour : MonoBehaviour
     }
     public void Open(PlayerController.emotions playerEmotion)
     {
-        if (playerEmotion == emotionNeeded)
+        if (playerEmotion == emotionNeeded && !isMovable)
         {
             if (!isOpen)
             {
@@ -29,7 +30,7 @@ public class SceneInteractableBehaviour : MonoBehaviour
 
     public void Move(Vector3 moveDirection, float speed, PlayerController.emotions playerEmotion)
     {
-        if (playerEmotion == emotionNeeded)
+        if (playerEmotion == emotionNeeded && isMovable)
         {
             this.transform.position = transform.position + moveDirection * speed * Time.deltaTime;
         }

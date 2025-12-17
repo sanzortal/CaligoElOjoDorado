@@ -9,6 +9,9 @@ public class InteractablePanel : MonoBehaviour
     [SerializeField] Key interactKey;
     private bool interacting = false;
 
+    //player
+    private PlayerController playerController;
+
     //code
     [SerializeField] GameObject wall;
     [SerializeField] TMP_InputField textField;
@@ -38,6 +41,7 @@ public class InteractablePanel : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             interacting = true;
+            playerController = collision.gameObject.GetComponent<PlayerController>();
         }
     }
 
@@ -46,6 +50,7 @@ public class InteractablePanel : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             interacting = false;
+            playerController = null;
         }
     }
 
@@ -54,6 +59,7 @@ public class InteractablePanel : MonoBehaviour
         if (Keyboard.current[interactKey].wasPressedThisFrame && interacting && !done)
         {
             interactablePanel.SetActive(true);
+            playerController.enabled = false;
         }
     }
 
@@ -62,6 +68,7 @@ public class InteractablePanel : MonoBehaviour
         interactablePanel.SetActive(false);
         playerAnswer = "";
         SetText();
+        playerController.enabled = true;
     }
 
     public void AddNumber(string number)

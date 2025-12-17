@@ -370,6 +370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   emotionNeeded: 1
+  isMovable: 0
 --- !u!65 &349205004
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -743,6 +744,10 @@ PrefabInstance:
     - target: {fileID: 6846819744708564708, guid: 103edeab878b88f428a39193d1b2e6c7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285419182702627094, guid: 103edeab878b88f428a39193d1b2e6c7, type: 3}
+      propertyPath: slideForce
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
