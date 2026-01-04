@@ -16,18 +16,21 @@ public class InteractablePanel : MonoBehaviour
     [SerializeField] GameObject wall;
     [SerializeField] TMP_InputField textField;
     [SerializeField] string correctCode;
+    [SerializeField] Light redLight;
+    [SerializeField] Light greenLight;
     private bool done;
     private string playerAnswer;
     private AudioSource[] audios;
-    private MeshRenderer meshRend;
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         done = false;
         playerAnswer = "";
-        meshRend = this.gameObject.GetComponent<MeshRenderer>();
         audios = this.gameObject.GetComponents<AudioSource>();
+        redLight.enabled = false;
+        greenLight.enabled = false;
     }
 
     // Update is called once per frame
@@ -94,15 +97,19 @@ public class InteractablePanel : MonoBehaviour
         if (playerAnswer.Equals(correctCode))
         {
             done = true;
-            meshRend.material.color = Color.green;
             wall.SetActive(false);
+            redLight.enabled = false;
+            greenLight.enabled = true;
             audios[0].Play();
             ClosePanel();
         }
         else
         {
+            if (!redLight.enabled)
+            {
+                redLight.enabled = true;
+            }
             audios[1].Play();
-            meshRend.material.color = Color.red;
         }
     }
 
