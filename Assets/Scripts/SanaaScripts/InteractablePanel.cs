@@ -13,7 +13,7 @@ public class InteractablePanel : MonoBehaviour
     private PlayerController playerController;
 
     //code
-    [SerializeField] GameObject wall;
+    [SerializeField] GameObject door;
     [SerializeField] TMP_InputField textField;
     [SerializeField] string correctCode;
     [SerializeField] Light redLight;
@@ -97,7 +97,10 @@ public class InteractablePanel : MonoBehaviour
         if (playerAnswer.Equals(correctCode))
         {
             done = true;
-            wall.SetActive(false);
+
+            door.transform.position = new Vector3(29.14f, 2.771813f, 0.6f);
+            door.transform.eulerAngles = new Vector3(0f, 270f, 0f);
+
             redLight.enabled = false;
             greenLight.enabled = true;
             audios[0].Play();
