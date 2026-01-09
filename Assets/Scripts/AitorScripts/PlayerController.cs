@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour
         }
 
         moveVector = Move();
-        InAir();
+        inAir = InAir();
 
         if (interactableObject != null)
         {
@@ -231,17 +231,17 @@ public class PlayerController : MonoBehaviour
         inAir = true;
     }
 
-    private void InAir()
+    public bool InAir()
     {
         Debug.DrawRay(transform.position, Vector3.down * airDistance, Color.green);
 
         if (Physics.Raycast(transform.position, Vector3.down, airDistance, mask))
         {
-            inAir = false;
+            return false;
         }
         else
         {
-            inAir = true;
+            return true;
         }
     }
 
@@ -318,7 +318,7 @@ public class PlayerController : MonoBehaviour
     {
         SceneInteractableBehaviour aux = collision.gameObject.GetComponent<SceneInteractableBehaviour>(); 
 
-        if (aux != null )
+        if (aux != null)
         {
             interactableObject = aux;
         }
