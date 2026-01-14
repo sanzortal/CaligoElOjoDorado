@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
         isGrabbing = false;
     }
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (Keyboard.current.mKey.wasPressedThisFrame)
         {

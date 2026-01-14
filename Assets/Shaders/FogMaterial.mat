@@ -38,13 +38,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _DistorsionAmount: 3.41
-    - _DistorsionSpeed: 0.5
-    - _Intensity: 0.38
+    - _DistorsionAmount: 8.84
+    - _DistorsionSpeed: 7.99
+    - _Intensity: 2.97
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Rotation: 3
-    - _Scale: 3.07
+    - _Scale: 1.27
     - _Speed: 0.37
     m_Colors:
     - _Color: {r: 0.4792453, g: 0.4792453, b: 0.4792453, a: 1}

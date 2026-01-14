@@ -793,15 +793,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 15ab50f5f7dfb204a909da73b8485205, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.7283
+      value: 1.9726815
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 15ab50f5f7dfb204a909da73b8485205, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.7283
+      value: 2.437248
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 15ab50f5f7dfb204a909da73b8485205, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.7283
+      value: 1.9726815
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 15ab50f5f7dfb204a909da73b8485205, type: 3}
       propertyPath: m_LocalPosition.x
@@ -809,11 +809,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 15ab50f5f7dfb204a909da73b8485205, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.086
+      value: 2.32
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 15ab50f5f7dfb204a909da73b8485205, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.277
+      value: -0.33
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 15ab50f5f7dfb204a909da73b8485205, type: 3}
       propertyPath: m_LocalRotation.w
@@ -895,7 +895,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 189217219}
   serializedVersion: 4
-  m_Mass: 500
+  m_Mass: 10000
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -1215,6 +1215,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4357455930217671864, guid: 103edeab878b88f428a39193d1b2e6c7, type: 3}
+      propertyPath: m_Constraints
+      value: 80
+      objectReference: {fileID: 0}
     - target: {fileID: 4888301617533243317, guid: 103edeab878b88f428a39193d1b2e6c7, type: 3}
       propertyPath: m_Name
       value: Player main
@@ -1262,6 +1266,14 @@ PrefabInstance:
     - target: {fileID: 8285419182702627094, guid: 103edeab878b88f428a39193d1b2e6c7, type: 3}
       propertyPath: grabForce
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285419182702627094, guid: 103edeab878b88f428a39193d1b2e6c7, type: 3}
+      propertyPath: mask.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 8453605015627848433, guid: 103edeab878b88f428a39193d1b2e6c7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
