@@ -14,6 +14,8 @@ public class InteractablePanel : MonoBehaviour
 
     //code
     [SerializeField] GameObject door;
+    private AudioSource doorSound;
+    private Animation doorAnimation;
     [SerializeField] TMP_InputField textField;
     [SerializeField] string correctCode;
     [SerializeField] Light redLight;
@@ -31,6 +33,9 @@ public class InteractablePanel : MonoBehaviour
         audios = this.gameObject.GetComponents<AudioSource>();
         redLight.enabled = false;
         greenLight.enabled = false;
+
+        doorSound = door.GetComponent<AudioSource>();
+        doorAnimation = door.GetComponent<Animation>();
     }
 
     // Update is called once per frame
@@ -98,8 +103,8 @@ public class InteractablePanel : MonoBehaviour
         {
             done = true;
 
-            door.transform.position = new Vector3(29.14f, 2.771813f, 0.6f);
-            door.transform.eulerAngles = new Vector3(0f, 270f, 0f);
+            doorSound.Play();
+            doorAnimation.Play();
 
             redLight.enabled = false;
             greenLight.enabled = true;
