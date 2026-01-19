@@ -73,15 +73,20 @@ public class PlayerController : MonoBehaviour
         differentEmotion = false;
         isGrabbing = false;
     }
+
+    private void FixedUpdate()
+    {
+        moveVector = Move();
+    }
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         if (Keyboard.current.mKey.wasPressedThisFrame)
         {
             SadEmotion();
         }
 
-        moveVector = Move();
+        
         inAir = InAir();
 
         if (interactableObject != null)
