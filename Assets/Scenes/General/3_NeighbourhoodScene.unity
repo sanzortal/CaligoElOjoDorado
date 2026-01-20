@@ -1626,6 +1626,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3369409345929477104, guid: 38d44bccabb9915468ac302c39cc716b, type: 3}
+      propertyPath: m_Size.y
+      value: 3.7997258
+      objectReference: {fileID: 0}
+    - target: {fileID: 3369409345929477104, guid: 38d44bccabb9915468ac302c39cc716b, type: 3}
+      propertyPath: m_Center.y
+      value: 1.3998628
+      objectReference: {fileID: 0}
     - target: {fileID: 5621646703505039213, guid: 38d44bccabb9915468ac302c39cc716b, type: 3}
       propertyPath: m_Name
       value: VC_Normal_Limit
