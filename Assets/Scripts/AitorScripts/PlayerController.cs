@@ -86,7 +86,6 @@ public class PlayerController : MonoBehaviour
             SadEmotion();
         }
 
-        
         inAir = InAir();
 
         if (interactableObject != null)
@@ -317,6 +316,11 @@ public class PlayerController : MonoBehaviour
             differentEmotion = false;
             movementSpeed = initialSpeed;
         }
+    }
+
+    public emotions getEmotion()
+    {
+        return this.emotion;
     }
 
     private void OnCollisionEnter(Collision collision)
