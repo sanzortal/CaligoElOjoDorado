@@ -820,7 +820,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 883359232815149643, guid: 080d707b82dcf6841b5aac8183cc1194, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1901685353235048514, guid: 080d707b82dcf6841b5aac8183cc1194, type: 3}
       propertyPath: m_Name
@@ -1115,7 +1115,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 2
-  m_Color: {r: 0.64705884, g: 0.34509805, b: 0.12156863, a: 1}
+  m_Color: {r: 0.05882353, g: 0.25882354, b: 0.08627451, a: 1}
   m_Intensity: 20.49
   m_Range: 259.28
   m_SpotAngle: 30
@@ -1236,9 +1236,9 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 2
-  m_Color: {r: 0.878453, g: 0.90188676, b: 0.5224136, a: 1}
+  m_Color: {r: 0.52156866, g: 0.88258904, b: 0.9019608, a: 1}
   m_Intensity: 2
-  m_Range: 10
+  m_Range: 7.575
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -3044,7 +3044,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 2
-  m_Color: {r: 0.64705884, g: 0.34509805, b: 0.12156863, a: 1}
+  m_Color: {r: 0.05882353, g: 0.25882354, b: 0.08627451, a: 1}
   m_Intensity: 20.49
   m_Range: 259.28
   m_SpotAngle: 30
@@ -4186,8 +4186,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 2
-  m_Color: {r: 0.1857675, g: 0.12156863, b: 0.64705884, a: 1}
-  m_Intensity: 150
+  m_Color: {r: 0.05882353, g: 0.25882354, b: 0.08627451, a: 1}
+  m_Intensity: 51.3
   m_Range: 2.75
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -4372,7 +4372,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 2
-  m_Color: {r: 0.5999999, g: 0.32569417, b: 0.14377353, a: 1}
+  m_Color: {r: 0.05882353, g: 0.25882354, b: 0.08627451, a: 1}
   m_Intensity: 20.49
   m_Range: 259.28
   m_SpotAngle: 30
@@ -5723,7 +5723,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 2
-  m_Color: {r: 0.64705884, g: 0.34509805, b: 0.12156863, a: 1}
+  m_Color: {r: 0.05882353, g: 0.25882354, b: 0.08627451, a: 1}
   m_Intensity: 20.49
   m_Range: 259.28
   m_SpotAngle: 30
@@ -6001,7 +6001,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 2
-  m_Color: {r: 0.5999999, g: 0.32569417, b: 0.14377353, a: 1}
+  m_Color: {r: 0.05882353, g: 0.25882354, b: 0.08627451, a: 1}
   m_Intensity: 20.49
   m_Range: 259.28
   m_SpotAngle: 30
@@ -6255,7 +6255,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 2
-  m_Color: {r: 0.878453, g: 0.90188676, b: 0.5224136, a: 1}
+  m_Color: {r: 0.52156866, g: 0.88258904, b: 0.9019608, a: 1}
   m_Intensity: 2
   m_Range: 10
   m_SpotAngle: 30

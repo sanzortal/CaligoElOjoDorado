@@ -782,7 +782,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 2
-  m_Color: {r: 0.17954433, g: 0.5314235, b: 0.6301887, a: 1}
+  m_Color: {r: 0.18039215, g: 0.6313726, b: 0.37746662, a: 1}
   m_Intensity: 1
   m_Range: 257.7
   m_SpotAngle: 30
@@ -1143,7 +1143,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 2
-  m_Color: {r: 0.48944855, g: 0, b: 1, a: 1}
+  m_Color: {r: 0.060005516, g: 0.2578616, b: 0.08734316, a: 1}
   m_Intensity: 20.49
   m_Range: 259.28
   m_SpotAngle: 30
@@ -2328,7 +2328,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 2
-  m_Color: {r: 0.10805035, g: 0, b: 1, a: 1}
+  m_Color: {r: 0.05882353, g: 0.25882354, b: 0.08627451, a: 1}
   m_Intensity: 20.49
   m_Range: 259.28
   m_SpotAngle: 30
@@ -2962,7 +2962,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 2
-  m_Color: {r: 0.10805035, g: 0, b: 1, a: 1}
+  m_Color: {r: 0.05882353, g: 0.25882354, b: 0.08627451, a: 1}
   m_Intensity: 20.49
   m_Range: 259.28
   m_SpotAngle: 30
@@ -3459,7 +3459,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 2
-  m_Color: {r: 0.48944855, g: 0, b: 1, a: 1}
+  m_Color: {r: 0.060005516, g: 0.2578616, b: 0.08734316, a: 1}
   m_Intensity: 20.49
   m_Range: 259.28
   m_SpotAngle: 30
@@ -3580,8 +3580,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 2
-  m_Color: {r: 0.645283, g: 0.34482613, b: 0.12053394, a: 1}
-  m_Intensity: 150
+  m_Color: {r: 0.12156863, g: 0.64705884, b: 0.21085289, a: 1}
+  m_Intensity: 23.22
   m_Range: 3.14
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -3957,7 +3957,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 1
-  m_Color: {r: 0.46071112, g: 0.4509804, b: 0.58431375, a: 1}
+  m_Color: {r: 0.33962262, g: 0.33962262, b: 0.33962262, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -4209,7 +4209,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 2
-  m_Color: {r: 0.17954433, g: 0.5314235, b: 0.6301887, a: 1}
+  m_Color: {r: 0.18039215, g: 0.6313726, b: 0.37746662, a: 1}
   m_Intensity: 1
   m_Range: 257.7
   m_SpotAngle: 30
@@ -4886,10 +4886,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: HistoryCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 2469080364973815890, guid: 477d2800bf0969a479274aafbeafd560, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5532997224104166409, guid: 477d2800bf0969a479274aafbeafd560, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -5115,7 +5111,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 883359232815149643, guid: 080d707b82dcf6841b5aac8183cc1194, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1901685353235048514, guid: 080d707b82dcf6841b5aac8183cc1194, type: 3}
       propertyPath: m_Name
