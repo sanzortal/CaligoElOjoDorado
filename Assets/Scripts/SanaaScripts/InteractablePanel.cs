@@ -104,7 +104,7 @@ public class InteractablePanel : MonoBehaviour
             done = true;
 
             doorSound.Play();
-            doorAnimation.Play();
+            doorAnimation.Play("Door|Open");
 
             redLight.enabled = false;
             greenLight.enabled = true;

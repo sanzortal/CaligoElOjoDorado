@@ -1,14 +1,17 @@
 using NUnit.Framework.Constraints;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class SceneInteractableBehaviour : MonoBehaviour
 {
     [SerializeField] PlayerController.emotions emotionNeeded;
     [SerializeField] bool isMovable;
     private bool isOpen;
+    private Rigidbody rb;
 
     private void Start()
     {
+        rb = GetComponent<Rigidbody>();
         isOpen = false;
     }
     public void Open(PlayerController.emotions playerEmotion)
@@ -28,11 +31,16 @@ public class SceneInteractableBehaviour : MonoBehaviour
         }
     }
 
-    public void Move(Vector3 moveDirection, float speed, PlayerController.emotions playerEmotion)
+    public void Move(GameObject parent, PlayerController.emotions playerEmotion)
     {
         if (playerEmotion == emotionNeeded && isMovable)
         {
-            this.transform.position = transform.position + moveDirection * speed * Time.deltaTime;
+            this.transform.parent = parent.transform;
         }
+    }
+
+    public void ClearParent()
+    {
+        this.transform.parent = null;
     }
 }

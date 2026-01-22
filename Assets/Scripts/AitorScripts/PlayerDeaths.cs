@@ -39,4 +39,9 @@ public class PlayerDeaths : MonoBehaviour
         playerController.enabled = true;
 
     }
+
+    public void StartDeathCoroutine(string enemyKiller)
+    {
+        StartCoroutine(die(enemyKiller));
+    }
 }

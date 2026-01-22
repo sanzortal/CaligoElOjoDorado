@@ -44,6 +44,9 @@ public class PlayerController : MonoBehaviour
     private Vector3 initSize;
     private Vector3 initCenter;
 
+
+    private Vector3 MoveDirection;
+
     //emotions
     public enum emotions
     {
@@ -76,7 +79,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        moveVector = Move();
+        moveVector = Move(MoveDirection);
+
     }
     // Update is called once per frame
     void Update()
@@ -86,6 +90,7 @@ public class PlayerController : MonoBehaviour
             SadEmotion();
         }
 
+        MoveDirection = CalculateMoveDirection();
         inAir = InAir();
 
         if (interactableObject != null)
@@ -95,26 +100,24 @@ public class PlayerController : MonoBehaviour
                 interactableObject.Open(this.emotion);
             }
 
-            if (Keyboard.current.qKey.wasPressedThisFrame && !inAir)
+            if (Keyboard.current.qKey.wasPressedThisFrame && !inAir && interactableObject)
             {
                 if (isCrouching)
                 {
                     StandUp();
                 }
                 movementSpeed = initialSpeed - 2;
+                isGrabbing = true;
+                interactableObject.Move(this.gameObject, this.emotion);
             }
 
-            if (Keyboard.current.qKey.isPressed && !inAir)
-            {
-                interactableObject.Move(moveVector, movementSpeed, this.emotion);
-                isGrabbing = true;
-            }
         }
 
         if (Keyboard.current.qKey.wasReleasedThisFrame && isGrabbing)
         {
             isGrabbing = false;
             movementSpeed = initialSpeed;
+            interactableObject.ClearParent();
         }
 
         if (emotion == emotions.NORMAL && !isGrabbing)
@@ -151,10 +154,8 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    Vector3 Move()
+    Vector3 Move(Vector3 moveDirection)
     {
-        Vector3 moveDirection = CalculateMoveDirection();
-
         transform.position = transform.position + moveDirection * movementSpeed * Time.deltaTime;
 
         if (moveDirection.magnitude != 0)
@@ -342,8 +343,10 @@ public class PlayerController : MonoBehaviour
             if (isGrabbing)
             {
                 isGrabbing = false;
+                movementSpeed = initialSpeed;
             }
-            interactableObject = null;
+            interactableObject.ClearParent();
+            interactableObject = null;           
         }
     }
 }
