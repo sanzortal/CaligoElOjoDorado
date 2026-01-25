@@ -1,23 +1,29 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class DeathsController:MonoBehaviour
 {
-    [SerializeField] Canvas blackPanel;
+    private Animator animatorController;
+    [SerializeField] Canvas fadeCanvas;
     [SerializeField] Transform respawnPoint;
 
     private void Start()
     {
-        blackPanel.enabled = false;
+        fadeCanvas.enabled = false;
+
+        animatorController = this.gameObject.GetComponentInChildren<Animator>();
     }
 
     public Transform ActivatePanel()
     {
-        blackPanel.enabled = true;
+        fadeCanvas.enabled = true;
+        animatorController.Play("FadeInDeath", 0, 0f);
         return respawnPoint;
     }
 
-    public void DeactivatePanel() { 
-        blackPanel.enabled = false;
+    public void DeactivatePanel() {
+        animatorController.SetTrigger("Death");
     }
+
 }

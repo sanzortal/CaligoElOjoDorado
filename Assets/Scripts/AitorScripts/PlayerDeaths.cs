@@ -23,7 +23,6 @@ public class PlayerDeaths : MonoBehaviour
 
         //turn off camera
         Transform respawn = dc.ActivatePanel();
-
         //respawn player
         this.transform.position = respawn.position;
         this.transform.eulerAngles = respawn.eulerAngles;
@@ -31,7 +30,7 @@ public class PlayerDeaths : MonoBehaviour
         rb.linearVelocity = Vector3.zero;
 
         //wait
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(4);
         //turn on camera
         dc.DeactivatePanel();
 
