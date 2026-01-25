@@ -3,25 +3,20 @@ using UnityEngine.InputSystem;
 
 public class DoorController : MonoBehaviour
 {
-    [SerializeField] Color doorColor;
-
-    private Renderer render;
+    private AudioSource doorSound;
+    private Animation doorAnimation;
 
 
 
     void Start()
     {
-        render = GetComponent<Renderer>();
-    }
-
-    
-    void Update()
-    {
-        
+        doorSound = this.gameObject.GetComponent<AudioSource>();
+        doorAnimation = this.gameObject.GetComponent<Animation>();
     }
 
     public void DoorOpen()
     {
-        render.material.color = doorColor;
+        doorSound.Play();
+        doorAnimation.Play("Door|Open");
     }
 }
