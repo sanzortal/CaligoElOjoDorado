@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fb282cd8e7e1e444864063949aca552, type: 3}
+  m_Name: (S) RecoverPositionStateObl2
+  m_EditorClassIdentifier: 
+  stateParameters:
+  - actionToCheck: {fileID: 11400000, guid: b33ee6830f547c04ab97d4a4b0fcafb6, type: 2}
+    actionValue: 1
+    nextState: {fileID: 11400000, guid: 60ea475d921e06348a36a1364dc57183, type: 2}
+  - actionToCheck: {fileID: 11400000, guid: 1f253d23a1293144f89889981862a5b2, type: 2}
+    actionValue: 1
+    nextState: {fileID: 11400000, guid: f3251ac256e686d45ab14052639bc3c9, type: 2}
+  recoverPoint: {x: 94.71, y: 5.73, z: 0.14}
+  movementSpeed: 3.5
+  rotationSpeed: 700

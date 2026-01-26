@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c82ebdb489e9bc641a7c92fe0c8f5e2e, type: 3}
-  m_Name: (S) AttackState
+  m_Name: (S) AttackStateFin2
   m_EditorClassIdentifier: 
   stateParameters:
   - actionToCheck: {fileID: 11400000, guid: 3cf37e96166aa31439debf5aca6c78a4, type: 2}
     actionValue: 0
-    nextState: {fileID: 11400000, guid: 7940bcab5f25b9d478bc0829448c535b, type: 2}
+    nextState: {fileID: 11400000, guid: 1a28e34afce49fa43bc3c352c5941dc0, type: 2}
   killAnim: EarDeath
