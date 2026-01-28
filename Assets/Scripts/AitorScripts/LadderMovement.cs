@@ -8,6 +8,7 @@ public class LadderMovement : MonoBehaviour
     private PlayerController playerController;
     private RigidbodyConstraints rbFirstConstraints;
     private float zLadder;
+    private float xLadder;
 
     [SerializeField] float climbSpeed;
 
@@ -29,7 +30,7 @@ public class LadderMovement : MonoBehaviour
             {
                 rb.constraints = RigidbodyConstraints.FreezeAll;
                 playerController.enabled = false;
-                rb.transform.position = new Vector3(rb.transform.position.x, rb.transform.position.y, zLadder);
+                rb.transform.localPosition = new Vector3(rb.transform.position.x, rb.transform.position.y, zLadder);
                
                     if (Input.GetAxisRaw("Horizontal") < 0 && !playerController.InAir())
                     {
@@ -47,16 +48,17 @@ public class LadderMovement : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag.Equals("Ladder"))
         {
             onLadder = true;
-            zLadder = collision.gameObject.transform.position.z;
+            zLadder = collision.gameObject.transform.localPosition.z;
+            xLadder = collision.gameObject.transform.localPosition.x;
         }
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider collision)
     {
         if (collision.gameObject.tag.Equals("Ladder"))
         {
@@ -69,6 +71,7 @@ public class LadderMovement : MonoBehaviour
             }
 
             zLadder = 0;
+            xLadder = 0;
         }
     }
 }

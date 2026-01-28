@@ -7,6 +7,7 @@ public class PlayerDeaths : MonoBehaviour
     [SerializeField] DeathsController dc;
     private Rigidbody rb;
     private PlayerController playerController;
+    private Transform respawn;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,12 +23,10 @@ public class PlayerDeaths : MonoBehaviour
         //animacion de morir con animation.play(enemykiller) al tener diferentes animaciones
 
         //turn off camera
-        Transform respawn = dc.ActivatePanel();
-        //respawn player
-        this.transform.position = respawn.position;
-        this.transform.eulerAngles = respawn.eulerAngles;
-        rb.angularVelocity = Vector3.zero;
-        rb.linearVelocity = Vector3.zero;
+        respawn = dc.ActivatePanel();
+
+        //Respawn
+        Respawn();
 
         //wait
         yield return new WaitForSeconds(4);
@@ -42,5 +41,14 @@ public class PlayerDeaths : MonoBehaviour
     public void StartDeathCoroutine(string enemyKiller)
     {
         StartCoroutine(die(enemyKiller));
+    }
+
+    public void Respawn()
+    {
+        //respawn player
+        this.transform.position = respawn.position;
+        this.transform.eulerAngles = respawn.eulerAngles;
+        rb.angularVelocity = Vector3.zero;
+        rb.linearVelocity = Vector3.zero;
     }
 }
