@@ -57,10 +57,12 @@ public class FieldOfView : MonoBehaviour
                 {
                     canSeePlayer = true;
                     PlayerDeaths deadPlayer= player.GetComponent<PlayerDeaths>();
+                    PlayerController controller = player.GetComponent<PlayerController>();
 
-                    if (deadPlayer != null)
+                    if (deadPlayer != null && controller.isActiveAndEnabled)
                     {
                         StartCoroutine(deadPlayer.die("humbleEyeDead"));
+                        canSeePlayer = false;
                     }
                 }
                 else

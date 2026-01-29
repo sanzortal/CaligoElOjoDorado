@@ -24,7 +24,8 @@ public class PlayerDeaths : MonoBehaviour
 
         //turn off camera
         respawn = dc.ActivatePanel();
-
+        
+        yield return new WaitForSeconds(2f);
         //Respawn
         Respawn();
 

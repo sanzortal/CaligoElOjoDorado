@@ -6,12 +6,15 @@ public class AttackState : State
     [SerializeField] string killAnim;
     public override State Run(GameObject owner)
     {
-        GameObject player = FindFirstObjectByType<PlayerController>().gameObject;
+        PlayerController controller = FindFirstObjectByType<PlayerController>();
+        GameObject player = controller.gameObject;
 
-        PlayerDeaths deadPlayer = player.GetComponent<PlayerDeaths>();
+        if (controller.isActiveAndEnabled)
+        {
+            PlayerDeaths deadPlayer = player.GetComponent<PlayerDeaths>();
 
-        deadPlayer.StartDeathCoroutine(killAnim);
-        
+            deadPlayer.StartDeathCoroutine(killAnim);
+        }
 
         return base.Run(owner);
     }

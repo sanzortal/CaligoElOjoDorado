@@ -8,7 +8,7 @@ public class LadderMovement : MonoBehaviour
     private PlayerController playerController;
     private RigidbodyConstraints rbFirstConstraints;
     private float zLadder;
-    private float xLadder;
+    private Transform grabPosition;
 
     [SerializeField] float climbSpeed;
 
@@ -25,20 +25,22 @@ public class LadderMovement : MonoBehaviour
     void Update()
     {
         if (onLadder)
-        { 
-            if (Keyboard.current.spaceKey.isPressed)
+        {
+            if (Keyboard.current.spaceKey.wasPressedThisFrame)
             {
                 rb.constraints = RigidbodyConstraints.FreezeAll;
                 playerController.enabled = false;
-                rb.transform.localPosition = new Vector3(rb.transform.position.x, rb.transform.position.y, zLadder);
-               
-                    if (Input.GetAxisRaw("Horizontal") < 0 && !playerController.InAir())
+                rb.transform.localPosition = new Vector3(grabPosition.position.x, rb.transform.position.y, zLadder);
+            }
+
+            if (Keyboard.current.spaceKey.isPressed)
+            {  
+                    if (Input.GetAxisRaw("Vertical") < 0 && !playerController.InAir())
                     {
                         return;
                     }
                     else
-                    this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + Input.GetAxisRaw("Horizontal") * climbSpeed * Time.deltaTime, this.transform.position.z);
-                
+                    this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + Input.GetAxisRaw("Vertical") * climbSpeed * Time.deltaTime, this.transform.position.z);    
             }
             else
             {
@@ -54,7 +56,7 @@ public class LadderMovement : MonoBehaviour
         {
             onLadder = true;
             zLadder = collision.gameObject.transform.localPosition.z;
-            xLadder = collision.gameObject.transform.localPosition.x;
+            grabPosition = collision.transform.Find("GrabPosition");
         }
     }
 
@@ -70,8 +72,9 @@ public class LadderMovement : MonoBehaviour
                 playerController.enabled = true;
             }
 
+            grabPosition = null;
             zLadder = 0;
-            xLadder = 0;
+
         }
     }
 }

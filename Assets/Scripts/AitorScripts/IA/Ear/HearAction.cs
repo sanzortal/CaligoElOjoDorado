@@ -12,6 +12,7 @@ public class HearAction : DrawableAction
         foreach (Collider hit in hits) 
         {
             PlayerController controller = hit.GetComponent<PlayerController>();
+            
             if (controller && controller.getEmotion() != PlayerController.emotions.SAD)
             {
                 return true;
