@@ -13,6 +13,8 @@ public class PlayerAnimationManager : MonoBehaviour
 
     [SerializeField] KeyCode crouchKey = KeyCode.LeftShift;
     [SerializeField] KeyCode jumpKey = KeyCode.Space;
+    [SerializeField] KeyCode slideKey = KeyCode.LeftControl;
+    [SerializeField] KeyCode stairsKey = KeyCode.E;
 
     void Start()
     {
@@ -21,23 +23,28 @@ public class PlayerAnimationManager : MonoBehaviour
 
     void Update()
     {
-        //Walk animation
         bool isMoving =
             Input.GetKey(forwardKey) ||
             Input.GetKey(backwardKey) ||
             Input.GetKey(leftKey) ||
             Input.GetKey(rightKey);
- 
-        animator.SetBool("isWalking", isMoving);
 
-        //Crouch animation
         bool isCrouching = Input.GetKey(crouchKey);
+
+
+        animator.SetBool("isWalking", isMoving);
         animator.SetBool("isCrouching", isCrouching);
 
-        //Jump animation
         if (Input.GetKeyDown(jumpKey))
         {
-            animator.SetTrigger("jump");
+            animator.SetTrigger("Jump");
         }
+
+        if (Input.GetKeyDown(slideKey))
+        {
+            animator.SetTrigger("Slide");
+        }
+        
+
     }
 }
