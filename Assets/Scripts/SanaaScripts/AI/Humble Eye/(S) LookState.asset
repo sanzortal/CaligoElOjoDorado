@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19c577d534a1b264ab2927941c78ef64, type: 3}
+  m_Name: (S) LookState
+  m_EditorClassIdentifier: 
+  stateParameters:
+  - actionToCheck: {fileID: 11400000, guid: 2d052afcaba66d144b1ff2856ef96cd4, type: 2}
+    actionValue: 1
+    nextState: {fileID: 11400000, guid: 61719045764dfaf4a943a98cc22f7c46, type: 2}
+  rotationA: {x: 0, y: 207.5598, z: 0}
+  rotationB: {x: 0, y: 152.78838, z: 0}
+  speed: 0.5
+  waitTime: 3
+  turnSound: {fileID: 8300000, guid: 6ecd485a3e20b274baabddef8f13a0a0, type: 3}
+  hearDistance: 20

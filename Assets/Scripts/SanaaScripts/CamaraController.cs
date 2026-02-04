@@ -3,31 +3,46 @@ using UnityEngine.UIElements;
 
 public class CamaraController : MonoBehaviour
 {
-    [SerializeField] private Transform player;
-    [SerializeField] private float smoothSpeed = 0.025f;
-    [SerializeField] private Vector3 offset;
+    [Header("Referencia al jugador")]
+    public Transform player;
 
-    public Transform minLimitTransform;
-    public Transform maxLimitTransform;
+    [Header("Distancia máxima del mouse desde el jugador")]
+    public float maxOffsetX = 5f;
+    public float maxOffsetZ = 3f;
 
-    void LateUpdate()
+    [Header("Sensibilidad del movimiento de la cámara")]
+    public float sensitivity = 0.1f;
+
+    [Header("Límites globales del mapa")]
+    public Vector2 xLimits = new Vector2(-10f, 10f);
+    public Vector2 zLimits = new Vector2(-10f, 10f);
+
+    private Vector3 offset;
+
+    void Update()
     {
-        Vector3 desiredPosition = player.position + offset;
-        Vector3 smoothPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
+        // Obtener el movimiento del mouse
+        float mouseX = Input.GetAxis("Mouse X");
+        float mouseY = Input.GetAxis("Mouse Y");
 
-        float clampX = Mathf.Clamp(
-            smoothPosition.x,
-            minLimitTransform.position.x,
-            maxLimitTransform.position.x
-        );
+        // Calcular el offset deseado según el mouse
+        offset += new Vector3(mouseX, 0, mouseY) * sensitivity;
 
-        float clampY = Mathf.Clamp(
-            smoothPosition.y,
-            minLimitTransform.position.y,
-            maxLimitTransform.position.y
-        );
+        // Limitar el offset máximo relativo al jugador
+        offset.x = Mathf.Clamp(offset.x, -maxOffsetX, maxOffsetX);
+        offset.z = Mathf.Clamp(offset.z, -maxOffsetZ, maxOffsetZ);
 
-        transform.position = new Vector3(clampX, clampY, offset.z);
+        // Posición objetivo de la cámara
+        Vector3 targetPos = player.position + offset;
+
+        // Limitar la posición de la cámara a los límites globales
+        targetPos.x = Mathf.Clamp(targetPos.x, xLimits.x, xLimits.y);
+        targetPos.z = Mathf.Clamp(targetPos.z, zLimits.x, zLimits.y);
+
+        // Aplicar posición suavizada (opcional)
+        transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * 5f);
+
+        // Mantener la cámara mirando al jugador
+        transform.LookAt(player.position);
     }
-
 }

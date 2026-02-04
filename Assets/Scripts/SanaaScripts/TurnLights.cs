@@ -4,6 +4,7 @@ public class TurnLights : MonoBehaviour
 {
     [SerializeField] private Light[] lights;
     public bool lightsOn { get; private set; }
+    private bool playerInside;
 
     void Start()
     {
@@ -13,13 +14,26 @@ public class TurnLights : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (playerInside && Input.GetKeyDown(KeyCode.E))
         {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                lightsOn = !lightsOn;
-                SetLights(lightsOn);
-            }
+            lightsOn = !lightsOn;
+            SetLights(lightsOn);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<PlayerController>() != null)
+        {
+            playerInside = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.GetComponent<PlayerController>() != null)
+        {
+            playerInside = false;
         }
     }
 
