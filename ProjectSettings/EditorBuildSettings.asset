@@ -12,14 +12,11 @@ EditorBuildSettings:
     path: Assets/Scenes/General/House new.unity
     guid: 2afad19e575954d4a9d38ba3e15bc1de
   - enabled: 1
-    path: Assets/Scenes/General/Neighbour new.unity
+    path: Assets/Scenes/General/3_NeighbourhoodScene.unity
     guid: 57b9be1e69ff08d48b8dbf734f83822a
   - enabled: 0
     path: Assets/Scenes/General/2_HouseScene.unity
     guid: bd6dd1a8fc40d1745b1955e2f56e41ce
-  - enabled: 0
-    path: Assets/Scenes/General/3_NeighbourhoodScene.unity
-    guid: 9e51514115861d74f807486aba8992de
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
