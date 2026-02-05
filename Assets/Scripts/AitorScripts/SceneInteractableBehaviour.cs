@@ -6,6 +6,7 @@ public class SceneInteractableBehaviour : MonoBehaviour
 {
     [SerializeField] PlayerController.emotions emotionNeeded;
     [SerializeField] bool isMovable;
+    private AudioSource moveAudio;
     private bool isOpen;
     private Rigidbody rb;
 
@@ -13,6 +14,7 @@ public class SceneInteractableBehaviour : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         isOpen = false;
+        moveAudio = GetComponent<AudioSource>();
     }
     public void Open(PlayerController.emotions playerEmotion)
     {
@@ -42,5 +44,21 @@ public class SceneInteractableBehaviour : MonoBehaviour
     public void ClearParent()
     {
         this.transform.parent = null;
+    }
+
+    public void playSound()
+    {
+        if (moveAudio != null && !moveAudio.isPlaying)
+        {
+            moveAudio.Play();
+        }
+    }
+
+    public void stopSound()
+    {
+        if (moveAudio != null && moveAudio.isPlaying)
+        {
+            moveAudio.Stop();
+        }
     }
 }

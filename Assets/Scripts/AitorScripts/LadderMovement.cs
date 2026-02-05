@@ -9,6 +9,8 @@ public class LadderMovement : MonoBehaviour
     private RigidbodyConstraints rbFirstConstraints;
     private float zLadder;
     private Transform grabPosition;
+    private Transform endClimbPosition;
+    private bool isInEndCollider;
 
     [SerializeField] float climbSpeed;
 
@@ -34,13 +36,19 @@ public class LadderMovement : MonoBehaviour
             }
 
             if (Keyboard.current.spaceKey.isPressed)
-            {  
-                    if (Input.GetAxisRaw("Vertical") < 0 && !playerController.InAir())
-                    {
-                        return;
-                    }
-                    else
-                    this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + Input.GetAxisRaw("Vertical") * climbSpeed * Time.deltaTime, this.transform.position.z);    
+            {
+                if (Input.GetAxisRaw("Vertical") > 0 && isInEndCollider)
+                {
+                    this.transform.position = endClimbPosition.position;
+                }
+                else if (Input.GetAxisRaw("Vertical") < 0 && !playerController.InAir())
+                {
+                    return;
+                }
+                else
+                {
+                    this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + Input.GetAxisRaw("Vertical") * climbSpeed * Time.deltaTime, this.transform.position.z);
+                }  
             }
             else
             {
@@ -57,6 +65,12 @@ public class LadderMovement : MonoBehaviour
             onLadder = true;
             zLadder = collision.gameObject.transform.localPosition.z;
             grabPosition = collision.transform.Find("GrabPosition");
+            endClimbPosition = collision.transform.Find("EndClimbPosition");
+        }
+       
+        if (collision.gameObject.name.Equals("ClimbTrigger"))
+        {
+           isInEndCollider = true;
         }
     }
 
@@ -72,9 +86,15 @@ public class LadderMovement : MonoBehaviour
                 playerController.enabled = true;
             }
 
+            endClimbPosition = null;
             grabPosition = null;
             zLadder = 0;
 
+        }
+        
+        if (collision.gameObject.name.Equals("ClimbTrigger"))
+        {
+            isInEndCollider = false;
         }
     }
 }

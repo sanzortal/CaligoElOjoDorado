@@ -41,7 +41,7 @@ public class FocusState : State
         if (Quaternion.Angle(ownerT.rotation, Quaternion.LookRotation(dirToPlayer)) < 2f)
         {
             PlayerDeaths deadPlayer = controller.GetComponent<PlayerDeaths>();
-            if (deadPlayer != null)
+            if (deadPlayer != null && controller.isActiveAndEnabled)
             {
                 deadPlayer.StartDeathCoroutine(killAnim);
             }

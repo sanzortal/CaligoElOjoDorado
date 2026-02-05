@@ -60,7 +60,11 @@ public class PlayerController : MonoBehaviour
     private emotions emotion;
     private bool differentEmotion;
 
+    //interactable object
     private SceneInteractableBehaviour interactableObject;
+
+    //sounds
+    private AudioSource[] audios;
     private void Start()
     {
         rb = this.gameObject.GetComponent<Rigidbody>();
@@ -75,6 +79,7 @@ public class PlayerController : MonoBehaviour
         emotion = emotions.NORMAL;
         differentEmotion = false;
         isGrabbing = false;
+        audios = GetComponents<AudioSource>();
     }
 
     private void FixedUpdate()
@@ -100,7 +105,7 @@ public class PlayerController : MonoBehaviour
                 interactableObject.Open(this.emotion);
             }
 
-            if (Keyboard.current.qKey.wasPressedThisFrame && !inAir && interactableObject)
+            if (Keyboard.current.qKey.wasPressedThisFrame && !inAir)
             {
                 if (isCrouching)
                 {
@@ -108,15 +113,27 @@ public class PlayerController : MonoBehaviour
                 }
                 movementSpeed = initialSpeed - 2;
                 isGrabbing = true;
-                interactableObject.Move(this.gameObject, this.emotion);
+                interactableObject.Move(this.gameObject, this.emotion);         
             }
 
+            if (MoveDirection != Vector3.zero)
+            {
+                if (isGrabbing)
+                {
+                    interactableObject.playSound();
+                }
+            }
+            else
+            {
+                interactableObject.stopSound();
+            }
         }
 
         if (Keyboard.current.qKey.wasReleasedThisFrame && isGrabbing)
         {
             isGrabbing = false;
             movementSpeed = initialSpeed;
+            interactableObject.stopSound();
             interactableObject.ClearParent();
         }
 
@@ -169,6 +186,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            
             return Vector3.zero;
         }
     }
@@ -232,6 +250,7 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
+        audios[0].Play();
         rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         inAir = true;
     }
@@ -345,6 +364,7 @@ public class PlayerController : MonoBehaviour
                 isGrabbing = false;
                 movementSpeed = initialSpeed;
             }
+            interactableObject.stopSound();
             interactableObject.ClearParent();
             interactableObject = null;           
         }

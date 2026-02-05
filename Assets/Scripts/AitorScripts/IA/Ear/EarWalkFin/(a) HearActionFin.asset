@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: (a) HearActionFin
   m_EditorClassIdentifier: 
   radius: 10
+  attack: 0
