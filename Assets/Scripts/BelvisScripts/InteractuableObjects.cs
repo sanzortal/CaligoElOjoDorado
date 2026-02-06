@@ -6,28 +6,21 @@ public class InteractuableObjects : MonoBehaviour
 
     private bool active = false;
 
-    private Color initColor;
-
-    [SerializeField] Color activeColor;
-
     private bool touchPlayer = false;
 
     [SerializeField] Key interactionKey;
-
-    private Renderer render;
 
     [SerializeField] PuzzleManager manager;
 
     private bool locked = false;
 
-
-  
+    private Animation animations;
+    private AudioSource[] audios;
 
     void Start()
     {
-        render = GetComponent<Renderer>();
-
-        initColor = render.material.color;
+       animations = GetComponent<Animation>();
+       audios = GetComponents<AudioSource>();
     }
 
     void Update()
@@ -47,7 +40,8 @@ public class InteractuableObjects : MonoBehaviour
 
     void PressButton()
     {
-        render.material.color = activeColor;
+        animations.Play("wheel|wheelUp");
+        audios[0].Play();
         active = true;
     }
 
@@ -83,7 +77,8 @@ public class InteractuableObjects : MonoBehaviour
     public void ResetButtons()
     {
         active = false;
-        render.material.color = initColor;
+        animations.Play("wheel|wheelDown");
+        audios[1].Play();
     }
 
     

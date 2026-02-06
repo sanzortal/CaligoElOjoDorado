@@ -87,7 +87,10 @@ public class PuzzleManager : MonoBehaviour
         puzzleActive = false;
         foreach (var button in buttons)
         {
-            button.ResetButtons();
+            if (button.Active())
+            {
+                button.ResetButtons();
+            }
         }
     }
 }
