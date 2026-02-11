@@ -20,5 +20,8 @@ MonoBehaviour:
   rotationB: {x: 0, y: 152.78838, z: 0}
   speed: 0.5
   waitTime: 3
+  obstructionMask:
+    serializedVersion: 2
+    m_Bits: 0
   turnSound: {fileID: 8300000, guid: 6ecd485a3e20b274baabddef8f13a0a0, type: 3}
   hearDistance: 20

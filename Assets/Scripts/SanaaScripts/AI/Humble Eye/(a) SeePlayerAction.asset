@@ -14,3 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visionAngle: 60
   radiusSphere: 10
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 128
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 64
