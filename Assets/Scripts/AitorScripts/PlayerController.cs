@@ -47,6 +47,18 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 MoveDirection;
 
+    //Revisar tarea Dani
+    public enum InteractionDirection
+    {
+        None,
+        PushForward,
+        PullBack,
+        MoveLeft,
+        MoveRight
+    }
+
+    private InteractionDirection currentInteractionDir; //Tarea Dani
+
     //emotions
     public enum emotions
     {
@@ -120,6 +132,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (isGrabbing)
                 {
+                    currentInteractionDir = CalculateInteractionDirection(MoveDirection, interactableObject.transform); //Tarea Dani
                     interactableObject.playSound();
                 }
             }
@@ -368,5 +381,46 @@ public class PlayerController : MonoBehaviour
             interactableObject.ClearParent();
             interactableObject = null;           
         }
+    }
+
+
+    //Revisar Tarea Dani
+    InteractionDirection CalculateInteractionDirection(Vector3 inputDir,Transform objectTransform)
+    {
+        if (inputDir == Vector3.zero)
+        {
+            return InteractionDirection.None;
+        }
+            
+
+        Vector3 objForward = objectTransform.forward;
+        Vector3 objRight = objectTransform.right;
+
+        float forwardDot = Vector3.Dot(inputDir, objForward);
+        float rightDot = Vector3.Dot(inputDir, objRight);
+
+        if (forwardDot > 0.7f)
+        {
+            return InteractionDirection.PushForward;
+        }
+           
+
+        if (forwardDot < -0.7f)
+        {
+            return InteractionDirection.PullBack;
+        }
+            
+
+        if (rightDot > 0.7f)
+        {
+            return InteractionDirection.MoveRight;
+        }
+            
+
+        if (rightDot < -0.7f)
+        {
+            return InteractionDirection.MoveLeft;
+        }       
+        return InteractionDirection.None;
     }
 }
