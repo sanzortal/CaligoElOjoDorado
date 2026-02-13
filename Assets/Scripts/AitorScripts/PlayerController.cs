@@ -22,10 +22,12 @@ public class PlayerController : MonoBehaviour
     //Jump
     [SerializeField] float jumpForce;
     private bool inAir;
-    [SerializeField] LayerMask mask;
+    [SerializeField] LayerMask floorMask;
     [SerializeField] float airDistance;
 
     //crouch
+    private bool tryingToStandUp;
+    private float standUpDistance;
     private bool isCrouching;
     [SerializeField] float crouchSpeed;
 
@@ -92,6 +94,8 @@ public class PlayerController : MonoBehaviour
         differentEmotion = false;
         isGrabbing = false;
         audios = GetComponents<AudioSource>();
+        tryingToStandUp = false;
+        standUpDistance = initSize.y / 2;
     }
 
     private void FixedUpdate()
@@ -102,13 +106,18 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Keyboard.current.mKey.wasPressedThisFrame)
+        if (Keyboard.current.mKey.wasPressedThisFrame && !isCrouching)
         {
             SadEmotion();
         }
 
         MoveDirection = CalculateMoveDirection();
         inAir = InAir();
+
+        if (tryingToStandUp)
+        {
+            TryToStandUp();
+        }
 
         if (interactableObject != null)
         {
@@ -117,15 +126,11 @@ public class PlayerController : MonoBehaviour
                 interactableObject.Open(this.emotion);
             }
 
-            if (Keyboard.current.qKey.wasPressedThisFrame && !inAir)
+            if (Keyboard.current.qKey.wasPressedThisFrame && !inAir && !isCrouching)
             {
-                if (isCrouching)
-                {
-                    StandUp();
-                }
                 movementSpeed = initialSpeed - 2;
                 isGrabbing = true;
-                interactableObject.Move(this.gameObject, this.emotion);         
+                interactableObject.Move(this.gameObject, this.emotion);
             }
 
             if (MoveDirection != Vector3.zero)
@@ -175,10 +180,11 @@ public class PlayerController : MonoBehaviour
             if (Keyboard.current.leftCtrlKey.wasPressedThisFrame && !inAir) 
             {
                 Crouch();
+                tryingToStandUp = false;
             }
             else if (Keyboard.current.leftCtrlKey.wasReleasedThisFrame)
             {
-                StandUp();
+                tryingToStandUp = true;
             }
         }
 
@@ -272,7 +278,7 @@ public class PlayerController : MonoBehaviour
     {
         Debug.DrawRay(transform.position, Vector3.down * airDistance, Color.green);
 
-        if (Physics.Raycast(transform.position, Vector3.down, airDistance, mask))
+        if (Physics.Raycast(transform.position, Vector3.down, airDistance, floorMask))
         {
             return false;
         }
@@ -332,11 +338,6 @@ public class PlayerController : MonoBehaviour
 
     void SadEmotion()
     {
-        if (isCrouching)
-        {
-            StandUp();
-        }
-
         if (!differentEmotion)
         {
             emotion = emotions.SAD;
@@ -422,5 +423,17 @@ public class PlayerController : MonoBehaviour
             return InteractionDirection.MoveLeft;
         }       
         return InteractionDirection.None;
+    }
+
+    //Try to stand up if there is no object above it
+    public void TryToStandUp()
+    {
+        Debug.DrawRay(transform.position, Vector3.up * standUpDistance, Color.black);
+
+        if (!Physics.Raycast(transform.position, Vector3.up, standUpDistance))
+        {
+            StandUp();
+            tryingToStandUp = false;
+        }
     }
 }

@@ -220,12 +220,12 @@ MonoBehaviour:
   leftKey: 15
   rightKey: 18
   jumpForce: 5
-  mask:
+  floorMask:
     serializedVersion: 2
     m_Bits: 256
   airDistance: 0.5
   crouchSpeed: 1
-  slideForce: 4
+  slideForce: 7
 --- !u!54 &4357455930217671864
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -265,7 +265,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 125ea8c022d54d440b9a6a94294e9384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dc: {fileID: 0}
 --- !u!114 &6489764255501063649
 MonoBehaviour:
   m_ObjectHideFlags: 0

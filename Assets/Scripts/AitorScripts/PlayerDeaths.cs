@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class PlayerDeaths : MonoBehaviour
 {
-    [SerializeField] DeathsController dc;
     private Rigidbody rb;
     private PlayerController playerController;
     private Transform respawn;
@@ -23,16 +22,16 @@ public class PlayerDeaths : MonoBehaviour
         //animacion de morir con animation.play(enemykiller) al tener diferentes animaciones
 
         //turn off camera
-        respawn = dc.ActivatePanel();
+        respawn = DeathsController.ActivatePanel();
         
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
         //Respawn
         Respawn();
-
+        DeathsController.RespawnAll();
         //wait
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(2f);
         //turn on camera
-        dc.DeactivatePanel();
+        DeathsController.DeactivatePanel();
 
         //player movement
         playerController.enabled = true;

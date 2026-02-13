@@ -5,8 +5,11 @@ using UnityEngine;
 public class HearAction : DrawableAction
 {
     [SerializeField] private float radius;
-    [SerializeField] bool attack;
+    [SerializeField] bool hearAttack;
     private bool screamWasPlayed = false;
+
+    //is chasing the player or not
+    [SerializeField] bool isChasing;
     public override bool Check(GameObject owner)
     {
         Collider[] hits = Physics.OverlapSphere(owner.transform.position, radius);
@@ -15,20 +18,28 @@ public class HearAction : DrawableAction
         {
             PlayerController controller = hit.GetComponent<PlayerController>();
             
-            if (controller && controller.getEmotion() != PlayerController.emotions.SAD)
+            if (controller)
             {
-                AudioSource scream = owner.GetComponent<AudioSource>();
-                if (!attack && !scream.isPlaying && !screamWasPlayed)
+                if (isChasing)
                 {
-                    owner.GetComponent<AudioSource>().Play();
-                    screamWasPlayed = true;
+                    return true;
                 }
-                else
+
+                if (controller.getEmotion() != PlayerController.emotions.SAD)
                 {
-                    //@TO DO en el futuro
+                    AudioSource scream = owner.GetComponent<AudioSource>();
+                    if (!hearAttack && !scream.isPlaying && !screamWasPlayed)
+                    {
+                        owner.GetComponent<AudioSource>().Play();
+                        screamWasPlayed = true;
+                    }
+                    else
+                    {
+                        //@TO DO en el futuro sonido de atacar
+                    }
+
+                    return true;
                 }
-                
-                return true;
             }
         }
 
