@@ -114,6 +114,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2949173233427405251}
     m_Modifications:
+    - target: {fileID: 2788972577989746839, guid: 4ef99e026f59e2740a5ac8ce6971d205, type: 3}
+      propertyPath: lightMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: b3f7cd9ae7cbecf4895646beebb22ec2, type: 2}
+    - target: {fileID: 2788972577989746839, guid: 4ef99e026f59e2740a5ac8ce6971d205, type: 3}
+      propertyPath: offColorLight.a
+      value: 0.28235295
+      objectReference: {fileID: 0}
+    - target: {fileID: 2788972577989746839, guid: 4ef99e026f59e2740a5ac8ce6971d205, type: 3}
+      propertyPath: offColorLight.b
+      value: 0.23921569
+      objectReference: {fileID: 0}
+    - target: {fileID: 2788972577989746839, guid: 4ef99e026f59e2740a5ac8ce6971d205, type: 3}
+      propertyPath: offColorLight.g
+      value: 0.5647059
+      objectReference: {fileID: 0}
+    - target: {fileID: 2788972577989746839, guid: 4ef99e026f59e2740a5ac8ce6971d205, type: 3}
+      propertyPath: offColorLight.r
+      value: 0.58431375
+      objectReference: {fileID: 0}
     - target: {fileID: 5068643102316266740, guid: 4ef99e026f59e2740a5ac8ce6971d205, type: 3}
       propertyPath: m_Name
       value: FlickLight
