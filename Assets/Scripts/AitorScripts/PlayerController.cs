@@ -361,7 +361,7 @@ public class PlayerController : MonoBehaviour
     {
         SceneInteractableBehaviour aux = collision.gameObject.GetComponent<SceneInteractableBehaviour>(); 
 
-        if (aux != null)
+        if (aux != null && interactableObject == null)
         {
             interactableObject = aux;
         }
@@ -378,6 +378,7 @@ public class PlayerController : MonoBehaviour
                 isGrabbing = false;
                 movementSpeed = initialSpeed;
             }
+            interactableObject = aux;
             interactableObject.stopSound();
             interactableObject.ClearParent();
             interactableObject = null;           
