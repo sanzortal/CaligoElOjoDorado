@@ -7065,7 +7065,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1901685353235048514, guid: 080d707b82dcf6841b5aac8183cc1194, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4559503132561324957, guid: 080d707b82dcf6841b5aac8183cc1194, type: 3}
       propertyPath: m_LocalPosition.x
@@ -26372,7 +26372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2232715798e99ba40b28e154f83de259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerBox: {fileID: 0}
+  powerBox: {fileID: 1946841084}
   noLightDialogue: {fileID: 2139632856}
 --- !u!65 &2139632859
 BoxCollider:

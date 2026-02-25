@@ -86,7 +86,7 @@ public class PlayerController : MonoBehaviour
         initSize = bc.size;
         initCenter = bc.center;
         initialSpeed = movementSpeed;
-        maxSpeed = movementSpeed + 4;
+        maxSpeed = movementSpeed + 2;
         isCrouching = false;
         isMoving = false;
         moveVector = Vector3.zero;
