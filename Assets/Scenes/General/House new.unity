@@ -3037,7 +3037,7 @@ GameObject:
   - component: {fileID: 192600581}
   - component: {fileID: 192600583}
   - component: {fileID: 192600582}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: CodePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6270,7 +6270,7 @@ GameObject:
   - component: {fileID: 428018236}
   - component: {fileID: 428018238}
   - component: {fileID: 428018237}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Code
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8049,7 +8049,7 @@ GameObject:
   - component: {fileID: 651614501}
   - component: {fileID: 651614500}
   - component: {fileID: 651614499}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Puzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9369,7 +9369,7 @@ GameObject:
   - component: {fileID: 774843593}
   - component: {fileID: 774843595}
   - component: {fileID: 774843594}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: couch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10540,7 +10540,7 @@ GameObject:
   - component: {fileID: 890934848}
   - component: {fileID: 890934850}
   - component: {fileID: 890934849}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Objects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12901,7 +12901,7 @@ GameObject:
   - component: {fileID: 1050734567}
   - component: {fileID: 1050734569}
   - component: {fileID: 1050734568}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: vater
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13173,7 +13173,7 @@ GameObject:
   - component: {fileID: 1064560860}
   - component: {fileID: 1064560862}
   - component: {fileID: 1064560861}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17071,6 +17071,10 @@ PrefabInstance:
       propertyPath: near clip plane
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 5691353946053557030, guid: e784736ffe4f97a43b29def83f1b6852, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 503
+      objectReference: {fileID: 0}
     - target: {fileID: 6849741181412563973, guid: e784736ffe4f97a43b29def83f1b6852, type: 3}
       propertyPath: DefaultBlend.Style
       value: 1
@@ -18520,7 +18524,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 501
+    m_Bits: 1013
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 14a1c683e8d14e54d87be2092f6d7a5d, type: 2}
   m_TargetDisplay: 0
@@ -21234,7 +21238,7 @@ GameObject:
   - component: {fileID: 1652867020}
   - component: {fileID: 1652867022}
   - component: {fileID: 1652867021}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
