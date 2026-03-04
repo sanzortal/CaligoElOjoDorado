@@ -24,12 +24,12 @@ public class PlayerDeaths : MonoBehaviour
         //turn off camera
         respawn = DeathsController.ActivatePanel();
         
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         //Respawn
         Respawn();
         DeathsController.RespawnAll();
         //wait
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(5f);
         //turn on camera
         DeathsController.DeactivatePanel();
 

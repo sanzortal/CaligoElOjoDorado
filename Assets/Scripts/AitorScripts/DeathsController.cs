@@ -45,6 +45,11 @@ public class DeathsController:MonoBehaviour
         }
     }
 
+    public static void ChangeRespawnPoint(Transform newPoint)
+    {
+        instance.respawnPoint = newPoint;
+    }
+
     public static void RegisterOnPlayerDeath(SimpleDelegate respawn)
     {
         instance.OnPlayerDeath += respawn;
