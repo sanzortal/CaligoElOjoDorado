@@ -29,7 +29,7 @@ public class PlayerDeaths : MonoBehaviour
         Respawn();
         DeathsController.RespawnAll();
         //wait
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(5.5f);
         //turn on camera
         DeathsController.DeactivatePanel();
 
