@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 initSize;
     private Vector3 initCenter;
 
-
+    [SerializeField] Animator animator;
     private Vector3 MoveDirection;
 
     //Revisar tarea Dani
@@ -160,6 +160,7 @@ public class PlayerController : MonoBehaviour
             if (Keyboard.current.leftShiftKey.isPressed && isMoving && !inAir)
             {
                 Run();
+                animator.SetBool("isRunning", true);
 
                 if (Keyboard.current.leftCtrlKey.wasPressedThisFrame && !inAir && movementSpeed > initialSpeed + 2f)
                 {
@@ -170,6 +171,7 @@ public class PlayerController : MonoBehaviour
             if (Keyboard.current.leftShiftKey.wasReleasedThisFrame)
             {
                 crouched();
+                animator.SetBool("isRunning", false);
             }
 
             if (Keyboard.current.spaceKey.wasPressedThisFrame && !inAir && !isCrouching)
@@ -196,6 +198,8 @@ public class PlayerController : MonoBehaviour
 
         if (moveDirection.magnitude != 0)
         {
+            animator.SetBool("isWalking", true);
+
             if (!isGrabbing)
             {
                 LookAt(moveDirection);
@@ -205,7 +209,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            
+            animator.SetBool("isWalking", false);
             return Vector3.zero;
         }
     }
@@ -269,9 +273,10 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
-        audios[0].Play();
+        //audios[0].Play();
         rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         inAir = true;
+        animator.SetTrigger("Jump");
     }
 
     public bool InAir()
@@ -294,6 +299,7 @@ public class PlayerController : MonoBehaviour
         bc.center = new Vector3(initCenter.x, -(bc.size.y) / 2, initCenter.z);
         movementSpeed = crouchSpeed;
         isCrouching = true;
+        animator.SetBool("isCrouching", true);
     }
 
     private void StandUp()
@@ -302,6 +308,7 @@ public class PlayerController : MonoBehaviour
         bc.center = initCenter;
         movementSpeed = initialSpeed;
         isCrouching = false;
+        animator.SetBool("isCrouching", false);
     }
 
     private void Run()
