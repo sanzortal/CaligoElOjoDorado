@@ -14,7 +14,6 @@ public class ChaseState : State
         GameObject player = FindFirstObjectByType<PlayerController>().gameObject;
 
         NavMeshAgent agentCmp = owner.GetComponent<NavMeshAgent>();
-
         if (agentCmp.enabled)
         {
             agentCmp.enabled = false;

@@ -273,7 +273,11 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
-        //audios[0].Play();
+        if (audios != null)
+        {
+            audios[0].Play();
+        }
+
         rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         inAir = true;
         animator.SetTrigger("Jump");
