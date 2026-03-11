@@ -341,6 +341,7 @@ public class PlayerController : MonoBehaviour
     void slide(Vector3 moveDirection)
     {
         rb.AddForce(moveDirection * slideForce, ForceMode.Impulse);
+        animator.SetTrigger("Slide");
     }
 
     void SadEmotion()
