@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f49f6ca582784494ea8a13e0473aa2f8, type: 3}
+  m_Name: (S) PatrolStateEye
+  m_EditorClassIdentifier: 
+  stateParameters:
+  - actionToCheck: {fileID: 11400000, guid: 7995ff582911bae499f9cbefb20b39ad, type: 2}
+    actionValue: 1
+    nextState: {fileID: 11400000, guid: dbe5e62395002b04183e571afc93182b, type: 2}
+  position:
+  - {x: 117.38, y: 1.48, z: -4.52}
+  - {x: 157.77, y: 1.48, z: -4.52}

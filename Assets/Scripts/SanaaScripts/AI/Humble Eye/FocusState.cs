@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 [CreateAssetMenu(fileName ="(S) FocusState", menuName = "ScriptableObjects/States/FocusState")]
 public class FocusState : State
 {
     [SerializeField] string killAnim;
     [SerializeField] private float rotationSpeed = 5f;
+    [SerializeField] bool isIn3D;
 
     public override State Run(GameObject owner)
     {
@@ -14,9 +16,19 @@ public class FocusState : State
         Transform ownerT = owner.transform;
         Transform playerT = controller.transform;
 
+        //parar de patrullar
+        if (isIn3D)
+        {
+            owner.GetComponent<NavMeshAgent>().SetDestination(owner.transform.position);
+        }
+
         // centrar la mirada al jugador
         Vector3 dirToPlayer = playerT.position - ownerT.position;
-        dirToPlayer.y = 0f;
+
+        if (!isIn3D)
+        {
+            dirToPlayer.y = 0f;
+        }
 
         if (dirToPlayer.sqrMagnitude > 0.01f)
         {

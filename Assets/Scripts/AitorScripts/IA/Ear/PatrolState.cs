@@ -11,6 +11,7 @@ public class PatrolState : State
     {
         NavMeshAgent agentCmp = owner.GetComponent<NavMeshAgent>();
 
+
         if (!agentCmp.enabled)
         {
             agentCmp.enabled = true;
