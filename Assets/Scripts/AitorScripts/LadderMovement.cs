@@ -11,6 +11,7 @@ public class LadderMovement : MonoBehaviour
     private Transform grabPosition;
     private Transform endClimbPosition;
     private bool isInEndCollider;
+    [SerializeField] Animator animator;
 
     [SerializeField] float climbSpeed;
 
@@ -32,6 +33,9 @@ public class LadderMovement : MonoBehaviour
             {
                 rb.constraints = RigidbodyConstraints.FreezeAll;
                 playerController.enabled = false;
+
+                animator.SetBool("isClimbing", true);
+
                 rb.transform.localPosition = new Vector3(grabPosition.position.x, rb.transform.position.y, zLadder);
             }
 
@@ -54,6 +58,8 @@ public class LadderMovement : MonoBehaviour
             {
                 rb.constraints = rbFirstConstraints;
                 playerController.enabled = true;
+
+                animator.SetBool("isClimbing", false);
             }
         }
     }
@@ -85,6 +91,8 @@ public class LadderMovement : MonoBehaviour
                 rb.constraints = rbFirstConstraints;
                 playerController.enabled = true;
             }
+
+            animator.SetBool("isClimbing", false);
 
             endClimbPosition = null;
             grabPosition = null;

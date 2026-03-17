@@ -130,7 +130,9 @@ public class PlayerController : MonoBehaviour
             {
                 movementSpeed = initialSpeed - 2;
                 isGrabbing = true;
+                animator.SetBool("isGrabbing", true);
                 interactableObject.Move(this.gameObject, this.emotion);
+                
             }
 
             if (MoveDirection != Vector3.zero)
@@ -138,11 +140,16 @@ public class PlayerController : MonoBehaviour
                 if (isGrabbing)
                 {
                     currentInteractionDir = CalculateInteractionDirection(MoveDirection, interactableObject.transform); //Tarea Dani
+                    animator.SetInteger("PushDirection", (int)currentInteractionDir);
                     interactableObject.playSound();
                 }
             }
             else
             {
+                if (isGrabbing)
+                {
+                    animator.SetInteger("PushDirection", 0);
+                }
                 interactableObject.stopSound();
             }
         }
@@ -151,6 +158,10 @@ public class PlayerController : MonoBehaviour
         {
             isGrabbing = false;
             movementSpeed = initialSpeed;
+
+            animator.SetBool("isGrabbing", false);
+            animator.SetInteger("PushDirection", 0);
+
             interactableObject.stopSound();
             interactableObject.ClearParent();
         }
@@ -405,36 +416,34 @@ public class PlayerController : MonoBehaviour
         {
             return InteractionDirection.None;
         }
-            
+             
+        Vector3 localDir = objectTransform.InverseTransformDirection(inputDir);
 
-        Vector3 objForward = objectTransform.forward;
-        Vector3 objRight = objectTransform.right;
+        float forward = localDir.z;
+        float right = localDir.x;
 
-        float forwardDot = Vector3.Dot(inputDir, objForward);
-        float rightDot = Vector3.Dot(inputDir, objRight);
-
-        if (forwardDot > 0.7f)
+        if (forward > 0.5f)
         {
             return InteractionDirection.PushForward;
         }
-           
+            
 
-        if (forwardDot < -0.7f)
+        if (forward < -0.5f)
         {
             return InteractionDirection.PullBack;
         }
             
 
-        if (rightDot > 0.7f)
+        if (right > 0.5f)
         {
             return InteractionDirection.MoveRight;
         }
             
 
-        if (rightDot < -0.7f)
+        if (right < -0.5f)
         {
             return InteractionDirection.MoveLeft;
-        }       
+        }
         return InteractionDirection.None;
     }
 

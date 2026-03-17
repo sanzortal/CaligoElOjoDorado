@@ -8,6 +8,10 @@ public class PlayerDeaths : MonoBehaviour
     private PlayerController playerController;
     private Transform respawn;
 
+    [SerializeField] ParticleSystem fireParticles;
+    [SerializeField] Animator animator;
+    [SerializeField] float delayBeforeDeathAnim = 2f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,7 +23,19 @@ public class PlayerDeaths : MonoBehaviour
         //stop player
         playerController.enabled = false;
 
+        //play particles
+        if (fireParticles != null)
+        {
+            fireParticles.gameObject.SetActive(true);
+            fireParticles.Play();
+        }
+
+        // wait before play death animation
+        yield return new WaitForSeconds(delayBeforeDeathAnim);
+
         //animacion de morir con animation.play(enemykiller) al tener diferentes animaciones
+        animator.SetTrigger("Die");
+
 
         //turn off camera
         respawn = DeathsController.ActivatePanel();
@@ -28,6 +44,17 @@ public class PlayerDeaths : MonoBehaviour
         //Respawn
         Respawn();
         DeathsController.RespawnAll();
+        // reset animator
+        animator.Rebind();
+        animator.Update(0f);
+
+        //stop particles
+        if (fireParticles != null)
+        {
+            fireParticles.Stop();
+            fireParticles.gameObject.SetActive(false);
+        }
+
         //wait
         yield return new WaitForSeconds(5.5f);
         //turn on camera
