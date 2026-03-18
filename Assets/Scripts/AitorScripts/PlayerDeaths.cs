@@ -24,18 +24,21 @@ public class PlayerDeaths : MonoBehaviour
         playerController.enabled = false;
 
         //play particles
-        if (fireParticles != null)
+        if (fireParticles != null && !enemyKiller.Equals("None"))
         {
             fireParticles.gameObject.SetActive(true);
             fireParticles.Play();
         }
 
         // wait before play death animation
-        yield return new WaitForSeconds(delayBeforeDeathAnim);
+        //yield return new WaitForSeconds(delayBeforeDeathAnim);
 
         //animacion de morir con animation.play(enemykiller) al tener diferentes animaciones
-        animator.SetTrigger("Die");
-
+        if (!enemyKiller.Equals("None"))
+        {
+            animator.SetTrigger("Die");
+            yield return new WaitForSeconds(3f);
+        }
 
         //turn off camera
         respawn = DeathsController.ActivatePanel();

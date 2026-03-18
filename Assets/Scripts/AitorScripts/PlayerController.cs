@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
 
     //crouch
     private bool tryingToStandUp;
-    private float standUpDistance;
+    [SerializeField] float standUpDistance;
     private bool isCrouching;
     [SerializeField] float crouchSpeed;
 
@@ -95,7 +95,7 @@ public class PlayerController : MonoBehaviour
         isGrabbing = false;
         audios = GetComponents<AudioSource>();
         tryingToStandUp = false;
-        standUpDistance = initSize.y / 2;
+        
     }
 
     private void FixedUpdate()
@@ -452,7 +452,7 @@ public class PlayerController : MonoBehaviour
     {
         Debug.DrawRay(transform.position, Vector3.up * standUpDistance, Color.black);
 
-        if (!Physics.Raycast(transform.position, Vector3.up, standUpDistance))
+        if (!Physics.Raycast(transform.position, Vector3.up, standUpDistance, ~0,QueryTriggerInteraction.Ignore))
         {
             StandUp();
             tryingToStandUp = false;

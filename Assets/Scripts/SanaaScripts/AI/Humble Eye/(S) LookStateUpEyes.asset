@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19c577d534a1b264ab2927941c78ef64, type: 3}
+  m_Name: (S) LookStateUpEyes
+  m_EditorClassIdentifier: 
+  stateParameters:
+  - actionToCheck: {fileID: 11400000, guid: 8d89ceef706a41a41a3584bb115dc253, type: 2}
+    actionValue: 1
+    nextState: {fileID: 11400000, guid: b3b3c2ab39ee15c4fb8d2b86367e1008, type: 2}
+  rotationA: {x: 0, y: 216.74, z: 0}
+  rotationB: {x: 0, y: 145, z: 0}
+  speed: 0.5
+  waitTime: 3
+  turnSound: {fileID: 8300000, guid: 6ecd485a3e20b274baabddef8f13a0a0, type: 3}
+  hearDistance: 20
