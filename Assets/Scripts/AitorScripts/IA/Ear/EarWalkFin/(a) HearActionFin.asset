@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ad8cd86fbc0ee3478ff09e2b3882e68, type: 3}
   m_Name: (a) HearActionFin
   m_EditorClassIdentifier: 
-  radius: 10
-  attack: 0
+  radius: 4.84
+  hearAttack: 0
+  isChasing: 0

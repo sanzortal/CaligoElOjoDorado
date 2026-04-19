@@ -9,11 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c82ebdb489e9bc641a7c92fe0c8f5e2e, type: 3}
-  m_Name: (S) AttackStateFin2
+  m_Script: {fileID: 11500000, guid: 830b69e720d351843b21283014f61008, type: 3}
+  m_Name: (S) FocusState2
   m_EditorClassIdentifier: 
   stateParameters:
-  - actionToCheck: {fileID: 11400000, guid: 3cf37e96166aa31439debf5aca6c78a4, type: 2}
+  - actionToCheck: {fileID: 11400000, guid: 7995ff582911bae499f9cbefb20b39ad, type: 2}
     actionValue: 0
-    nextState: {fileID: 11400000, guid: 1a28e34afce49fa43bc3c352c5941dc0, type: 2}
-  killAnim: EarDeath
+    nextState: {fileID: 11400000, guid: a003abe4484b26b40a3c83e195ea8c7e, type: 2}
+  killAnim: HumbleEyeDeath
+  rotationSpeed: 5
+  isIn3D: 1

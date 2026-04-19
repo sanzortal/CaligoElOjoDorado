@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f49f6ca582784494ea8a13e0473aa2f8, type: 3}
-  m_Name: (S) PatrolStateEyeFinal3
+  m_Name: (S) PatrolStateEye2
   m_EditorClassIdentifier: 
   stateParameters:
-  - actionToCheck: {fileID: 11400000, guid: 8b1cd1f5b719f454087dca563f8bcdfe, type: 2}
+  - actionToCheck: {fileID: 11400000, guid: 7995ff582911bae499f9cbefb20b39ad, type: 2}
     actionValue: 1
-    nextState: {fileID: 11400000, guid: 8c152e8d8f477bc448de79e907141550, type: 2}
+    nextState: {fileID: 11400000, guid: 53319af0aacf92a43a5d21ef85b3275c, type: 2}
   position:
-  - {x: 364.94, y: 11.18, z: -0.6}
-  - {x: 368.81, y: 11.18, z: -0.6}
+  - {x: 117.38, y: 1.48, z: 1.8}
+  - {x: 157.77, y: 1.48, z: 1.8}

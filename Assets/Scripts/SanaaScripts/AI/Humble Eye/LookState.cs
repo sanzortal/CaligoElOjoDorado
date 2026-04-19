@@ -12,7 +12,6 @@ public class LookState : State
     private bool lookingAtA = true;
     private float waitTimer = 0f;
 
-    [SerializeField] private AudioClip turnSound;
     [SerializeField] private float hearDistance = 6f;
 
     public override State Run(GameObject owner)
@@ -48,9 +47,9 @@ public class LookState : State
                     if (distance <= hearDistance)
                     {
                         AudioSource audio = owner.GetComponent<AudioSource>();
-                        if (audio != null && turnSound != null)
+                        if (audio != null )
                         {
-                            audio.PlayOneShot(turnSound);
+                            audio.Play();
                         }
                     }
                 }

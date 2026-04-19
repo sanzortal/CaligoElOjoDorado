@@ -19,6 +19,6 @@ MonoBehaviour:
   - actionToCheck: {fileID: 11400000, guid: 82e74000ce1b9ed4ea3619ce0070ca88, type: 2}
     actionValue: 1
     nextState: {fileID: 11400000, guid: 982b21e599ea601458039943779cb844, type: 2}
-  recoverPoint: {x: 242.5, y: 11.47, z: -2.03}
+  recoverPoint: {x: 203.39, y: 8.81, z: -2.03}
   movementSpeed: 3.5
   rotationSpeed: 700

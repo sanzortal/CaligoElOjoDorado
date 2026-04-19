@@ -5,11 +5,14 @@ public class TurnLights : MonoBehaviour
 {
     [SerializeField] private Light[] lights;
     [SerializeField] InteractablePanel codePanel;
+    [SerializeField] GameObject historyObject;
+    private AudioSource turnSound;
     public bool lightsOn { get; private set; }
     private bool playerInside;
 
     void Start()
     {
+        turnSound = GetComponent<AudioSource>();
         codePanel.enabled = false;
         lightsOn = false;
         SetLights(false);
@@ -22,6 +25,19 @@ public class TurnLights : MonoBehaviour
             lightsOn = !lightsOn;
             codePanel.enabled = lightsOn;
             SetLights(lightsOn);
+            turnSound.Play();
+
+            if (historyObject != null)
+            {
+                if (lightsOn)
+                {
+                    historyObject.SetActive(false);
+                }
+                else
+                {
+                    historyObject.SetActive(true);
+                }
+            }
         }
     }
 

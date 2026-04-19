@@ -4849,6 +4849,7 @@ GameObject:
   - component: {fileID: 6885391392300033776}
   - component: {fileID: 3760347009484711543}
   - component: {fileID: 2675934367140844179}
+  - component: {fileID: 5501754442184792188}
   m_Layer: 6
   m_Name: Hugo
   m_TagString: Player
@@ -4991,7 +4992,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 97046217aae2d5444a62a2ffa4097937, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -5075,6 +5076,14 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!81 &5501754442184792188
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4983668744395996326}
+  m_Enabled: 1
 --- !u!1 &7369765552209088254
 GameObject:
   m_ObjectHideFlags: 0

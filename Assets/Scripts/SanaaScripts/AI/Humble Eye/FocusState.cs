@@ -7,9 +7,14 @@ public class FocusState : State
     [SerializeField] string killAnim;
     [SerializeField] private float rotationSpeed = 5f;
     [SerializeField] bool isIn3D;
-
     public override State Run(GameObject owner)
     {
+        RespawnAirEyes respawnedObject = owner.GetComponent<RespawnAirEyes>();
+        if (respawnedObject!= null && respawnedObject.GetRespawned())
+        {
+            return base.Run(owner);
+        }
+
         PlayerController controller = FindFirstObjectByType<PlayerController>();
         GameObject player = controller.gameObject;
 
@@ -41,13 +46,6 @@ public class FocusState : State
             );
         }
 
-        /* viejo 
-         * if (controller.isActiveAndEnabled)
-        {
-            PlayerDeaths deadPlayer = player.GetComponent<PlayerDeaths>();
-
-            deadPlayer.StartDeathCoroutine(killAnim);
-        }*/
 
         // Cuando ya está mirando al jugador, ejecutar la muerte
         if (Quaternion.Angle(ownerT.rotation, Quaternion.LookRotation(dirToPlayer)) < 2f)
@@ -56,6 +54,11 @@ public class FocusState : State
             if (deadPlayer != null && controller.isActiveAndEnabled)
             {
                 deadPlayer.StartDeathCoroutine(killAnim);
+
+                if (respawnedObject != null)
+                {
+                    respawnedObject.SetRespawned(true);
+                }
             }
         }
 

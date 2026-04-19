@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cd0981d376541f4c89fe040fe795373, type: 3}
   m_Name: (a) ArriveActionFin1
   m_EditorClassIdentifier: 
-  recoverPoint: {x: 346.47, y: 11.93, z: -0.5}
+  recoverPoint: {x: 248.66997, y: 8.84, z: -0.5}
   tolerance: 0.1

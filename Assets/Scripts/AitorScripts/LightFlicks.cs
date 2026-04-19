@@ -10,6 +10,7 @@ public class LightFlicks : MonoBehaviour
     [SerializeField] bool flick;
     [SerializeField] float lastFlickDuration;
     [SerializeField] Color offColorLight;
+    [SerializeField] AudioSource flickAudio;
     private Color onColorLight;
     private Material lightMaterial;
 
@@ -27,6 +28,7 @@ public class LightFlicks : MonoBehaviour
             }
         }
 
+        
         StartCoroutine(Flicks());
     }
 
@@ -37,6 +39,11 @@ public class LightFlicks : MonoBehaviour
         while (flick)
         {
             flicksDone = 0;
+            if (flickAudio != null)
+            {
+                flickAudio.Play();
+            }
+
             while (flicksDone < flickCount)
             {
                 flickedLight.enabled = false;

@@ -17,5 +17,5 @@ MonoBehaviour:
     actionValue: 1
     nextState: {fileID: 11400000, guid: eee9f28f2db8edb4487315ee3c573edb, type: 2}
   position:
-  - {x: 352.48, y: 11.18, z: -0.6}
-  - {x: 356.2, y: 11.18, z: -0.6}
+  - {x: 254.31, y: 8.09, z: -0.6}
+  - {x: 258.34, y: 8.09, z: -0.6}
