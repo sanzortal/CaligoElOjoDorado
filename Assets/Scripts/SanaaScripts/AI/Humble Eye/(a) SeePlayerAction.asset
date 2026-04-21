@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: (a) SeePlayerAction
   m_EditorClassIdentifier: 
   visionAngle: 60
-  radiusSphere: 10
+  radiusSphere: 13.41
   obstacleMask:
     serializedVersion: 2
     m_Bits: 128
