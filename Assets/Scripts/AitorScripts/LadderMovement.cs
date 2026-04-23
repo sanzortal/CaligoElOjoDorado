@@ -37,6 +37,7 @@ public class LadderMovement : MonoBehaviour
                 animator.SetBool("isClimbing", true);
 
                 rb.transform.localPosition = new Vector3(grabPosition.position.x, rb.transform.position.y, zLadder);
+          
             }
 
             if (Keyboard.current.spaceKey.isPressed)
