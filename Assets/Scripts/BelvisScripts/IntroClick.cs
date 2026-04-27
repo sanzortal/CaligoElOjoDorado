@@ -3,12 +3,12 @@ using UnityEngine;
 public class IntroClick : MonoBehaviour
 {
     [SerializeField] string nextSceneName;
-
+    [SerializeField] SceneLoader loader;
     private void Update()
     {
         if(Input.GetMouseButtonDown(0))
         {
-            SceneLoader.Instance.LoadScene(nextSceneName);
+            loader.LoadScene(nextSceneName);
         }
     }
 }
