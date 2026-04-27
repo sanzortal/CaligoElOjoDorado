@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5749528979217841876}
   - component: {fileID: 6775546421167929041}
   - component: {fileID: 4955587586915266485}
-  - component: {fileID: -2651452836974734556}
+  - component: {fileID: 4776625996000290408}
   m_Layer: 0
   m_Name: WaterBath
   m_TagString: Untagged
@@ -111,7 +111,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!82 &-2651452836974734556
+--- !u!82 &4776625996000290408
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -120,11 +120,11 @@ AudioSource:
   m_GameObject: {fileID: 6138029378463431522}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -5533304271843560773, guid: 1f3b299b1aafefc4890f07e4f9cf946a, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 8d31186a9b419df489726702b574e8d7, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.02
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -133,9 +133,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 4.67
   MinDistance: 1
-  MaxDistance: 1.01
+  MaxDistance: 5.1084566
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0

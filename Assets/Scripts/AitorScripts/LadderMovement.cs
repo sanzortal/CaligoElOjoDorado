@@ -8,6 +8,7 @@ public class LadderMovement : MonoBehaviour
     private PlayerController playerController;
     private RigidbodyConstraints rbFirstConstraints;
     private float zLadder;
+    private float yRotation;
     private Transform grabPosition;
     private Transform endClimbPosition;
     private bool isInEndCollider;
@@ -37,7 +38,7 @@ public class LadderMovement : MonoBehaviour
                 animator.SetBool("isClimbing", true);
 
                 rb.transform.localPosition = new Vector3(grabPosition.position.x, rb.transform.position.y, zLadder);
-          
+                this.transform.eulerAngles = new Vector3(rb.rotation.x, yRotation, rb.rotation.z);
             }
 
             if (Keyboard.current.spaceKey.isPressed)
@@ -71,6 +72,7 @@ public class LadderMovement : MonoBehaviour
         {
             onLadder = true;
             zLadder = collision.gameObject.transform.localPosition.z;
+            yRotation = collision.gameObject.transform.eulerAngles.y;
             grabPosition = collision.transform.Find("GrabPosition");
             endClimbPosition = collision.transform.Find("EndClimbPosition");
         }
@@ -98,7 +100,7 @@ public class LadderMovement : MonoBehaviour
             endClimbPosition = null;
             grabPosition = null;
             zLadder = 0;
-
+            yRotation = 0;
         }
         
         if (collision.gameObject.name.Equals("ClimbTrigger"))
