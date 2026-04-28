@@ -7,8 +7,18 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: black
+    second: {fileID: 2100000, guid: 374a75511388a014dafd028d37340559, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: metal
     second: {fileID: 2100000, guid: ab37a774ba8fae748aafad7b126c4c8e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: red
+    second: {fileID: 2100000, guid: 357c2f661309a2e4685a153a7bc415c9, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

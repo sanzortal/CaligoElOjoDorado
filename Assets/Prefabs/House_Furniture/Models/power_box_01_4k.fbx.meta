@@ -3,7 +3,12 @@ guid: 50fe0041f8af111438f6659b19e25b8e
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: power_box_01
+    second: {fileID: 2100000, guid: 40aa15820bd111d4e9184a1bbd58a40c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

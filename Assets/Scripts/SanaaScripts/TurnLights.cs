@@ -10,6 +10,9 @@ public class TurnLights : MonoBehaviour
     public bool lightsOn { get; private set; }
     private bool playerInside;
 
+    [SerializeField] InteractionEmission boxEmission;
+    [SerializeField] InteractionEmission boxDoorEmission;
+
     void Start()
     {
         turnSound = GetComponent<AudioSource>();
@@ -46,6 +49,8 @@ public class TurnLights : MonoBehaviour
         if (other.GetComponent<PlayerController>() != null)
         {
             playerInside = true;
+            boxEmission.ActivateEmission();
+            boxDoorEmission.ActivateEmission();
         }
     }
 
@@ -54,6 +59,8 @@ public class TurnLights : MonoBehaviour
         if (other.GetComponent<PlayerController>() != null)
         {
             playerInside = false;
+            boxEmission.DeActivateEmission();
+            boxDoorEmission.DeActivateEmission();
         }
     }
 

@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class InteractablePanel : MonoBehaviour
+public class InteractablePanel : InteractionEmission
 {
     [SerializeField] GameObject interactablePanel;
     [SerializeField] Key interactKey;
@@ -36,6 +36,7 @@ public class InteractablePanel : MonoBehaviour
 
         doorSound = door.GetComponent<AudioSource>();
         doorAnimation = door.GetComponent<Animation>();
+        SetMaterials();
     }
 
     // Update is called once per frame
@@ -50,6 +51,11 @@ public class InteractablePanel : MonoBehaviour
         {
             interacting = true;
             playerController = collision.gameObject.GetComponent<PlayerController>();
+
+            if (!done)
+            {
+                ActivateEmission();
+            }
         }
     }
 
@@ -59,6 +65,11 @@ public class InteractablePanel : MonoBehaviour
         {
             interacting = false;
             playerController = null;
+
+            if (!done)
+            {
+                DeActivateEmission();
+            }
         }
     }
 
@@ -102,7 +113,7 @@ public class InteractablePanel : MonoBehaviour
         if (playerAnswer.Equals(correctCode))
         {
             done = true;
-
+            DeActivateEmission();
             doorSound.Play();
             doorAnimation.Play("Door|Open");
 

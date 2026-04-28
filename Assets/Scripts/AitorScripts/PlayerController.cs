@@ -164,6 +164,7 @@ public class PlayerController : MonoBehaviour
 
             interactableObject.stopSound();
             interactableObject.ClearParent();
+            interactableObject.ActivateEmission();
         }
 
         if (emotion == emotions.NORMAL && !isGrabbing)
@@ -387,6 +388,7 @@ public class PlayerController : MonoBehaviour
         if (aux != null && interactableObject == null)
         {
             interactableObject = aux;
+            interactableObject.ActivateEmission();
         }
     }
 
@@ -394,16 +396,17 @@ public class PlayerController : MonoBehaviour
     {
         SceneInteractableBehaviour aux = collision.gameObject.GetComponent<SceneInteractableBehaviour>();
 
-        if (aux != null)
+        if (aux != null && aux == interactableObject)
         {
             if (isGrabbing)
             {
                 isGrabbing = false;
                 movementSpeed = initialSpeed;
             }
-            interactableObject = aux;
+
             interactableObject.stopSound();
             interactableObject.ClearParent();
+            interactableObject.DeActivateEmission();
             interactableObject = null;           
         }
     }

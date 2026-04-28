@@ -2,7 +2,7 @@ using NUnit.Framework.Constraints;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class SceneInteractableBehaviour : MonoBehaviour
+public class SceneInteractableBehaviour : InteractionEmission
 {
     [SerializeField] PlayerController.emotions emotionNeeded;
     [SerializeField] bool isMovable;
@@ -15,6 +15,7 @@ public class SceneInteractableBehaviour : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         isOpen = false;
         moveAudio = GetComponent<AudioSource>();
+        SetMaterials();
     }
     public void Open(PlayerController.emotions playerEmotion)
     {
@@ -38,8 +39,10 @@ public class SceneInteractableBehaviour : MonoBehaviour
         if (playerEmotion == emotionNeeded && isMovable)
         {
             this.transform.parent = parent.transform;
+            DeActivateEmission();
         }
     }
+
 
     public void ClearParent()
     {

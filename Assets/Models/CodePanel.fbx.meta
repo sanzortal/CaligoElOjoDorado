@@ -3,7 +3,52 @@ guid: d8a945bec894eb248a27133e2d344fce
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: backSurface
+    second: {fileID: 2100000, guid: 91deee5e8d542fd4b9b422d9661b25e0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: buttons
+    second: {fileID: 2100000, guid: f34762b9d88fa574caf23a267c464cac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: correctLight
+    second: {fileID: 2100000, guid: 89db7326ed516714e830fcfaece2e7cf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: default
+    second: {fileID: 2100000, guid: bf2567074ce805149b4171dce5d38b90, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: deleteButton
+    second: {fileID: 2100000, guid: 97a67e7519c810f4c8c89e82295976c0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: incorrectLight
+    second: {fileID: 2100000, guid: 3499b15892f471a4186d87e1bc7b9684, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: numbers
+    second: {fileID: 2100000, guid: ff5733b3d2cab3a46adaa41981a05120, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: screen
+    second: {fileID: 2100000, guid: a2a9d7d1f3aa42e4fa5569c24a4bfc59, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sendButton
+    second: {fileID: 2100000, guid: dc486caf89373f0459884e14ec5c13de, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

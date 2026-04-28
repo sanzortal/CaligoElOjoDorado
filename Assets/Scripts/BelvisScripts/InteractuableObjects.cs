@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InteractuableObjects : MonoBehaviour
+public class InteractuableObjects : InteractionEmission
 {
 
     private bool active = false;
@@ -21,6 +21,7 @@ public class InteractuableObjects : MonoBehaviour
     {
        animations = GetComponent<Animation>();
        audios = GetComponents<AudioSource>();
+        SetMaterials();
     }
 
     void Update()
@@ -51,6 +52,7 @@ public class InteractuableObjects : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             touchPlayer = false;
+            DeActivateEmission();
         }
     }
 
@@ -59,6 +61,11 @@ public class InteractuableObjects : MonoBehaviour
         if(collision.gameObject.CompareTag("Player"))
         {
             touchPlayer = true;
+
+            if (!locked)
+            {
+                ActivateEmission();
+            }
         }
 
     }
