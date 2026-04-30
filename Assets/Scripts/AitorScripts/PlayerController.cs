@@ -49,6 +49,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Animator animator;
     private Vector3 MoveDirection;
 
+    //sound comprobations
+    private bool sliding;
+    private bool isRunning;
+
     //Revisar tarea Dani
     public enum InteractionDirection
     {
@@ -78,7 +82,7 @@ public class PlayerController : MonoBehaviour
     private SceneInteractableBehaviour interactableObject;
 
     //sounds
-    private AudioSource[] audios;
+    private PlayerSoundController soundController;
     private void Start()
     {
         rb = this.gameObject.GetComponent<Rigidbody>();
@@ -93,9 +97,11 @@ public class PlayerController : MonoBehaviour
         emotion = emotions.NORMAL;
         differentEmotion = false;
         isGrabbing = false;
-        audios = GetComponents<AudioSource>();
+        soundController = GetComponent<PlayerSoundController>();
         tryingToStandUp = false;
         
+        sliding = false;
+        isRunning = false;
     }
 
     private void FixedUpdate()
@@ -182,6 +188,7 @@ public class PlayerController : MonoBehaviour
 
             if (Keyboard.current.leftShiftKey.wasReleasedThisFrame)
             {
+                isRunning = false;
                 crouched();
                 animator.SetBool("isRunning", false);
             }
@@ -210,6 +217,31 @@ public class PlayerController : MonoBehaviour
 
         if (moveDirection.magnitude != 0)
         {
+            //sounds
+            if (!inAir)
+            {
+                Debug.Log(isCrouching);
+                if (isCrouching || isRunning)
+                {
+                    if (isCrouching && isRunning)
+                    {
+                        soundController.CrouchRun();
+                    }
+                    else if (isRunning)
+                    {
+                        soundController.Run();
+                    }
+                    else
+                    {
+                        soundController.CrouchWalk();
+                    }
+                }
+                else
+                {
+                    soundController.Walk();
+                }
+            }
+            
             animator.SetBool("isWalking", true);
 
             if (!isGrabbing)
@@ -221,6 +253,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            soundController.stopAll();
             animator.SetBool("isWalking", false);
             return Vector3.zero;
         }
@@ -285,10 +318,8 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
-        if (audios != null)
-        {
-            audios[0].Play();
-        }
+        soundController.Jump();
+        
 
         rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         inAir = true;
@@ -311,6 +342,17 @@ public class PlayerController : MonoBehaviour
 
     private void Crouch()
     {
+        if (!isCrouching)
+        {
+            if (!sliding)
+            {
+                soundController.Crouch();
+            }
+            else
+            {
+                sliding = false;
+            }
+        }
         bc.size = new Vector3(initSize.x, initSize.y / 2, initSize.z);
         bc.center = new Vector3(initCenter.x, -(bc.size.y) / 2, initCenter.z);
         movementSpeed = crouchSpeed;
@@ -329,6 +371,7 @@ public class PlayerController : MonoBehaviour
 
     private void Run()
     {
+        isRunning = true;
         float max = maxSpeed;
 
         if (isCrouching)
@@ -356,6 +399,8 @@ public class PlayerController : MonoBehaviour
 
     void slide(Vector3 moveDirection)
     {
+        sliding = true;
+        soundController.Slide();
         rb.AddForce(moveDirection * slideForce, ForceMode.Impulse);
         animator.SetTrigger("Slide");
     }
@@ -381,9 +426,9 @@ public class PlayerController : MonoBehaviour
         return this.emotion;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        SceneInteractableBehaviour aux = collision.gameObject.GetComponent<SceneInteractableBehaviour>(); 
+        SceneInteractableBehaviour aux = other.gameObject.GetComponent<SceneInteractableBehaviour>();
 
         if (aux != null && interactableObject == null)
         {
@@ -392,9 +437,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider other)
     {
-        SceneInteractableBehaviour aux = collision.gameObject.GetComponent<SceneInteractableBehaviour>();
+        SceneInteractableBehaviour aux = other.gameObject.GetComponent<SceneInteractableBehaviour>();
 
         if (aux != null && aux == interactableObject)
         {
@@ -407,9 +452,10 @@ public class PlayerController : MonoBehaviour
             interactableObject.stopSound();
             interactableObject.ClearParent();
             interactableObject.DeActivateEmission();
-            interactableObject = null;           
+            interactableObject = null;
         }
     }
+  
 
 
     //Revisar Tarea Dani
