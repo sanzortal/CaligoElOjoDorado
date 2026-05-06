@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 initCenter;
 
     [SerializeField] Animator animator;
-    private Vector3 MoveDirection;
+    private Vector3 moveDirection;
 
     //sound comprobations
     private bool sliding;
@@ -106,7 +106,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        moveVector = Move(MoveDirection);
+        moveVector = Move(moveDirection);
 
     }
     // Update is called once per frame
@@ -117,7 +117,7 @@ public class PlayerController : MonoBehaviour
             SadEmotion();
         }
 
-        MoveDirection = CalculateMoveDirection();
+        moveDirection = CalculateMoveDirection();
         inAir = InAir();
 
         if (tryingToStandUp)
@@ -141,11 +141,11 @@ public class PlayerController : MonoBehaviour
                 
             }
 
-            if (MoveDirection != Vector3.zero)
+            if (moveDirection != Vector3.zero)
             {
                 if (isGrabbing)
                 {
-                    currentInteractionDir = CalculateInteractionDirection(MoveDirection, interactableObject.transform); //Tarea Dani
+                    currentInteractionDir = CalculateInteractionDirection(moveDirection, interactableObject.transform); //Tarea Dani
                     animator.SetInteger("PushDirection", (int)currentInteractionDir);
                     interactableObject.playSound();
                 }
