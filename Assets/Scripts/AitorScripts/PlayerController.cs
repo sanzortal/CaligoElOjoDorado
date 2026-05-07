@@ -1,9 +1,11 @@
 
 using System.Collections;
+using System.Globalization;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : NetworkBehaviour
 {
 
     [SerializeField] float movementSpeed;
@@ -106,12 +108,20 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!IsOwner)
+        {
+            return;
+        }
         moveVector = Move(moveDirection);
 
     }
     // Update is called once per frame
     void Update()
     {
+        if (!IsOwner)
+        {
+            return;
+        }
         if (Keyboard.current.mKey.wasPressedThisFrame && !isCrouching)
         {
             SadEmotion();
@@ -220,7 +230,7 @@ public class PlayerController : MonoBehaviour
             //sounds
             if (!inAir)
             {
-                Debug.Log(isCrouching);
+             
                 if (isCrouching || isRunning)
                 {
                     if (isCrouching && isRunning)

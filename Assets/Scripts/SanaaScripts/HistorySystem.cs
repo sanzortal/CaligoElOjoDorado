@@ -65,7 +65,7 @@ public class HistorySystem : MonoBehaviour
             currentLine = 0;
             StartCoroutine(TypeLine(dialogueLines[currentLine]));
 
-            GetComponent<Animator>().Play("Idle");
+            collision.GetComponentInChildren<Animator>().Play("Armature|Idle");
         }
     }
 
