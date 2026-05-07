@@ -55,6 +55,7 @@ public class HistorySystem : MonoBehaviour
 
             playerController = collision.GetComponent <PlayerController>();
 
+
             // se desactiva el script de movimiento del jugador
             playerController = collision.GetComponent<PlayerController>();
             if (playerController != null)
@@ -63,6 +64,8 @@ public class HistorySystem : MonoBehaviour
             dialoguePanel.SetActive(true);
             currentLine = 0;
             StartCoroutine(TypeLine(dialogueLines[currentLine]));
+
+            GetComponent<Animator>().Play("Idle");
         }
     }
 
