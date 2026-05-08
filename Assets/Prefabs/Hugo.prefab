@@ -4897,7 +4897,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -5745,7 +5745,7 @@ MonoBehaviour:
   RotationMaxInterpolationTime: 0.1
   ScaleLerpSmoothing: 1
   ScaleMaxInterpolationTime: 0.1
-  AuthorityMode: 1
+  AuthorityMode: 0
   TickSyncChildren: 0
   UseUnreliableDeltas: 0
   SyncPositionX: 1
@@ -10920,7 +10920,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3b7c98086612d304aa82a7bf0599e44a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 262688182305157755}
   m_SourcePrefab: {fileID: 100100000, guid: 3b7c98086612d304aa82a7bf0599e44a, type: 3}
 --- !u!95 &241569693790756286 stripped
 Animator:
@@ -10932,3 +10935,103 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3b7c98086612d304aa82a7bf0599e44a, type: 3}
   m_PrefabInstance: {fileID: 5922426966881165359}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6841467164007357822 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3b7c98086612d304aa82a7bf0599e44a, type: 3}
+  m_PrefabInstance: {fileID: 5922426966881165359}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &262688182305157755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6841467164007357822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkAnimatorExpanded: 0
+  AuthorityMode: 1
+  m_Animator: {fileID: 241569693790756286}
+  TransitionStateInfoList:
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: 154812297
+    DestinationState: 1923976330
+    TransitionDuration: 0.25
+    TriggerNameHash: 125937960
+    TransitionIndex: 1
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: 765711723
+    DestinationState: 1923976330
+    TransitionDuration: 0.25
+    TriggerNameHash: 125937960
+    TransitionIndex: 2
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: 784194786
+    DestinationState: 1923976330
+    TransitionDuration: 0.25
+    TriggerNameHash: 125937960
+    TransitionIndex: 1
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: 784194786
+    DestinationState: -1954336889
+    TransitionDuration: 0.25
+    TriggerNameHash: -1288781466
+    TransitionIndex: 3
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: -706445765
+    DestinationState: -413227848
+    TransitionDuration: 0.25
+    TriggerNameHash: 385476103
+    TransitionIndex: 0
+  AnimatorParameterEntries:
+    ParameterEntries:
+    - name: isWalking
+      NameHash: -830007593
+      Synchronize: 1
+      ParameterType: 4
+    - name: isRunning
+      NameHash: 1239866031
+      Synchronize: 1
+      ParameterType: 4
+    - name: isCrouching
+      NameHash: 1035320983
+      Synchronize: 1
+      ParameterType: 4
+    - name: Jump
+      NameHash: 125937960
+      Synchronize: 1
+      ParameterType: 9
+    - name: Slide
+      NameHash: -1288781466
+      Synchronize: 1
+      ParameterType: 9
+    - name: isGrabbing
+      NameHash: -2128464115
+      Synchronize: 1
+      ParameterType: 4
+    - name: PushDirection
+      NameHash: 1163243743
+      Synchronize: 1
+      ParameterType: 3
+    - name: Die
+      NameHash: 20298039
+      Synchronize: 1
+      ParameterType: 9
+    - name: isClimbing
+      NameHash: 1552600024
+      Synchronize: 1
+      ParameterType: 4
+    - name: EndClimb
+      NameHash: 385476103
+      Synchronize: 1
+      ParameterType: 9
+  AnimatorParametersExpanded: 0

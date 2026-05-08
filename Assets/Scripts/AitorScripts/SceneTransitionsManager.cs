@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -19,6 +20,10 @@ public class SceneTransitionsManager : MonoBehaviour
 
         yield return new WaitForSeconds(transitionTime);
 
-        SceneManager.LoadScene(sceneNum);
+        string sceneName = SceneUtility.GetScenePathByBuildIndex(sceneNum);
+        sceneName = System.IO.Path.GetFileNameWithoutExtension(sceneName);
+
+        if (!NetworkManager.Singleton.IsServer) yield break;
+        NetworkManager.Singleton.SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
     }
 }

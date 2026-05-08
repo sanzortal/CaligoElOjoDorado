@@ -15,6 +15,7 @@ public class RelayManager : MonoBehaviour
     [SerializeField] TMP_InputField codeArea;
     private async void Start()
     {
+      
         await UnityServices.InitializeAsync();
 
         await AuthenticationService.Instance.SignInAnonymouslyAsync();
@@ -54,11 +55,19 @@ public class RelayManager : MonoBehaviour
 
     private async Task<bool> StartClientWithRelay(string joinCode)
     {
-        JoinAllocation joinAllocation = await RelayService.Instance.JoinAllocationAsync(joinCode);
+        try
+        {
+            JoinAllocation joinAllocation = await RelayService.Instance.JoinAllocationAsync(joinCode);
 
-        NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(joinAllocation, "dtls"));
+            NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(joinAllocation, "dtls"));
 
-        return !string.IsNullOrEmpty(joinCode) && NetworkManager.Singleton.StartClient();
+            return !string.IsNullOrEmpty(joinCode) && NetworkManager.Singleton.StartClient();
+        }
+        catch
+        {
+            Debug.Log("Incorrect code");
+            return false;
+        }
     }
 
 }

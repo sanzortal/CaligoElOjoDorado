@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 1030392430458295937}
   - component: {fileID: 4292109343889609781}
   - component: {fileID: 4649982166044363626}
+  - component: {fileID: 5913067788709664588}
   m_Layer: 0
   m_Name: Fade
   m_TagString: Untagged
@@ -246,3 +247,34 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5913067788709664588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2549141200242758460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkAnimatorExpanded: 0
+  AuthorityMode: 1
+  m_Animator: {fileID: 4649982166044363626}
+  TransitionStateInfoList:
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: 1739810581
+    DestinationState: -1116158045
+    TransitionDuration: 0
+    TriggerNameHash: -1244053297
+    TransitionIndex: 0
+  AnimatorParameterEntries:
+    ParameterEntries:
+    - name: StartTransition
+      NameHash: -1244053297
+      Synchronize: 1
+      ParameterType: 9
+  AnimatorParametersExpanded: 0

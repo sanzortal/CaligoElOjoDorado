@@ -1,6 +1,6 @@
+using System;
 using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class SecondPlayerController : NetworkBehaviour
@@ -18,6 +18,15 @@ public class SecondPlayerController : NetworkBehaviour
     [SerializeField] Key upKey;
     [SerializeField] Key downKey;
     [SerializeField] Key flashKey;
+
+    private NetworkVariable<bool> lightActive =new NetworkVariable<bool>(true,NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner
+    );
+
+    private void Start()
+    {
+        lightActive.OnValueChanged += ChangeLight;
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void FixedUpdate()
     {
@@ -34,12 +43,21 @@ public class SecondPlayerController : NetworkBehaviour
         {
             return;
         }
+
+        if (!IsSpawned) return;
+
         moveDirection = CalculateMoveDirection();
 
         if (Keyboard.current[flashKey].wasPressedThisFrame)
         {
-            lightPuzzles.SetActive(!lightPuzzles.activeSelf);
+            lightActive.Value = !lightActive.Value;
+            
         }
+    }
+
+    private void ChangeLight(bool previousValue, bool newValue)
+    {
+        lightPuzzles.SetActive(newValue);
     }
 
     void Move(Vector3 moveDirection)

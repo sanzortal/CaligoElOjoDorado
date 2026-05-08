@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
@@ -26,6 +27,7 @@ public class NetworkM : NetworkBehaviour
     private void HandleSceneLoadCompleted(string sceneName,
         LoadSceneMode loadSceneMode, List<ulong> clientsCompleted, List<ulong> clientsTimedOut)
     {
+        if (!IsServer) return;
         foreach (ulong clientId in clientsCompleted)
         {
             SpawnPlayer(clientId);
@@ -51,11 +53,11 @@ public class NetworkM : NetworkBehaviour
         GameObject player;
         if (clientID == NetworkManager.ServerClientId)
         {
-            player = Instantiate(hugoPrefab);
+            player = Instantiate(hugoPrefab, SpawnPoint.respawn.position, Quaternion.identity);
         }
         else
         {
-            player = Instantiate(eyePrefab);
+            player = Instantiate(eyePrefab, SpawnPoint.respawn.position, Quaternion.identity);
         }
 
         player.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientID, true);
@@ -75,12 +77,18 @@ public class NetworkM : NetworkBehaviour
 
     private void DisconnectClient(ulong clientId)
     {
-        NetworkManager.Singleton.SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
+        if (!IsServer) return;
 
-        if (IsServer)
-        {
-            NetworkManager.Singleton.Shutdown();
-        }
+        StartCoroutine(ReturnToMenu());
+    }
+
+    private IEnumerator ReturnToMenu()
+    {
+        NetworkManager.SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
+
+        yield return new WaitForSeconds(1f);
+
+        NetworkManager.Shutdown();
     }
 
 
@@ -95,6 +103,7 @@ public class NetworkM : NetworkBehaviour
 
     public void PlayAlone()
     {
+        if (NetworkManager.Singleton.SceneManager == null) return;
         NetworkManager.Singleton.SceneManager.LoadScene("1_RoomScene", LoadSceneMode.Single);
     }
 

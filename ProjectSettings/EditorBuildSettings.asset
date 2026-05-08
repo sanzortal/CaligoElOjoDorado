@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/General/1_RoomScene.unity
     guid: 2e86366d5a3b64246be05f554e577ec8
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/General/House new.unity
     guid: 2afad19e575954d4a9d38ba3e15bc1de
   - enabled: 0
