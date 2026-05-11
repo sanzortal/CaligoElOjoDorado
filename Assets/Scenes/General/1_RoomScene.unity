@@ -2236,6 +2236,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1093510402}
   - component: {fileID: 1093510401}
+  - component: {fileID: 1093510403}
   - component: {fileID: 1093510400}
   m_Layer: 0
   m_Name: History (1)
@@ -2256,6 +2257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9b3eab7b0c1aba4091e50d81c8439e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   dialoguePanel: {fileID: 1167885276}
   dialogueText: {fileID: 2038059084}
   dialogueLines:
@@ -2298,6 +2300,31 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1093510403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1093510399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 2931094740
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  DeferredDespawnTick: 0
+  Ownership: 1
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 0
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1 &1122837215
 GameObject:
   m_ObjectHideFlags: 0
@@ -5338,8 +5365,41 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8135562473923762532, guid: 3537ca66f037b484e88abe0d6c4bf3dd, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 5942994943046103865}
   m_SourcePrefab: {fileID: 100100000, guid: 3537ca66f037b484e88abe0d6c4bf3dd, type: 3}
+--- !u!1 &5942994943046103864 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8135562473923762532, guid: 3537ca66f037b484e88abe0d6c4bf3dd, type: 3}
+  m_PrefabInstance: {fileID: 5942994943046103863}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5942994943046103865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5942994943046103864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 843445743
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  DeferredDespawnTick: 0
+  Ownership: 1
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 0
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1001 &6787275088847809015
 PrefabInstance:
   m_ObjectHideFlags: 0

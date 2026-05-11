@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
 using TMPro;
+using Unity.Netcode;
 using UnityEngine;
 
-public class HistorySystem : MonoBehaviour
+public class HistorySystem : NetworkBehaviour
 {
     [SerializeField] GameObject dialoguePanel;
     [SerializeField] TMP_Text dialogueText;
@@ -51,13 +52,13 @@ public class HistorySystem : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && !dialogueStarted)
         {
+            if (!NetworkManager.Singleton.IsServer) return;
             dialogueStarted = true;
 
             playerController = collision.GetComponent <PlayerController>();
 
 
             // se desactiva el script de movimiento del jugador
-            playerController = collision.GetComponent<PlayerController>();
             if (playerController != null)
                 playerController.enabled = false;
 
@@ -66,6 +67,7 @@ public class HistorySystem : MonoBehaviour
             StartCoroutine(TypeLine(dialogueLines[currentLine]));
 
             collision.GetComponentInChildren<Animator>().Play("Armature|Idle");
+
         }
     }
 
@@ -90,7 +92,9 @@ public class HistorySystem : MonoBehaviour
         if (playerController != null)
             playerController.enabled = true;
 
-        Destroy(gameObject);
+        if (!NetworkManager.Singleton.IsServer) return;
+
+        GetComponent<NetworkObject>().Despawn(true);
     }
 
 }

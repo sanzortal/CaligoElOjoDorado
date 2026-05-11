@@ -1,4 +1,5 @@
 using NUnit.Framework.Constraints;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -7,38 +8,22 @@ public class SceneInteractableBehaviour : InteractionEmission
     [SerializeField] PlayerController.emotions emotionNeeded;
     [SerializeField] bool isMovable;
     private AudioSource moveAudio;
-    private bool isOpen;
-    private Rigidbody rb;
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        isOpen = false;
         moveAudio = GetComponent<AudioSource>();
         SetMaterials();
     }
-    public void Open(PlayerController.emotions playerEmotion)
-    {
-        if (playerEmotion == emotionNeeded && !isMovable)
-        {
-            if (!isOpen)
-            {
-                this.transform.position = new Vector3(this.transform.position.x + 4, this.transform.position.y, this.transform.position.z);
-                isOpen = true;
-            }
-            else
-            {
-                this.transform.position = new Vector3(this.transform.position.x - 4, this.transform.position.y, this.transform.position.z);
-                isOpen = false;
-            }
-        }
-    }
+
 
     public void Move(GameObject parent, PlayerController.emotions playerEmotion)
     {
         if (playerEmotion == emotionNeeded && isMovable)
         {
-            this.transform.parent = parent.transform;
+            if (!NetworkManager.Singleton.IsServer) return;
+
+            GetComponent<NetworkObject>().TrySetParent(parent.transform);
+
             DeActivateEmission();
         }
     }
@@ -46,7 +31,9 @@ public class SceneInteractableBehaviour : InteractionEmission
 
     public void ClearParent()
     {
-        this.transform.parent = null;
+        if (!NetworkManager.Singleton.IsServer) return;
+
+        GetComponent<NetworkObject>().TryRemoveParent();
     }
 
     public void playSound()

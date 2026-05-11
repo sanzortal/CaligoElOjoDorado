@@ -1,8 +1,9 @@
 using System.Collections;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerDeaths : MonoBehaviour
+public class PlayerDeaths : NetworkBehaviour
 {
     private Rigidbody rb;
     private PlayerController playerController;
@@ -75,10 +76,33 @@ public class PlayerDeaths : MonoBehaviour
 
     public void Respawn()
     {
+        if (!IsServer) return;
+
         //respawn player
         this.transform.position = respawn.position;
         this.transform.eulerAngles = respawn.eulerAngles;
         rb.angularVelocity = Vector3.zero;
         rb.linearVelocity = Vector3.zero;
+
+        if (NetworkManager.Singleton.ConnectedClients.Count > 1)
+        {
+            RespawnClients_ClientRpc();
+        }
     }
+
+    [ClientRpc]
+    private void RespawnClients_ClientRpc()
+    {
+        SecondPlayerController sp = FindFirstObjectByType<SecondPlayerController>();
+        if (sp != null)
+        {
+            GameObject gsp = sp.gameObject;
+            //respawn second player
+            gsp.transform.position = respawn.position;
+            gsp.transform.eulerAngles = respawn.eulerAngles;
+            gsp.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+            gsp.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
+        }
+    }
+
 }

@@ -35,7 +35,7 @@ public class RelayManager : MonoBehaviour
     private async Task<string> StartHostWithRelay(int maxConnections = 2)
     {
         Allocation allocation;
-
+        
         try
         {
             allocation = await RelayService.Instance.CreateAllocationAsync(maxConnections);

@@ -1,7 +1,9 @@
 
+using System;
+using Unity.Netcode;
 using UnityEngine;
 
-public class TurnLights : MonoBehaviour
+public class TurnLights : NetworkBehaviour
 {
     [SerializeField] private Light[] lights;
     [SerializeField] InteractablePanel codePanel;
@@ -13,21 +15,30 @@ public class TurnLights : MonoBehaviour
     [SerializeField] InteractionEmission boxEmission;
     [SerializeField] InteractionEmission boxDoorEmission;
 
+    private NetworkVariable<bool> lightsActivation = new NetworkVariable<bool>(true, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+
     void Start()
     {
         turnSound = GetComponent<AudioSource>();
         codePanel.enabled = false;
         lightsOn = false;
-        SetLights(false);
+        lightsActivation.OnValueChanged += SetLights;
+
+        if (!IsServer) return;
+        lightsActivation.Value = false;
     }
+
+    
 
     void Update()
     {
+        if (!IsServer) return;
+
         if (playerInside && Input.GetKeyDown(KeyCode.E))
         {
             lightsOn = !lightsOn;
             codePanel.enabled = lightsOn;
-            SetLights(lightsOn);
+            lightsActivation.Value = lightsOn;
             turnSound.Play();
 
             if (historyObject != null)
@@ -64,11 +75,12 @@ public class TurnLights : MonoBehaviour
         }
     }
 
-    void SetLights(bool state)
+    private void SetLights(bool previousValue, bool newValue)
     {
         foreach (Light light in lights)
         {
-            light.enabled = state;
+            light.enabled = newValue;
         }
     }
+
 }

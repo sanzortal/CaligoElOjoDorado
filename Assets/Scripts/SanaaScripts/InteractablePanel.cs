@@ -42,6 +42,8 @@ public class InteractablePanel : InteractionEmission
     // Update is called once per frame
     void Update()
     {
+        if (!IsServer) return;
+
         OpenPanel();
     }
 
@@ -79,6 +81,7 @@ public class InteractablePanel : InteractionEmission
         {
             interactablePanel.SetActive(true);
             playerController.enabled = false;
+
         }
     }
 
@@ -107,6 +110,7 @@ public class InteractablePanel : InteractionEmission
             SetText();
         }
     }
+
 
     public void Confirm()
     {

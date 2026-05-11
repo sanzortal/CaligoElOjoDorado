@@ -1,7 +1,8 @@
+using Unity.Netcode;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
-public class InteractionEmission : MonoBehaviour
+public class InteractionEmission : NetworkBehaviour
 {
     private Material[] materials;
 

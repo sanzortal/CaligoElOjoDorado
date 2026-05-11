@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
+using Unity.Services.Relay;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -77,19 +78,10 @@ public class NetworkM : NetworkBehaviour
 
     private void DisconnectClient(ulong clientId)
     {
-        if (!IsServer) return;
-
-        StartCoroutine(ReturnToMenu());
+   
+        //NetworkManager.Shutdown();
     }
 
-    private IEnumerator ReturnToMenu()
-    {
-        NetworkManager.SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
-
-        yield return new WaitForSeconds(1f);
-
-        NetworkManager.Shutdown();
-    }
 
 
     public void BackHost()
@@ -97,7 +89,7 @@ public class NetworkM : NetworkBehaviour
         if (NetworkManager.Singleton != null && IsServer)
         {
             NetworkManager.Singleton.Shutdown();
-
+            
         }
     }
 

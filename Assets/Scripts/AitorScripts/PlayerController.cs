@@ -1,6 +1,7 @@
 
 using System.Collections;
 using System.Globalization;
+using Unity.Cinemachine;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -104,6 +105,16 @@ public class PlayerController : NetworkBehaviour
         
         sliding = false;
         isRunning = false;
+
+        //cameras
+        CinemachineCamera[] cameras = Object.FindObjectsByType<CinemachineCamera>(FindObjectsSortMode.None);
+
+        foreach (CinemachineCamera cam in cameras)
+        {
+            cam.Follow = transform;
+            cam.LookAt = transform;
+        }
+
     }
 
     private void FixedUpdate()
@@ -137,10 +148,6 @@ public class PlayerController : NetworkBehaviour
 
         if (interactableObject != null)
         {
-            if (Keyboard.current.eKey.wasPressedThisFrame)
-            {
-                interactableObject.Open(this.emotion);
-            }
 
             if (Keyboard.current.qKey.wasPressedThisFrame && !inAir && !isCrouching)
             {
@@ -443,6 +450,8 @@ public class PlayerController : NetworkBehaviour
         if (aux != null && interactableObject == null)
         {
             interactableObject = aux;
+
+            //SERVER?
             interactableObject.ActivateEmission();
         }
     }
@@ -460,8 +469,12 @@ public class PlayerController : NetworkBehaviour
             }
 
             interactableObject.stopSound();
-            interactableObject.ClearParent();
+
+            //SERVER?
             interactableObject.DeActivateEmission();
+            interactableObject.ClearParent();
+            
+
             interactableObject = null;
         }
     }

@@ -1,7 +1,8 @@
- using UnityEngine;
+using Unity.Netcode;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class LadderMovement : MonoBehaviour
+public class LadderMovement : NetworkBehaviour
 {
     private bool onLadder;
     private Rigidbody rb;
@@ -28,6 +29,8 @@ public class LadderMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!IsOwner) return;
+
         if (onLadder)
         {
             if (Keyboard.current.spaceKey.wasPressedThisFrame)
