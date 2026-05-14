@@ -6427,7 +6427,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &482089602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7339,7 +7339,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1901685353235048514, guid: 080d707b82dcf6841b5aac8183cc1194, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4559503132561324957, guid: 080d707b82dcf6841b5aac8183cc1194, type: 3}
       propertyPath: m_LocalPosition.x
@@ -17214,7 +17214,7 @@ PrefabInstance:
     - target: {fileID: 797171364669457402, guid: 52f0343efc9c9df4b90ca3f60fa2b272, type: 3}
       propertyPath: interactablePanel
       value: 
-      objectReference: {fileID: 1826864554}
+      objectReference: {fileID: 482089601}
     - target: {fileID: 993412335256099086, guid: 52f0343efc9c9df4b90ca3f60fa2b272, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.672
@@ -21376,7 +21376,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1826864555
 RectTransform:
   m_ObjectHideFlags: 0
@@ -22079,6 +22079,10 @@ PrefabInstance:
     - target: {fileID: 5604939729853840648, guid: c470b7076b52c274dbb93fcb1f3f3343, type: 3}
       propertyPath: m_Name
       value: PauseMenuPref
+      objectReference: {fileID: 0}
+    - target: {fileID: 5906563628563427929, guid: c470b7076b52c274dbb93fcb1f3f3343, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6378308308327935688, guid: c470b7076b52c274dbb93fcb1f3f3343, type: 3}
       propertyPath: m_LocalPosition.x

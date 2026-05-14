@@ -9,16 +9,23 @@ using Unity.Services.Relay.Models;
 using UnityEngine;
 using Unity.Netcode;
 
+
 public class RelayManager : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI codeText;
     [SerializeField] TMP_InputField codeArea;
     private async void Start()
     {
-      
-        await UnityServices.InitializeAsync();
 
-        await AuthenticationService.Instance.SignInAnonymouslyAsync();
+        if (UnityServices.State != ServicesInitializationState.Initialized)
+        {
+            await UnityServices.InitializeAsync();
+        }
+
+        if (!AuthenticationService.Instance.IsSignedIn)
+        {
+            await AuthenticationService.Instance.SignInAnonymouslyAsync();
+        }
     }
 
     public async void StartRelay()
@@ -35,7 +42,7 @@ public class RelayManager : MonoBehaviour
     private async Task<string> StartHostWithRelay(int maxConnections = 2)
     {
         Allocation allocation;
-        
+
         try
         {
             allocation = await RelayService.Instance.CreateAllocationAsync(maxConnections);

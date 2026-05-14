@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
 using Unity.Services.Relay;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,18 +10,21 @@ public class NetworkM : NetworkBehaviour
 {
     [SerializeField] GameObject hugoPrefab;
     [SerializeField] GameObject eyePrefab;
+    private bool backButton;
 
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
+        backButton = false;
     }
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
+        NetworkManager.OnClientDisconnectCallback += DisconnectClient;
         if (IsServer == false)
             return;
+        
         NetworkManager.OnClientConnectedCallback += ChangeScene;
-        NetworkManager.OnClientDisconnectCallback += DisconnectClient;
         NetworkManager.SceneManager.OnLoadEventCompleted += HandleSceneLoadCompleted;
        
     }
@@ -28,7 +32,8 @@ public class NetworkM : NetworkBehaviour
     private void HandleSceneLoadCompleted(string sceneName,
         LoadSceneMode loadSceneMode, List<ulong> clientsCompleted, List<ulong> clientsTimedOut)
     {
-        if (!IsServer) return;
+
+        if (!IsServer || SceneManager.GetActiveScene().name == "Main Menu") return;
         foreach (ulong clientId in clientsCompleted)
         {
             SpawnPlayer(clientId);
@@ -72,14 +77,19 @@ public class NetworkM : NetworkBehaviour
             NetworkManager.SceneManager.OnLoadEventCompleted -= HandleSceneLoadCompleted;
             
         }
+         //NetworkManager.OnClientDisconnectCallback -= DisconnectClient;
 
         base.OnNetworkDespawn();
     }
 
     private void DisconnectClient(ulong clientId)
     {
-   
-        //NetworkManager.Shutdown();
+        if (!backButton)
+        {
+            SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
+            NetworkManager.Singleton.Shutdown();
+            Destroy(NetworkManager.Singleton.gameObject);
+        }
     }
 
 
@@ -89,7 +99,7 @@ public class NetworkM : NetworkBehaviour
         if (NetworkManager.Singleton != null && IsServer)
         {
             NetworkManager.Singleton.Shutdown();
-            
+            backButton = true;
         }
     }
 

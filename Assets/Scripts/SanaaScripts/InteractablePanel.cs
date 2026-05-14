@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -25,30 +26,36 @@ public class InteractablePanel : InteractionEmission
     private AudioSource[] audios;
     
 
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
         done = false;
         playerAnswer = "";
         audios = this.gameObject.GetComponents<AudioSource>();
-        redLight.enabled = false;
-        greenLight.enabled = false;
+        
 
         doorSound = door.GetComponent<AudioSource>();
         doorAnimation = door.GetComponent<Animation>();
         SetMaterials();
     }
+    public override void OnNetworkSpawn()
+    {
+        base.OnNetworkSpawn();
 
-    // Update is called once per frame
+        redLight.enabled = false;
+        greenLight.enabled = false;
+    }
+   
     void Update()
     {
         if (!IsServer) return;
-
         OpenPanel();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (!IsServer) return;
         if (collision.gameObject.CompareTag("Player"))
         {
             interacting = true;
@@ -63,6 +70,7 @@ public class InteractablePanel : InteractionEmission
 
     private void OnCollisionExit(Collision collision)
     {
+        if (!IsServer) return;
         if (collision.gameObject.CompareTag("Player"))
         {
             interacting = false;
@@ -118,22 +126,34 @@ public class InteractablePanel : InteractionEmission
         {
             done = true;
             DeActivateEmission();
-            doorSound.Play();
-            doorAnimation.Play("Door|Open");
-
-            redLight.enabled = false;
-            greenLight.enabled = true;
-            audios[0].Play();
+            CorrectAnsClientRpc();
             ClosePanel();
         }
         else
         {
-            if (!redLight.enabled)
-            {
-                redLight.enabled = true;
-            }
-            audios[1].Play();
+            InCorrectAnsClientRpc();
         }
+    }
+
+    [ClientRpc]
+    private void CorrectAnsClientRpc()
+    {
+        doorSound.Play();
+        doorAnimation.Play("Door|Open");
+
+        redLight.enabled = false;
+        greenLight.enabled = true;
+        audios[0].Play();
+    }
+
+    [ClientRpc]
+    private void InCorrectAnsClientRpc()
+    {
+        if (!redLight.enabled)
+        {
+            redLight.enabled = true;
+        }
+        audios[1].Play();
     }
 
     public void SetText()

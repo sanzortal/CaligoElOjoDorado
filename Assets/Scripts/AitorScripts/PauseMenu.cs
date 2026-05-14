@@ -1,7 +1,8 @@
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PauseMenu : MonoBehaviour
+public class PauseMenu : NetworkBehaviour
 {
     private bool isPaused;
     [SerializeField] GameObject pauseCanva;
@@ -38,6 +39,20 @@ public class PauseMenu : MonoBehaviour
 
     public void CloseGame()
     {
+        if (IsServer)
+        {
+            ulong clientId = 0;
+            foreach (ulong id in NetworkManager.Singleton.ConnectedClientsIds)
+            {
+                if (id != NetworkManager.ServerClientId)
+                {
+                    clientId = id;
+                }
+            }
+
+            NetworkManager.Singleton.DisconnectClient(clientId);
+
+        }
         Application.Quit();
     }
 }
