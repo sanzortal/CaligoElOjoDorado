@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6255412748823628837}
   - component: {fileID: 7759563735120544882}
+  - component: {fileID: 7124541260382826465}
   - component: {fileID: 4629665753484933247}
   m_Layer: 0
   m_Name: History
@@ -54,6 +55,31 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7124541260382826465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8135562473923762532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 2433504582
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  DeferredDespawnTick: 0
+  Ownership: 1
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!114 &4629665753484933247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,6 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9b3eab7b0c1aba4091e50d81c8439e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   dialoguePanel: {fileID: 0}
   dialogueText: {fileID: 0}
   dialogueLines:

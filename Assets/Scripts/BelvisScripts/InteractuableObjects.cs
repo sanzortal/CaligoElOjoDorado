@@ -1,3 +1,4 @@
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -26,6 +27,7 @@ public class InteractuableObjects : InteractionEmission
 
     void Update()
     {
+        if (!IsServer) return;
         if(locked)
         {
             return;
@@ -33,13 +35,14 @@ public class InteractuableObjects : InteractionEmission
 
         if (touchPlayer && Keyboard.current[interactionKey].wasPressedThisFrame && !active)
         {
-            PressButton();
+            PressButtonClientRpc();
             if (manager != null)
                 manager.ButtonChecker();
         }
     }
 
-    void PressButton()
+    [ClientRpc]
+    void PressButtonClientRpc()
     {
         animations.Play("wheel|wheelUp");
         audios[0].Play();
@@ -80,8 +83,8 @@ public class InteractuableObjects : InteractionEmission
         locked = true;
     }
 
-
-    public void ResetButtons()
+    [ClientRpc]
+    public void ResetButtonsClientRpc()
     {
         active = false;
         animations.Play("wheel|wheelDown");

@@ -13,6 +13,7 @@ public class SceneInteractableBehaviour : InteractionEmission
     {
         moveAudio = GetComponent<AudioSource>();
         SetMaterials();
+        DeActivateEmission();
     }
 
 

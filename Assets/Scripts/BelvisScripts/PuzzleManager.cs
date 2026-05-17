@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
-public class PuzzleManager : MonoBehaviour
+using Unity.Netcode;
+public class PuzzleManager : NetworkBehaviour
 {
 
 
@@ -13,18 +14,29 @@ public class PuzzleManager : MonoBehaviour
 
     private float currentTime;
 
-    [SerializeField] DoorController door;
 
     private bool puzzleCompleted = false;
 
+    [SerializeField] GameObject door;
+    private AudioSource doorSound;
+    private Animation doorAnimation;
 
-    
+
+
     void Start()
     {
-        
+        doorSound = door.GetComponent<AudioSource>();
+        doorAnimation = door.GetComponent<Animation>();
     }
 
-    
+    [ClientRpc]
+    public void DoorOpenClientRpc()
+    {
+        doorSound.Play();
+        doorAnimation.Play("Door|Open");
+    }
+
+
     void Update()
     {
         if(puzzleActive)
@@ -65,13 +77,15 @@ public class PuzzleManager : MonoBehaviour
         if(allPressed)
         {
             puzzleCompleted = true;
-            door.DoorOpen();
+            
             puzzleActive = false;
 
             foreach (var button in buttons)
             {
                 button.LockButton();
             }
+
+            DoorOpenClientRpc();
         }
     }
 
@@ -89,7 +103,7 @@ public class PuzzleManager : MonoBehaviour
         {
             if (button.Active())
             {
-                button.ResetButtons();
+                button.ResetButtonsClientRpc();
             }
         }
     }

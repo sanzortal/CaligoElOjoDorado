@@ -9,6 +9,7 @@ public class InteractionEmission : NetworkBehaviour
     private void Start()
     {
         SetMaterials();
+        DeActivateEmission();
     }
     public void SetMaterials()
     {
@@ -16,6 +17,7 @@ public class InteractionEmission : NetworkBehaviour
     }
     public void ActivateEmission()
     {
+        if (!IsHost) return;
         foreach (Material material in materials)
         {
             material.EnableKeyword("_EMISSION");
@@ -24,6 +26,7 @@ public class InteractionEmission : NetworkBehaviour
 
     public void DeActivateEmission()
     {
+        if (!IsHost) return;
         foreach (Material material in materials)
         {
             material.DisableKeyword("_EMISSION");

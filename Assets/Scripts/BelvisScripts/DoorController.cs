@@ -1,8 +1,10 @@
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class DoorController : MonoBehaviour
+public class DoorController : NetworkBehaviour
 {
+    [SerializeField] GameObject door;
     private AudioSource doorSound;
     private Animation doorAnimation;
 
@@ -10,11 +12,12 @@ public class DoorController : MonoBehaviour
 
     void Start()
     {
-        doorSound = this.gameObject.GetComponent<AudioSource>();
-        doorAnimation = this.gameObject.GetComponent<Animation>();
+        doorSound = door.GetComponent<AudioSource>();
+        doorAnimation = door.GetComponent<Animation>();
     }
 
-    public void DoorOpen()
+    [ClientRpc]
+    public void DoorOpenClientRpc()
     {
         doorSound.Play();
         doorAnimation.Play("Door|Open");

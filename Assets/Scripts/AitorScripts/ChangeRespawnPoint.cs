@@ -7,10 +7,12 @@ public class ChangeRespawnPoint : MonoBehaviour
     [SerializeField] GameObject canvaCircle;
 
     private void OnTriggerEnter(Collider other)
-    {     
-        DeathsController.ChangeRespawnPoint(newPoint);
-        StartCoroutine(showLoadCanvas());
-       
+    {
+        if (other.GetComponent<PlayerController>())
+        {
+            DeathsController.ChangeRespawnPoint(newPoint);
+            StartCoroutine(showLoadCanvas());
+        }
     }
 
     private IEnumerator showLoadCanvas()

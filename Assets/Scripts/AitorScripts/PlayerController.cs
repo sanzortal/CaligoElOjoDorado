@@ -451,7 +451,7 @@ public class PlayerController : NetworkBehaviour
         {
             interactableObject = aux;
 
-            //SERVER?
+            
             interactableObject.ActivateEmission();
         }
     }
@@ -470,7 +470,7 @@ public class PlayerController : NetworkBehaviour
 
             interactableObject.stopSound();
 
-            //SERVER?
+            
             interactableObject.DeActivateEmission();
             interactableObject.ClearParent();
             
