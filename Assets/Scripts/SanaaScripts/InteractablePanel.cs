@@ -38,7 +38,9 @@ public class InteractablePanel : InteractionEmission
         doorSound = door.GetComponent<AudioSource>();
         doorAnimation = door.GetComponent<Animation>();
         SetMaterials();
+        
     }
+
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();

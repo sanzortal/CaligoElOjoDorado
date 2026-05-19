@@ -22,7 +22,8 @@ public class InteractuableObjects : InteractionEmission
     {
        animations = GetComponent<Animation>();
        audios = GetComponents<AudioSource>();
-        SetMaterials();
+       SetMaterials();
+       DeActivateEmission();
     }
 
     void Update()

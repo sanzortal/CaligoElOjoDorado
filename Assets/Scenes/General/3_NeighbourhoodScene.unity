@@ -13819,7 +13819,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1009669102}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4509a96d79708204f9b5e5137900daeb, type: 3}
   m_Name: 
@@ -13829,12 +13829,12 @@ MonoBehaviour:
   - {fileID: 1750072534}
   - {fileID: 1521479809}
   - {fileID: 2145431615}
-  - {fileID: 1827733796}
   - {fileID: 348853272}
   - {fileID: 4404835745118155831}
   - {fileID: 1058256705}
   - {fileID: 1644881544}
   - {fileID: 32006475}
+  - {fileID: 1827733796}
 --- !u!114 &1012843947 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1814807895442357679, guid: 02210ed4f8b23bc4ab55d69a96b88a46, type: 3}
@@ -15591,7 +15591,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1159374605
 Transform:
   m_ObjectHideFlags: 0
@@ -26911,7 +26911,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1917072649
 Transform:
   m_ObjectHideFlags: 0
@@ -28375,7 +28375,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1901685353235048514, guid: 080d707b82dcf6841b5aac8183cc1194, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4559503132561324957, guid: 080d707b82dcf6841b5aac8183cc1194, type: 3}
       propertyPath: m_LocalScale.x

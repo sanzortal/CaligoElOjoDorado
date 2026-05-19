@@ -20,6 +20,7 @@ public class TurnLights : NetworkBehaviour
     void Start()
     {
         turnSound = GetComponent<AudioSource>();
+        codePanel.DeActivateEmission();
         codePanel.enabled = false;
         lightsOn = false;
         lightsActivation.OnValueChanged += SetLights;
