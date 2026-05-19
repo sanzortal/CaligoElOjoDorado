@@ -1,5 +1,6 @@
 
 using System.Collections;
+using Unity.Networking.Transport.Error;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -37,12 +38,17 @@ public class DeathsController:MonoBehaviour
         //textAnimator = textAdvice.gameObject.GetComponent<Animator>();
     }
 
-    public static Transform ActivatePanel()
+    public static void ActivatePanel()
     {
         instance.animatorController.SetTrigger("Death");
         instance.CanvaCircle.SetActive(true);
         instance.isActive = true;
         instance.StartCoroutine(instance.FadeText());
+        
+    }
+
+    public static Transform ReturnRespawnPoint()
+    {
         return instance.respawnPoint;
     }
 

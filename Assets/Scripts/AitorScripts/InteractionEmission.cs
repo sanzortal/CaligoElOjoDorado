@@ -26,7 +26,7 @@ public class InteractionEmission : NetworkBehaviour
 
     public void DeActivateEmission()
     {
-        if (!IsHost) return;
+        
         foreach (Material material in materials)
         {
             material.DisableKeyword("_EMISSION");

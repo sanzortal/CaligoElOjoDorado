@@ -9,6 +9,7 @@ public class PatrolState : State
 
     public override State Run(GameObject owner)
     {
+       
         NavMeshAgent agentCmp = owner.GetComponent<NavMeshAgent>();
 
 

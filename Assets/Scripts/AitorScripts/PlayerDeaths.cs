@@ -21,18 +21,15 @@ public class PlayerDeaths : NetworkBehaviour
     }
     public IEnumerator die(string enemyKiller)
     {
+        if (!IsServer) yield break;
         //stop player
         playerController.enabled = false;
 
         //play particles
         if (fireParticles != null && !enemyKiller.Equals("None"))
         {
-            fireParticles.gameObject.SetActive(true);
-            fireParticles.Play();
+            ShowParticlesClientRpc();
         }
-
-        // wait before play death animation
-        //yield return new WaitForSeconds(delayBeforeDeathAnim);
 
         //animacion de morir con animation.play(enemykiller) al tener diferentes animaciones
         if (!enemyKiller.Equals("None"))
@@ -42,12 +39,13 @@ public class PlayerDeaths : NetworkBehaviour
         }
 
         //turn off camera
-        respawn = DeathsController.ActivatePanel();
+        ShowPanelClientRpc();
+        respawn = DeathsController.ReturnRespawnPoint();
         
         yield return new WaitForSeconds(1f);
         //Respawn
         Respawn();
-        DeathsController.RespawnAll();
+        RespawnAllClientRpc();
         // reset animator
         animator.Rebind();
         animator.Update(0f);
@@ -55,14 +53,13 @@ public class PlayerDeaths : NetworkBehaviour
         //stop particles
         if (fireParticles != null)
         {
-            fireParticles.Stop();
-            fireParticles.gameObject.SetActive(false);
+            HideParticlesClientRpc();
         }
 
         //wait
         yield return new WaitForSeconds(5.5f);
         //turn on camera
-        DeathsController.DeactivatePanel();
+        HidePanelClientRpc();
 
         //player movement
         playerController.enabled = true;
@@ -86,23 +83,55 @@ public class PlayerDeaths : NetworkBehaviour
 
         if (NetworkManager.Singleton.ConnectedClients.Count > 1)
         {
-            RespawnClients_ClientRpc();
+            RespawnClients_ClientRpc(respawn.position, respawn.eulerAngles);
         }
     }
 
     [ClientRpc]
-    private void RespawnClients_ClientRpc()
+    private void RespawnClients_ClientRpc(Vector3 respawnPos, Vector3 respawnRot)
     {
         SecondPlayerController sp = FindFirstObjectByType<SecondPlayerController>();
         if (sp != null)
         {
             GameObject gsp = sp.gameObject;
             //respawn second player
-            gsp.transform.position = respawn.position;
-            gsp.transform.eulerAngles = respawn.eulerAngles;
+            gsp.transform.position = respawnPos;
+            gsp.transform.eulerAngles = respawnRot;
             gsp.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
             gsp.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
         }
+    }
+
+    [ClientRpc]
+    private void ShowParticlesClientRpc()
+    {
+        fireParticles.gameObject.SetActive(true);
+        fireParticles.Play();
+    }
+
+    [ClientRpc]
+    private void HideParticlesClientRpc()
+    {
+        fireParticles.Stop();
+        fireParticles.gameObject.SetActive(false);
+    }
+
+    [ClientRpc]
+    private void ShowPanelClientRpc()
+    {
+        DeathsController.ActivatePanel();
+    }
+
+    [ClientRpc]
+    private void HidePanelClientRpc()
+    {
+        DeathsController.DeactivatePanel();
+    }
+
+    [ClientRpc]
+    private void RespawnAllClientRpc()
+    {
+        DeathsController.RespawnAll();
     }
 
 }

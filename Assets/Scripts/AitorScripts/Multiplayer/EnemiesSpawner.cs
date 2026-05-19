@@ -9,7 +9,7 @@ public class EnemiesSpawner : NetworkBehaviour
 
     private void Start()
     {
-        
+     
         if (!IsServer) return;
         StartCoroutine(WaitSpawn());
     }
@@ -17,15 +17,28 @@ public class EnemiesSpawner : NetworkBehaviour
     IEnumerator WaitSpawn()
     {
         yield return new WaitForSeconds(0.2f);
-        ActivateEnemiesClientRpc();
+        ActivateEnemies();
        
     }
-    [ClientRpc]
-    void ActivateEnemiesClientRpc()
+    void ActivateEnemies()
     {
         foreach (GameObject g in enemies)
         {
-            g.SetActive(true);
+            NavMeshAgent agent = g.GetComponent<NavMeshAgent>();
+
+            if (agent != null)
+            {
+                agent.enabled = true;
+            }
+
+            StateMachine st = g.GetComponent<StateMachine>();
+
+            if (st != null)
+            {
+                st.enabled = true;
+            }
+
+            
         }
     }
 }
