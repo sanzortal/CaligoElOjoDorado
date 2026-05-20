@@ -37,7 +37,8 @@ public class SceneInteractableBehaviour : InteractionEmission
         GetComponent<NetworkObject>().TryRemoveParent();
     }
 
-    public void playSound()
+    [ClientRpc]
+    public void playSoundClientRpc()
     {
         if (moveAudio != null && !moveAudio.isPlaying)
         {
@@ -45,7 +46,8 @@ public class SceneInteractableBehaviour : InteractionEmission
         }
     }
 
-    public void stopSound()
+    [ClientRpc]
+    public void stopSoundClientRpc()
     {
         if (moveAudio != null && moveAudio.isPlaying)
         {

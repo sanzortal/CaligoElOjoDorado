@@ -1,6 +1,8 @@
+using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.UIElements;
 
-public class PlayerSoundController : MonoBehaviour
+public class PlayerSoundController : NetworkBehaviour
 {
     [SerializeField] AudioSource jump;
     [SerializeField] AudioSource walk;
@@ -11,7 +13,9 @@ public class PlayerSoundController : MonoBehaviour
     [SerializeField] AudioSource run;
     private AudioSource[] allAudios = new AudioSource[4];
 
-    private void Start()
+    private AudioSource audioToNoStop;
+
+    private void Awake()
     {
         allAudios[0] = walk;
         allAudios[1] = run;
@@ -19,7 +23,8 @@ public class PlayerSoundController : MonoBehaviour
         allAudios[3] = crouchRun;
     }
 
-    public void Walk()
+    [ClientRpc]
+    public void WalkClientRpc()
     {
         stopAll(walk);
         if (!walk.isPlaying)
@@ -28,13 +33,15 @@ public class PlayerSoundController : MonoBehaviour
         }
     }
 
-    public void Jump()
+    [ClientRpc]
+    public void JumpClientRpc()
     {
-        stopAll();
+        stopAllClientRpc();
         jump.Play();
     }
 
-    public void Run()
+    [ClientRpc]
+    public void RunClientRpc()
     {
         stopAll(run);
         if (!run.isPlaying)
@@ -43,13 +50,15 @@ public class PlayerSoundController : MonoBehaviour
         }
     }
 
-    public void Crouch()
+    [ClientRpc]
+    public void CrouchClientRpc()
     {
-        stopAll();
+        stopAllClientRpc();
         crouch.Play();
     }
 
-    public void CrouchWalk()
+    [ClientRpc]
+    public void CrouchWalkClientRpc()
     {
         stopAll(crouchWalk);
         if (!crouchWalk.isPlaying)
@@ -58,7 +67,8 @@ public class PlayerSoundController : MonoBehaviour
         }
     }
 
-    public void CrouchRun()
+    [ClientRpc]
+    public void CrouchRunClientRpc()
     {
         stopAll(crouchRun);
         if (!crouchRun.isPlaying)
@@ -67,26 +77,34 @@ public class PlayerSoundController : MonoBehaviour
         }
     }
 
-    public void Slide()
+    [ClientRpc]
+    public void SlideClientRpc()
     {
-        stopAll();
+        stopAllClientRpc();
         slide.Play();
     }
 
 
-
     public void stopAll(AudioSource au)
+    {
+        audioToNoStop = au;
+        stopAlmostAllClientRpc();
+    }
+
+    [ClientRpc]
+    private void stopAlmostAllClientRpc()
     {
         foreach (AudioSource audio in allAudios)
         {
-            if (audio != au)
+            if (audio != audioToNoStop)
             {
                 audio.Stop();
             }
         }
     }
 
-    public void stopAll()
+    [ClientRpc]
+    public void stopAllClientRpc()
     {
         foreach (AudioSource audio in allAudios)
         {

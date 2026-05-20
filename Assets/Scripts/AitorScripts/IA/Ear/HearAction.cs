@@ -30,12 +30,8 @@ public class HearAction : DrawableAction
                     AudioSource scream = owner.GetComponent<AudioSource>();
                     if (!hearAttack && !scream.isPlaying && !screamWasPlayed)
                     {
-                        owner.GetComponent<AudioSource>().Play();
+                        owner.GetComponent<EnemiesSoundController>().playScreamClientRpc();
                         screamWasPlayed = true;
-                    }
-                    else
-                    {
-                        //@TO DO en el futuro sonido de atacar
                     }
 
                     return true;

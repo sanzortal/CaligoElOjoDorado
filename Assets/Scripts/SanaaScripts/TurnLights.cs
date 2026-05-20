@@ -40,7 +40,7 @@ public class TurnLights : NetworkBehaviour
             lightsOn = !lightsOn;
             codePanel.enabled = lightsOn;
             lightsActivation.Value = lightsOn;
-            turnSound.Play();
+            playSoundClientRpc();
 
             if (historyObject != null)
             {
@@ -82,6 +82,12 @@ public class TurnLights : NetworkBehaviour
         {
             light.enabled = newValue;
         }
+    }
+
+    [ClientRpc]
+    private void playSoundClientRpc()
+    {
+        turnSound.Play();
     }
 
 }

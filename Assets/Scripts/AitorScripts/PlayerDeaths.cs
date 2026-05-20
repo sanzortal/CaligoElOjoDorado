@@ -13,17 +13,21 @@ public class PlayerDeaths : NetworkBehaviour
     [SerializeField] Animator animator;
     [SerializeField] float delayBeforeDeathAnim = 2f;
 
+    private PlayerSoundController soundController;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = this.gameObject.GetComponent<Rigidbody>();
         playerController = this.gameObject.GetComponent<PlayerController>();
+        soundController = this.gameObject.GetComponent<PlayerSoundController>();
     }
     public IEnumerator die(string enemyKiller)
     {
         if (!IsServer) yield break;
         //stop player
         playerController.enabled = false;
+        soundController.stopAllClientRpc();
 
         //play particles
         if (fireParticles != null && !enemyKiller.Equals("None"))

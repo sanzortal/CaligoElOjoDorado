@@ -151,6 +151,7 @@ public class PlayerController : NetworkBehaviour
 
             if (Keyboard.current.qKey.wasPressedThisFrame && !inAir && !isCrouching)
             {
+                isRunning = false;
                 movementSpeed = initialSpeed - 2;
                 isGrabbing = true;
                 animator.SetBool("isGrabbing", true);
@@ -164,7 +165,7 @@ public class PlayerController : NetworkBehaviour
                 {
                     currentInteractionDir = CalculateInteractionDirection(moveDirection, interactableObject.transform); //Tarea Dani
                     animator.SetInteger("PushDirection", (int)currentInteractionDir);
-                    interactableObject.playSound();
+                    interactableObject.playSoundClientRpc();
                 }
             }
             else
@@ -173,7 +174,7 @@ public class PlayerController : NetworkBehaviour
                 {
                     animator.SetInteger("PushDirection", 0);
                 }
-                interactableObject.stopSound();
+                interactableObject.stopSoundClientRpc();
             }
         }
 
@@ -185,7 +186,7 @@ public class PlayerController : NetworkBehaviour
             animator.SetBool("isGrabbing", false);
             animator.SetInteger("PushDirection", 0);
 
-            interactableObject.stopSound();
+            interactableObject.stopSoundClientRpc();
             interactableObject.ClearParent();
             interactableObject.ActivateEmission();
         }
@@ -242,20 +243,20 @@ public class PlayerController : NetworkBehaviour
                 {
                     if (isCrouching && isRunning)
                     {
-                        soundController.CrouchRun();
+                        soundController.CrouchRunClientRpc();
                     }
                     else if (isRunning)
                     {
-                        soundController.Run();
+                        soundController.RunClientRpc();
                     }
                     else
                     {
-                        soundController.CrouchWalk();
+                        soundController.CrouchWalkClientRpc();
                     }
                 }
                 else
                 {
-                    soundController.Walk();
+                    soundController.WalkClientRpc();
                 }
             }
             
@@ -270,7 +271,7 @@ public class PlayerController : NetworkBehaviour
         }
         else
         {
-            soundController.stopAll();
+            soundController.stopAllClientRpc();
             animator.SetBool("isWalking", false);
             return Vector3.zero;
         }
@@ -335,7 +336,7 @@ public class PlayerController : NetworkBehaviour
 
     void Jump()
     {
-        soundController.Jump();
+        soundController.JumpClientRpc();
         
 
         rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
@@ -363,7 +364,7 @@ public class PlayerController : NetworkBehaviour
         {
             if (!sliding)
             {
-                soundController.Crouch();
+                soundController.CrouchClientRpc();
             }
             else
             {
@@ -417,7 +418,7 @@ public class PlayerController : NetworkBehaviour
     void slide(Vector3 moveDirection)
     {
         sliding = true;
-        soundController.Slide();
+        soundController.SlideClientRpc();
         rb.AddForce(moveDirection * slideForce, ForceMode.Impulse);
         animator.SetTrigger("Slide");
     }
@@ -468,7 +469,7 @@ public class PlayerController : NetworkBehaviour
                 movementSpeed = initialSpeed;
             }
 
-            interactableObject.stopSound();
+            interactableObject.stopSoundClientRpc();
 
             
             interactableObject.DeActivateEmission();

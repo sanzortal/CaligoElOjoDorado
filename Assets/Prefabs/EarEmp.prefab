@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 4776155078176968035}
   - component: {fileID: 4968928076135219839}
   - component: {fileID: 2398056166097121597}
+  - component: {fileID: 3650953596804746336}
   m_Layer: 0
   m_Name: EarEmp
   m_TagString: Untagged
@@ -99,7 +100,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 787008528653cc745ba20c21b6e89a30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShowTopMostFoldoutHeaderGroup: 1
   entryPoint: {fileID: 11400000, guid: 8564a4144617065488e66b4ec144d22b, type: 2}
 --- !u!114 &1722297457384679715
 MonoBehaviour:
@@ -322,6 +322,19 @@ MonoBehaviour:
   UseRigidBodyForMotion: 0
   AutoUpdateKinematicState: 0
   AutoSetKinematicOnDespawn: 0
+--- !u!114 &3650953596804746336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8103025184157552853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baf9ff3b4725cc346949b4432d743701, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
 --- !u!1001 &2096493294710794727
 PrefabInstance:
   m_ObjectHideFlags: 0
