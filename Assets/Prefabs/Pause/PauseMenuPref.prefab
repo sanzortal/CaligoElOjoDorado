@@ -621,7 +621,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &2300728875081288744
 GameObject:
   m_ObjectHideFlags: 0
@@ -3170,6 +3170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bdbb294fef7ad34bb95ebf9ec554eac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   pauseCanva: {fileID: 5906563628563427929}
 --- !u!1 &5906563628563427929
 GameObject:

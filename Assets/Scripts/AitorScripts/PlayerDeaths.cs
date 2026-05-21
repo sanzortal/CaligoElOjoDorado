@@ -11,7 +11,7 @@ public class PlayerDeaths : NetworkBehaviour
 
     [SerializeField] ParticleSystem fireParticles;
     [SerializeField] Animator animator;
-    [SerializeField] float delayBeforeDeathAnim = 2f;
+    
 
     private PlayerSoundController soundController;
 

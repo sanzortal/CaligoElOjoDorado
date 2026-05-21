@@ -86,9 +86,7 @@ public class NetworkM : NetworkBehaviour
     {
         if (!backButton)
         {
-            SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
-            NetworkManager.Singleton.Shutdown();
-            Destroy(NetworkManager.Singleton.gameObject);
+            Application.Quit();
         }
     }
 

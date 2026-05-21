@@ -14,7 +14,7 @@ public class PlayerAnimationManager : MonoBehaviour
     [SerializeField] KeyCode crouchKey = KeyCode.LeftShift;
     [SerializeField] KeyCode jumpKey = KeyCode.Space;
     [SerializeField] KeyCode slideKey = KeyCode.LeftControl;
-    [SerializeField] KeyCode stairsKey = KeyCode.E;
+    //[SerializeField] KeyCode stairsKey = KeyCode.E;
 
     void Start()
     {
