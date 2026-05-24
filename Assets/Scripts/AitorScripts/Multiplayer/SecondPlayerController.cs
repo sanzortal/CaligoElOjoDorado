@@ -19,7 +19,7 @@ public class SecondPlayerController : NetworkBehaviour
     [SerializeField] Key downKey;
     [SerializeField] Key flashKey;
 
-    private NetworkVariable<bool> lightActive =new NetworkVariable<bool>(true,NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    private NetworkVariable<bool> lightActive =new NetworkVariable<bool>(false,NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     private void Start()
     {

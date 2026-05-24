@@ -15,7 +15,7 @@ public class TurnLights : NetworkBehaviour
     [SerializeField] InteractionEmission boxEmission;
     [SerializeField] InteractionEmission boxDoorEmission;
 
-    private NetworkVariable<bool> lightsActivation = new NetworkVariable<bool>(true, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    private NetworkVariable<bool> lightsActivation = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
     void Start()
     {
@@ -25,8 +25,6 @@ public class TurnLights : NetworkBehaviour
         lightsOn = false;
         lightsActivation.OnValueChanged += SetLights;
 
-        if (!IsServer) return;
-        lightsActivation.Value = false;
     }
 
     
