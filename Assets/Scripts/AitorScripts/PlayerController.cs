@@ -107,7 +107,8 @@ public class PlayerController : NetworkBehaviour
         isRunning = false;
 
         //cameras
-        CinemachineCamera[] cameras = Object.FindObjectsByType<CinemachineCamera>(FindObjectsSortMode.None);
+        CinemachineCamera[] cameras = 
+            Object.FindObjectsByType<CinemachineCamera>(FindObjectsSortMode.None);
 
         foreach (CinemachineCamera cam in cameras)
         {
@@ -163,7 +164,8 @@ public class PlayerController : NetworkBehaviour
             {
                 if (isGrabbing)
                 {
-                    currentInteractionDir = CalculateInteractionDirection(moveDirection, interactableObject.transform); //Tarea Dani
+                    currentInteractionDir = CalculateInteractionDirection(moveDirection, 
+                                            interactableObject.transform); //Tarea Dani
                     animator.SetInteger("PushDirection", (int)currentInteractionDir);
                     interactableObject.playSoundClientRpc();
                 }
@@ -198,7 +200,8 @@ public class PlayerController : NetworkBehaviour
                 Run();
                 animator.SetBool("isRunning", true);
 
-                if (Keyboard.current.leftCtrlKey.wasPressedThisFrame && !inAir && movementSpeed > initialSpeed + 2f)
+                if (Keyboard.current.leftCtrlKey.wasPressedThisFrame && !inAir && 
+                    movementSpeed > initialSpeed + 2f)
                 {
                     slide(moveVector);
                 }
@@ -280,10 +283,11 @@ public class PlayerController : NetworkBehaviour
     void LookAt(Vector3 lookDirection)
     {
         Quaternion targetRotation;
-        targetRotation = Quaternion.LookRotation(lookDirection); //Esto lo que hace es calcular la rotación que debería tener si estuviese girado para donde va realmente
+        targetRotation = Quaternion.LookRotation(lookDirection); 
 
         Quaternion newRotation;
-        newRotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        newRotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 
+                      rotationSpeed * Time.deltaTime);
 
         transform.rotation = newRotation;
     }
@@ -525,7 +529,8 @@ public class PlayerController : NetworkBehaviour
     {
         Debug.DrawRay(transform.position, Vector3.up * standUpDistance, Color.black);
 
-        if (!Physics.Raycast(transform.position, Vector3.up, standUpDistance, ~0,QueryTriggerInteraction.Ignore))
+        if (!Physics.Raycast(transform.position, Vector3.up, standUpDistance, 
+            ~0,QueryTriggerInteraction.Ignore))
         {
             StandUp();
             tryingToStandUp = false;

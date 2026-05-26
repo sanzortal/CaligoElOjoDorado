@@ -27,7 +27,8 @@ public class ChaseState : State
         targetRotation = Quaternion.LookRotation(dirToPlayer); 
 
         Quaternion newRotation;
-        newRotation = Quaternion.RotateTowards(owner.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        newRotation = Quaternion.RotateTowards(owner.transform.rotation, targetRotation, 
+                                               rotationSpeed * Time.deltaTime);
 
         owner.transform.rotation = newRotation;
 

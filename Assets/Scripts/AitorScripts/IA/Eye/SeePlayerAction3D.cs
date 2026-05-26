@@ -26,7 +26,8 @@ public class SeePlayerAction3D : DrawableAction
         if (angle > visionAngle * 0.5f)
             return false;
 
-        if (Physics.Raycast(owner.transform.position, dirToPlayer, out RaycastHit hit, distance, obstacleMask | playerMask))
+        if (Physics.Raycast(owner.transform.position, dirToPlayer, 
+            out RaycastHit hit, distance, obstacleMask | playerMask))
         {
             if (!hit.collider.CompareTag("Player"))
                 return false;

@@ -27,7 +27,8 @@ public class SeePlayerAction : DrawableAction
         if (angle > visionAngle * 0.5f)
             return false;
 
-        if (Physics.Raycast(owner.transform.position, dirToPlayer, out RaycastHit hit, distance, obstacleMask | playerMask))
+        if (Physics.Raycast(owner.transform.position, dirToPlayer, out RaycastHit hit, 
+                            distance, obstacleMask | playerMask))
         {
             if (!hit.collider.CompareTag("Player"))
                 return false;
@@ -40,8 +41,10 @@ public class SeePlayerAction : DrawableAction
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(owner.transform.position, radiusSphere);
 
-        Vector3 left = Quaternion.Euler(0f, -visionAngle / 2, 0f) * owner.transform.forward * radiusSphere;
-        Vector3 right = Quaternion.Euler(0f, visionAngle / 2, 0f) * owner.transform.forward * radiusSphere;
+        Vector3 left = Quaternion.Euler(0f, -visionAngle / 2, 0f) 
+                       * owner.transform.forward * radiusSphere;
+        Vector3 right = Quaternion.Euler(0f, visionAngle / 2, 0f) 
+                       * owner.transform.forward * radiusSphere;
 
         Gizmos.color = Color.red;
         Gizmos.DrawRay(owner.transform.position, left);

@@ -53,7 +53,8 @@ public class FieldOfView : MonoBehaviour
             {
                 float distanceToTarget = Vector3.Distance(transform.position, target.position);
 
-                if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask))
+                if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, 
+                                    obstructionMask))
                 {
                     canSeePlayer = true;
                     PlayerDeaths deadPlayer= player.GetComponent<PlayerDeaths>();

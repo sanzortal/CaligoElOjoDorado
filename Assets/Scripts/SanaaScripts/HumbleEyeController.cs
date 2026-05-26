@@ -44,7 +44,8 @@ public class HumbleEyeController : MonoBehaviour
     {
         while (Vector3.Distance(transform.eulerAngles, targetRotation) > 0.5f)
         {
-            transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, targetRotation, Time.deltaTime * speed);
+            transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, targetRotation, 
+                                    Time.deltaTime * speed);
             yield return null;
         }
     }

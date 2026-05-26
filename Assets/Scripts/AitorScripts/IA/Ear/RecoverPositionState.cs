@@ -17,7 +17,8 @@ public class RecoverPositionState : State
         targetRotation = Quaternion.LookRotation(dirToPoint);
 
         Quaternion newRotation;
-        newRotation = Quaternion.RotateTowards(owner.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        newRotation = Quaternion.RotateTowards(owner.transform.rotation, targetRotation, 
+                                               rotationSpeed * Time.deltaTime);
 
         owner.transform.rotation = newRotation;
         return base.Run(owner);

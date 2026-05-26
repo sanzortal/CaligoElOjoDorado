@@ -53,7 +53,8 @@ public class RelayManager : MonoBehaviour
             throw;
         }
 
-        NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(allocation, "dtls"));
+        NetworkManager.Singleton.GetComponent<UnityTransport>().
+                       SetRelayServerData(new RelayServerData(allocation, "dtls"));
 
         string joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
 
@@ -66,7 +67,8 @@ public class RelayManager : MonoBehaviour
         {
             JoinAllocation joinAllocation = await RelayService.Instance.JoinAllocationAsync(joinCode);
 
-            NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(joinAllocation, "dtls"));
+            NetworkManager.Singleton.GetComponent<UnityTransport>().
+                           SetRelayServerData(new RelayServerData(joinAllocation, "dtls"));
 
             return !string.IsNullOrEmpty(joinCode) && NetworkManager.Singleton.StartClient();
         }

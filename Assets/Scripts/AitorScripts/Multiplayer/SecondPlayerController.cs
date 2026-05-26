@@ -19,7 +19,8 @@ public class SecondPlayerController : NetworkBehaviour
     [SerializeField] Key downKey;
     [SerializeField] Key flashKey;
 
-    private NetworkVariable<bool> lightActive =new NetworkVariable<bool>(false,NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    private NetworkVariable<bool> lightActive =new NetworkVariable<bool>(false,
+            NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     private void Start()
     {
@@ -74,7 +75,8 @@ public class SecondPlayerController : NetworkBehaviour
         targetRotation = Quaternion.LookRotation(lookDirection); 
 
         Quaternion newRotation;
-        newRotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        newRotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 
+                      rotationSpeed * Time.deltaTime);
 
         transform.rotation = newRotation;
     }

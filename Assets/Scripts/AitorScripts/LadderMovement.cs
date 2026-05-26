@@ -40,7 +40,8 @@ public class LadderMovement : NetworkBehaviour
 
                 animator.SetBool("isClimbing", true);
 
-                rb.transform.localPosition = new Vector3(grabPosition.position.x, rb.transform.position.y, zLadder);
+                rb.transform.localPosition = new Vector3(grabPosition.position.x, 
+                                             rb.transform.position.y, zLadder);
                 this.transform.eulerAngles = new Vector3(rb.rotation.x, yRotation, rb.rotation.z);
             }
 
@@ -56,7 +57,9 @@ public class LadderMovement : NetworkBehaviour
                 }
                 else
                 {
-                    this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + Input.GetAxisRaw("Vertical") * climbSpeed * Time.deltaTime, this.transform.position.z);
+                    this.transform.position = new Vector3(this.transform.position.x, 
+                                              this.transform.position.y + Input.GetAxisRaw("Vertical") 
+                                              * climbSpeed * Time.deltaTime, this.transform.position.z);
                 }  
             }
             else
