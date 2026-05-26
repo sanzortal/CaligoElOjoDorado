@@ -13,7 +13,7 @@ public class Respawn : MonoBehaviour
         
         DeathsController.RegisterOnPlayerDeath(SelfRespawn);
     }
-    //Preguntar si habria que hacer un unregister cuando se cambie de escena
+    
     public virtual void SelfRespawn()
     {
         this.transform.position = initPos;
@@ -24,9 +24,5 @@ public class Respawn : MonoBehaviour
             rb.angularVelocity = Vector3.zero;
             rb.linearVelocity = Vector3.zero;
         }
-
-        
     }
-
-   
 }
