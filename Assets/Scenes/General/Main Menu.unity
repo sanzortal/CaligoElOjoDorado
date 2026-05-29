@@ -1394,7 +1394,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   hugoPrefab: {fileID: 4983668744395996326, guid: 298b793e5b0be5b43b45602e89237bcb, type: 3}
-  eyePrefab: {fileID: 3606268935906018995, guid: b7be742d3b7cf324d97118a24a3eeb27, type: 3}
+  eyePrefab: {fileID: 7227683577937495738, guid: 7957ba24ce1b1274ca7651d7656c8a0a, type: 3}
 --- !u!4 &546492612
 Transform:
   m_ObjectHideFlags: 0
@@ -5528,7 +5528,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22400762, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -0.0000076293945
       objectReference: {fileID: 0}
     - target: {fileID: 22426080, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_AnchorMax.x
