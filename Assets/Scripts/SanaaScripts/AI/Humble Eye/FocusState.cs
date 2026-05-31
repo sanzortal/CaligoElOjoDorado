@@ -9,25 +9,27 @@ public class FocusState : State
     [SerializeField] bool isIn3D;
     public override State Run(GameObject owner)
     {
+        //check if is being respawned
         RespawnAirEyes respawnedObject = owner.GetComponent<RespawnAirEyes>();
         if (respawnedObject!= null && respawnedObject.GetRespawned())
         {
             return base.Run(owner);
         }
 
+        //keep variables
         PlayerController controller = FindFirstObjectByType<PlayerController>();
         GameObject player = controller.gameObject;
 
         Transform ownerT = owner.transform;
         Transform playerT = controller.transform;
 
-        //parar de patrullar
+        //stop the patrol
         if (isIn3D)
         {
             owner.GetComponent<NavMeshAgent>().SetDestination(owner.transform.position);
         }
 
-        // centrar la mirada al jugador
+        // focus the player
         Vector3 dirToPlayer = playerT.position - ownerT.position;
 
         if (!isIn3D)
@@ -35,6 +37,7 @@ public class FocusState : State
             dirToPlayer.y = 0f;
         }
 
+        //rotate towards the player
         if (dirToPlayer.sqrMagnitude > 0.01f)
         {
             Quaternion targetRot = Quaternion.LookRotation(dirToPlayer);
@@ -47,7 +50,7 @@ public class FocusState : State
         }
 
 
-        // Cuando ya está mirando al jugador, ejecutar la muerte
+        //when its already looking at the player, execute the kill.
         if (Quaternion.Angle(ownerT.rotation, Quaternion.LookRotation(dirToPlayer)) < 2f)
         {
             PlayerDeaths deadPlayer = controller.GetComponent<PlayerDeaths>();
@@ -55,6 +58,7 @@ public class FocusState : State
             {
                 deadPlayer.StartDeathCoroutine(killAnim);
 
+                //respawn
                 if (respawnedObject != null)
                 {
                     respawnedObject.SetRespawned(true);

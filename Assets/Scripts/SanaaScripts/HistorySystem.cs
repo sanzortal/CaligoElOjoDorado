@@ -6,27 +6,28 @@ using UnityEngine;
 
 public class HistorySystem : NetworkBehaviour
 {
+    //objects needed to show the history 
     [SerializeField] GameObject dialoguePanel;
     [SerializeField] TMP_Text dialogueText;
     [SerializeField, TextArea(4,6)] string[] dialogueLines;
     [SerializeField] float typingSpeed = 0.05f;
 
+    //checks
     bool dialogueStarted = false;
     int currentLine = 0;
     bool isTyping = false;
+
     PlayerController playerController;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+
 
     // Update is called once per frame
     void Update()
     {
+        //check if the text is being shown and the player presses the space
         if (dialogueStarted && Input.GetKeyDown(KeyCode.Space))
         {
+            //if the text is being shown stop all the movement and show all of it
             if (isTyping)
             {
                 StopAllCoroutines();
@@ -35,6 +36,7 @@ public class HistorySystem : NetworkBehaviour
             }
             else
             {
+                //if the text is already shown starts the new line or end the dialogie
                 currentLine++;
                 if (currentLine < dialogueLines.Length)
                 {
@@ -48,6 +50,7 @@ public class HistorySystem : NetworkBehaviour
         }
     }
 
+    //if the player enters for the first time shows the history
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.CompareTag("Player") && !dialogueStarted)
@@ -58,19 +61,22 @@ public class HistorySystem : NetworkBehaviour
             playerController = collision.GetComponent <PlayerController>();
 
 
-            // se desactiva el script de movimiento del jugador
+            //deactivate the player movement
             if (playerController != null)
                 playerController.enabled = false;
 
+            //show the text
             dialoguePanel.SetActive(true);
             currentLine = 0;
             StartCoroutine(TypeLine(dialogueLines[currentLine]));
 
+            //play idle animation
             collision.GetComponentInChildren<Animator>().Play("Armature|Idle");
 
         }
     }
 
+    //show the text letter by letter
     IEnumerator TypeLine(string line)
     {
         isTyping = true;
@@ -84,16 +90,19 @@ public class HistorySystem : NetworkBehaviour
 
         isTyping = false;
     }
+
+    //activate the player movement and finish the dialogue
     void EndDialogue()
     {
         dialoguePanel.SetActive(false);
 
-        // se reactiva el movimiento del jugador
+        //reactivate the player movement
         if (playerController != null)
             playerController.enabled = true;
 
         if (!NetworkManager.Singleton.IsServer) return;
 
+        //hide the text
         GetComponent<NetworkObject>().Despawn(true);
     }
 

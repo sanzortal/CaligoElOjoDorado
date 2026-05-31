@@ -6,6 +6,7 @@ public class PlayerAnimationManager : MonoBehaviour
 {
     private Animator animator;
 
+    //movement keys
     [SerializeField] KeyCode forwardKey = KeyCode.W;
     [SerializeField] KeyCode backwardKey = KeyCode.S;
     [SerializeField] KeyCode leftKey = KeyCode.A;
@@ -14,13 +15,13 @@ public class PlayerAnimationManager : MonoBehaviour
     [SerializeField] KeyCode crouchKey = KeyCode.LeftShift;
     [SerializeField] KeyCode jumpKey = KeyCode.Space;
     [SerializeField] KeyCode slideKey = KeyCode.LeftControl;
-    //[SerializeField] KeyCode stairsKey = KeyCode.E;
 
     void Start()
     {
         animator = GetComponent<Animator>();
     }
 
+    //check in what state the player is and change the animation 
     void Update()
     {
         bool isMoving =

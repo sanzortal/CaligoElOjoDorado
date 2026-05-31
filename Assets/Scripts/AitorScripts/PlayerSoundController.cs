@@ -4,6 +4,7 @@ using UnityEngine.UIElements;
 
 public class PlayerSoundController : NetworkBehaviour
 {
+    //sounds that are played
     [SerializeField] AudioSource jump;
     [SerializeField] AudioSource walk;
     [SerializeField] AudioSource crouch;
@@ -13,8 +14,10 @@ public class PlayerSoundController : NetworkBehaviour
     [SerializeField] AudioSource run;
     private AudioSource[] allAudios = new AudioSource[4];
 
+    //audios that cant be stopped
     private AudioSource audioToNoStop;
 
+    //audios that can be stopped
     private void Awake()
     {
         allAudios[0] = walk;
@@ -22,6 +25,10 @@ public class PlayerSoundController : NetworkBehaviour
         allAudios[2] = crouchWalk;
         allAudios[3] = crouchRun;
     }
+
+    /// <summary>
+    /// Play all the audios also for the clients checking if they are playing or not
+    /// </summary>
 
     [ClientRpc]
     public void WalkClientRpc()
@@ -84,13 +91,15 @@ public class PlayerSoundController : NetworkBehaviour
         slide.Play();
     }
 
-
+    //stop all the audios
     public void stopAll(AudioSource au)
     {
         audioToNoStop = au;
         stopAlmostAllClientRpc();
     }
 
+
+    //stop all the audios except the one sent as a parameter
     [ClientRpc]
     private void stopAlmostAllClientRpc()
     {
@@ -103,6 +112,7 @@ public class PlayerSoundController : NetworkBehaviour
         }
     }
 
+    //stop all the audios also for the clients
     [ClientRpc]
     public void stopAllClientRpc()
     {

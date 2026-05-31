@@ -12,6 +12,7 @@ public class CloseDoor : MonoBehaviour
         doorAnimation = door.GetComponent<Animation>();
     }
 
+    //if the player collides with this object close the door of the house and play a sound
     private void OnTriggerEnter(Collider collision)
     {
         PlayerController playerController = collision.GetComponent<PlayerController>();

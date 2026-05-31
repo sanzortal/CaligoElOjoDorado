@@ -20,6 +20,8 @@ public class DeathsController:MonoBehaviour
     private bool isActive;
 
     event SimpleDelegate OnPlayerDeath;
+
+    //singleton
     private void Awake()
     {
         if (instance == null)
@@ -35,9 +37,10 @@ public class DeathsController:MonoBehaviour
     {
         isActive = false;
         animatorController = this.gameObject.GetComponentInChildren<Animator>();
-        //textAnimator = textAdvice.gameObject.GetComponent<Animator>();
+        
     }
 
+    //activate the death panel and starts the coroutines
     public static void ActivatePanel()
     {
         instance.animatorController.SetTrigger("Death");
@@ -47,17 +50,20 @@ public class DeathsController:MonoBehaviour
         
     }
 
+    //return the point that the player needs to use to respawn
     public static Transform ReturnRespawnPoint()
     {
         return instance.respawnPoint;
     }
 
+    //hide the death panel and stop all of coroutines
     public static void DeactivatePanel() {
         instance.animatorController.SetTrigger("Respawn");
         instance.CanvaCircle.SetActive(false);
         instance.isActive = false;
     }
 
+    //make the text breathe
     public IEnumerator FadeText()
     {
         while (isActive)
@@ -75,6 +81,7 @@ public class DeathsController:MonoBehaviour
 
     }
 
+    //respawn all the objects that are subscribed to the event
     public static void RespawnAll()
     {
         if (instance.OnPlayerDeath != null)
@@ -83,15 +90,19 @@ public class DeathsController:MonoBehaviour
         }
     }
 
+    //change the point that the player has tu use to respawn
     public static void ChangeRespawnPoint(Transform newPoint)
     {
         instance.respawnPoint = newPoint;
     }
 
+    //register in the death function
     public static void RegisterOnPlayerDeath(SimpleDelegate respawn)
     {
         instance.OnPlayerDeath += respawn;
     }
+
+    //unregister in the death function
     public static void UnRegisterOnPlayerDeath(SimpleDelegate respawn)
     {
         instance.OnPlayerDeath -= respawn;

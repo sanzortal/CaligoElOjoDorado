@@ -21,28 +21,28 @@ public class CamaraController : MonoBehaviour
 
     void Update()
     {
-        // Obtener el movimiento del mouse
+        //get the mouse movement
         float mouseX = Input.GetAxis("Mouse X");
         float mouseY = Input.GetAxis("Mouse Y");
 
-        // Calcular el offset deseado según el mouse
+        //calculate the desired offset based on the mouse movement
         offset += new Vector3(mouseX, 0, mouseY) * sensitivity;
 
-        // Limitar el offset máximo relativo al jugador
+        //limit the maximum relative offset to the player
         offset.x = Mathf.Clamp(offset.x, -maxOffsetX, maxOffsetX);
         offset.z = Mathf.Clamp(offset.z, -maxOffsetZ, maxOffsetZ);
 
-        // Posición objetivo de la cámara
+        //target camera position
         Vector3 targetPos = player.position + offset;
 
-        // Limitar la posición de la cámara a los límites globales
+        //limit the camera position to the global limits
         targetPos.x = Mathf.Clamp(targetPos.x, xLimits.x, xLimits.y);
         targetPos.z = Mathf.Clamp(targetPos.z, zLimits.x, zLimits.y);
 
-        // Aplicar posición suavizada (opcional)
+        //apply smoothed positioning 
         transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * 5f);
 
-        // Mantener la cámara mirando al jugador
+        //keep the camera looking at the player
         transform.LookAt(player.position);
     }
 }

@@ -10,6 +10,7 @@ public class WallActivation : MonoBehaviour
        wall.SetActive(false); 
     }
 
+    //if the player collide activate the wall
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -18,6 +19,7 @@ public class WallActivation : MonoBehaviour
         }
     }
 
+    //if the player is no longer colliding deactivate the wall
     private void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))

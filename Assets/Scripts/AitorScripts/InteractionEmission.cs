@@ -11,10 +11,14 @@ public class InteractionEmission : NetworkBehaviour
         SetMaterials();
         DeActivateEmission();
     }
+
+    //get all the emission materials
     public void SetMaterials()
     {
         materials = this.gameObject.GetComponent<Renderer>().materials;
     }
+
+    //activate the emission materials
     public void ActivateEmission()
     {
         if (!IsHost) return;
@@ -24,6 +28,7 @@ public class InteractionEmission : NetworkBehaviour
         }
     }
 
+    //deactivate the emission materials
     public void DeActivateEmission()
     {
         

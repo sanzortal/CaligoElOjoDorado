@@ -3,9 +3,10 @@ using UnityEngine;
 
 public class RespawnAirEyes : Respawn
 {
-
+    //check
     private bool respawned = false;
 
+    //calls the coroutine that respawn this object
     public override void SelfRespawn()
     {
         base.SelfRespawn();
@@ -20,6 +21,8 @@ public class RespawnAirEyes : Respawn
 
         respawned = false;
     }
+
+    //getters and setters
     public bool GetRespawned()
     {
         return respawned;

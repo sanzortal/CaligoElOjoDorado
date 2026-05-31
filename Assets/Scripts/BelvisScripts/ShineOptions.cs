@@ -6,17 +6,19 @@ using UnityEngine.UI;
 
 public class ShineOptions : MonoBehaviour
 {
+    //objects and values
     [SerializeField] Slider slider;
     [SerializeField] float sliderValue;
     [SerializeField] Image panel;
 
-
+    //get the shine value
     void Start()
     {
         slider.value = PlayerPrefs.GetFloat("brillo", 0.5f);
         panel.color = new Color(panel.color.r, panel.color.g, panel.color.b, slider.value);
     }
 
+    //change the shine value
     public void ChangeSlider(float value)
     {
         sliderValue = value;
@@ -24,8 +26,4 @@ public class ShineOptions : MonoBehaviour
         panel.color = new Color(panel.color.r, panel.color.g, panel.color.b, slider.value);
     }
    
-    void Update()
-    {
-        
-    }
 }

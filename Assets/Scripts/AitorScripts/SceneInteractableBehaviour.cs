@@ -5,10 +5,13 @@ using UnityEngine.EventSystems;
 
 public class SceneInteractableBehaviour : InteractionEmission
 {
+    //checks
     [SerializeField] PlayerController.emotions emotionNeeded;
     [SerializeField] bool isMovable;
+
     private AudioSource moveAudio;
 
+    //get values and deactivate emission materials
     private void Start()
     {
         moveAudio = GetComponent<AudioSource>();
@@ -16,7 +19,7 @@ public class SceneInteractableBehaviour : InteractionEmission
         DeActivateEmission();
     }
 
-
+    //if the object is movable and the player is in the correct emotion, set the player as the parent
     public void Move(GameObject parent, PlayerController.emotions playerEmotion)
     {
         if (playerEmotion == emotionNeeded && isMovable)
@@ -29,7 +32,7 @@ public class SceneInteractableBehaviour : InteractionEmission
         }
     }
 
-
+    //remove the player as the parent of the object
     public void ClearParent()
     {
         if (!NetworkManager.Singleton.IsServer) return;
@@ -37,6 +40,7 @@ public class SceneInteractableBehaviour : InteractionEmission
         GetComponent<NetworkObject>().TryRemoveParent();
     }
 
+    //play a sound also for all the clients
     [ClientRpc]
     public void playSoundClientRpc()
     {
@@ -46,6 +50,7 @@ public class SceneInteractableBehaviour : InteractionEmission
         }
     }
 
+    //stop the sound also for all the clients
     [ClientRpc]
     public void stopSoundClientRpc()
     {

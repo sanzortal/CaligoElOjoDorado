@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class LightFlicks : MonoBehaviour
 {
+    //checks and times
     Light flickedLight;
     [SerializeField] int flickCount;
     [SerializeField] float timebetweenFlicks;
@@ -17,6 +18,7 @@ public class LightFlicks : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        //start the coroutine that activate/deactivate the light
         flickedLight = this.gameObject.GetComponent<Light>();
 
         foreach (Material mat in GetComponentInParent<MeshRenderer>().materials)
@@ -32,6 +34,7 @@ public class LightFlicks : MonoBehaviour
         StartCoroutine(Flicks());
     }
 
+    //activate/deactivate the light simulating that is broken
     IEnumerator Flicks()
     {
         int flicksDone;

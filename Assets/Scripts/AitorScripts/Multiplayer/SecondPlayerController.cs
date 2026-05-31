@@ -19,6 +19,7 @@ public class SecondPlayerController : NetworkBehaviour
     [SerializeField] Key downKey;
     [SerializeField] Key flashKey;
 
+    //network variable used to show the player light
     private NetworkVariable<bool> lightActive =new NetworkVariable<bool>(false,
             NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
@@ -48,6 +49,7 @@ public class SecondPlayerController : NetworkBehaviour
 
         moveDirection = CalculateMoveDirection();
 
+        //check if the player pressed the flash key to activate/deactivate his light
         if (Keyboard.current[flashKey].wasPressedThisFrame)
         {
             lightActive.Value = !lightActive.Value;
@@ -55,11 +57,13 @@ public class SecondPlayerController : NetworkBehaviour
         }
     }
 
+    //active/deactive the light of the player
     private void ChangeLight(bool previousValue, bool newValue)
     {
         lightPuzzles.SetActive(newValue);
     }
 
+    //move the position of the player
     void Move(Vector3 moveDirection)
     {
         transform.position = transform.position + moveDirection * movementSpeed * Time.deltaTime;
@@ -69,6 +73,7 @@ public class SecondPlayerController : NetworkBehaviour
         }
     }
 
+    //rotate the player
     void LookAt(Vector3 lookDirection)
     {
         Quaternion targetRotation;
@@ -81,6 +86,7 @@ public class SecondPlayerController : NetworkBehaviour
         transform.rotation = newRotation;
     }
 
+    //calculate the direction that the player is moving acording with the keys that is pressing
     Vector3 CalculateMoveDirection()
     {
         Vector3 moveVector;

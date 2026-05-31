@@ -5,6 +5,7 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] GameObject player;
     Vector3 relativeDistance;
 
+    //max and min values
     [SerializeField] float minX;
     [SerializeField] float maxX;
     [SerializeField] float minY;
@@ -12,12 +13,13 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] float minZ;
     [SerializeField] float maxZ;
 
+    //check the relative distance to the player
     void Start()
     {
         relativeDistance = transform.position - player.transform.position;
     }
 
-
+    //move the camera checking the position of the player
     void LateUpdate()
     {
         Vector3 targetPos = player.transform.position + relativeDistance;

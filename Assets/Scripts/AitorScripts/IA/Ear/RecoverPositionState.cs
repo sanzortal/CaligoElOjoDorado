@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class RecoverPositionState : State
 {
+    //speed and point that the player has to reach
     [SerializeField] Vector3 recoverPoint;
     [SerializeField] private float movementSpeed;
     [SerializeField] private float rotationSpeed;
     public override State Run(GameObject owner)
     {
+        //move and rotate the enemy towards the recover point that has to reach to start the patrol again
         Vector3 dirToPoint = (recoverPoint - owner.transform.position).normalized;
 
         owner.transform.position = owner.transform.position + dirToPoint * movementSpeed * Time.deltaTime;

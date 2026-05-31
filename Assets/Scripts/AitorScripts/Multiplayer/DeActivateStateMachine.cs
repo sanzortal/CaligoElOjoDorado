@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class DeActivateStateMachine : NetworkBehaviour
 {
+    //keep the state machine deactivate or activate
     private void Start()
     {
    

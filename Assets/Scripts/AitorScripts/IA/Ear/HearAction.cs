@@ -10,6 +10,8 @@ public class HearAction : DrawableAction
 
     //is chasing the player or not
     [SerializeField] bool isChasing;
+
+    //check if the ear can hear the player. If so, make a sound and start chasing him.
     public override bool Check(GameObject owner)
     {
         Collider[] hits = Physics.OverlapSphere(owner.transform.position, radius);
@@ -20,13 +22,16 @@ public class HearAction : DrawableAction
             
             if (controller)
             {
+                //check if the ear is chasing the player
                 if (isChasing)
                 {
                     return true;
                 }
 
+                //check if the player is in the correct emotion to be safe
                 if (controller.getEmotion() != PlayerController.emotions.SAD)
                 {
+                    //play the sound
                     AudioSource scream = owner.GetComponent<AudioSource>();
                     if (!hearAttack && !scream.isPlaying && !screamWasPlayed)
                     {
@@ -39,10 +44,12 @@ public class HearAction : DrawableAction
             }
         }
 
+        //restart sound
         screamWasPlayed = false;
         return false;
     }
 
+    //draw hear radius
     public override void DrawGizmo(GameObject owner)
     {
         Gizmos.color = Color.blue;

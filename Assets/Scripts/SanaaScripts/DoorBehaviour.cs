@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class DoorBehaviour : MonoBehaviour
 {
+    //checks
     [SerializeField] PlayerController.emotions emotionNeeded;
     [SerializeField] bool isMovable;
 
@@ -15,6 +16,7 @@ public class DoorBehaviour : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
+    //if the player is in the correct emotion starts moving the door
     public void StartDrag(Transform playerTransform, PlayerController.emotions emotion)
     {
         if (emotion != emotionNeeded || !isMovable) return;
@@ -22,13 +24,15 @@ public class DoorBehaviour : MonoBehaviour
         player = playerTransform;
         isDragging = true;
 
-        // Guardamos el offset REAL
+        //keep the real offset
         offset = transform.position - player.position;
 
-        rb.useGravity = true; // sigue en el suelo
+        //is in the ground
+        rb.useGravity = true; 
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
     }
 
+    //set that the player is no longer moving the door
     public void StopDrag()
     {
         isDragging = false;
@@ -37,6 +41,7 @@ public class DoorBehaviour : MonoBehaviour
         rb.constraints = RigidbodyConstraints.None;
     }
 
+    //move the door position if the player is grabbing it
     private void FixedUpdate()
     {
         if (!isDragging || player == null) return;

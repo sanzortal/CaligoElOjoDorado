@@ -10,7 +10,7 @@ public class ChaseState : State
     [SerializeField] private float rotationSpeed;
     public override State Run(GameObject owner)
     {
-        //it can be upgraded
+        //fins the player
         GameObject player = FindFirstObjectByType<PlayerController>().gameObject;
 
         NavMeshAgent agentCmp = owner.GetComponent<NavMeshAgent>();
@@ -19,6 +19,8 @@ public class ChaseState : State
             agentCmp.enabled = false;
         }
 
+        //set the position and the rotation of the ear acording of the position of the player 
+        //simulation of chasing someone
         Vector3 dirToPlayer = (player.transform.position - owner.transform.position).normalized;
 
         owner.transform.position = owner.transform.position + dirToPlayer * movementSpeed * Time.deltaTime;

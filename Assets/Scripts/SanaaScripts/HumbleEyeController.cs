@@ -3,12 +3,14 @@ using UnityEngine;
 
 public class HumbleEyeController : MonoBehaviour
 {
+    //max rotations
     [SerializeField]
     private Vector3 rotationA = new Vector3(0, 207.559799f, 0);
 
     [SerializeField]
     private Vector3 rotationB = new Vector3(0, 152.788376f, 0);
 
+    //speed rotation and wait time
     [SerializeField]
     private float speed = 2f;
 
@@ -22,11 +24,7 @@ public class HumbleEyeController : MonoBehaviour
         StartCoroutine(EyeMovementRoutine());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
+    //coroutine that calls the rotation waiting x seconds
     IEnumerator EyeMovementRoutine()
     {
         while (true)
@@ -40,6 +38,7 @@ public class HumbleEyeController : MonoBehaviour
         }
     }
 
+    //rotate the eye to the angles that were established before
     IEnumerator RotateTo(Vector3 targetRotation)
     {
         while (Vector3.Distance(transform.eulerAngles, targetRotation) > 0.5f)

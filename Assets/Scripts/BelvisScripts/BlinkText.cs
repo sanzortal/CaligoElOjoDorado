@@ -3,6 +3,7 @@ using TMPro;
 
 public class BlinkText : MonoBehaviour
 {
+    //values
     [SerializeField] float speed = 2f;
     TextMeshProUGUI text;
     float alpha;
@@ -13,7 +14,7 @@ public class BlinkText : MonoBehaviour
         text = GetComponent<TextMeshProUGUI>();
     }
 
-    
+    //makes the text breathe
     void Update()
     {
         alpha = Mathf.PingPong(Time.time * speed, 1);

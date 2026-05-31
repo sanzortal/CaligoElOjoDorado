@@ -4,17 +4,21 @@ using static UnityEngine.UI.Image;
 [CreateAssetMenu(fileName = "(a) SeePlayerAction", menuName = "ScriptableObjects/Actions/SeePlayerAction")]
 public class SeePlayerAction : DrawableAction
 {
+    //range
     [SerializeField] private float visionAngle;
     [SerializeField] private float radiusSphere;
 
+    //check masks
     [SerializeField] private LayerMask obstacleMask;
     [SerializeField] private LayerMask playerMask;
 
     public override bool Check(GameObject owner)
     {
+        //look for the player 
         PlayerController controller = FindFirstObjectByType<PlayerController>();
         if (controller == null) return false;
 
+        //checks the distance to the player
         Vector3 toPlayer = controller.transform.position - owner.transform.position;
         float distance = toPlayer.magnitude;
 
@@ -23,10 +27,12 @@ public class SeePlayerAction : DrawableAction
 
         Vector3 dirToPlayer = toPlayer.normalized;
         
+        //checks the angle to the player
         float angle = Vector3.Angle(owner.transform.forward, dirToPlayer);
         if (angle > visionAngle * 0.5f)
             return false;
 
+        //checks if the eye is seeing the player
         if (Physics.Raycast(owner.transform.position, dirToPlayer, out RaycastHit hit, 
                             distance, obstacleMask | playerMask))
         {
@@ -36,6 +42,7 @@ public class SeePlayerAction : DrawableAction
         return true;
     }
 
+    //draw the range of vision of the eye
     public override void DrawGizmo(GameObject owner)
     {
         Gizmos.color = Color.blue;

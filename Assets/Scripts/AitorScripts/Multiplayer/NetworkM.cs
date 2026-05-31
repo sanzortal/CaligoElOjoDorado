@@ -8,15 +8,19 @@ using UnityEngine.SceneManagement;
 
 public class NetworkM : NetworkBehaviour
 {
+    //players prefabs
     [SerializeField] GameObject hugoPrefab;
     [SerializeField] GameObject eyePrefab;
     private bool backButton;
 
+    //set unique
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
         backButton = false;
     }
+    
+    //when this object spawn, register all the functions
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
@@ -29,6 +33,7 @@ public class NetworkM : NetworkBehaviour
        
     }
 
+    //when a scene is loaded, spawn all the players
     private void HandleSceneLoadCompleted(string sceneName,
         LoadSceneMode loadSceneMode, List<ulong> clientsCompleted, List<ulong> clientsTimedOut)
     {
@@ -40,6 +45,7 @@ public class NetworkM : NetworkBehaviour
         }
     }
 
+    //change the current scene to the first level
     private void ChangeScene(ulong clientId)
     {
         if (IsServer == false || clientId == NetworkManager.ServerClientId) return;
@@ -48,6 +54,7 @@ public class NetworkM : NetworkBehaviour
         NetworkManager.Singleton.SceneManager.LoadScene("1_RoomScene", LoadSceneMode.Single);
     }
 
+    //check the id of the player and according to that spawn one prefab or another
     private void SpawnPlayer(ulong clientID)
     {
         if (!NetworkManager.ConnectedClients.ContainsKey(clientID))
@@ -69,6 +76,7 @@ public class NetworkM : NetworkBehaviour
         player.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientID, true);
     }
 
+    //unregister functions
     public override void OnNetworkDespawn()
     {
         if (IsServer)
@@ -77,11 +85,12 @@ public class NetworkM : NetworkBehaviour
             NetworkManager.SceneManager.OnLoadEventCompleted -= HandleSceneLoadCompleted;
             
         }
-         //NetworkManager.OnClientDisconnectCallback -= DisconnectClient;
+         
 
         base.OnNetworkDespawn();
     }
 
+    //when one player closes the app, this function close the app of all players
     private void DisconnectClient(ulong clientId)
     {
         if (!backButton)
@@ -90,8 +99,7 @@ public class NetworkM : NetworkBehaviour
         }
     }
 
-
-
+    //if the player click back in the main menu, shut down the network manager and change the panel
     public void BackHost()
     {
         if (NetworkManager.Singleton != null && IsServer)
@@ -101,6 +109,7 @@ public class NetworkM : NetworkBehaviour
         }
     }
 
+    //if the player clicks the play alone button, change the scene to the first level
     public void PlayAlone()
     {
         if (NetworkManager.Singleton.SceneManager == null) return;

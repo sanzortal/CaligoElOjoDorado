@@ -5,14 +5,16 @@ using UnityEngine.UI;
 
 public class PlayerDeaths : NetworkBehaviour
 {
+    //player variables
     private Rigidbody rb;
     private PlayerController playerController;
     private Transform respawn;
 
+    //particle sistem
     [SerializeField] ParticleSystem fireParticles;
     [SerializeField] Animator animator;
     
-
+    //sound
     private PlayerSoundController soundController;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -25,6 +27,7 @@ public class PlayerDeaths : NetworkBehaviour
     public IEnumerator die(string enemyKiller)
     {
         if (!IsServer) yield break;
+
         //stop player
         playerController.enabled = false;
         soundController.stopAllClientRpc();
@@ -35,7 +38,7 @@ public class PlayerDeaths : NetworkBehaviour
             ShowParticlesClientRpc();
         }
 
-        //animacion de morir con animation.play(enemykiller) al tener diferentes animaciones
+        //play die animation
         if (!enemyKiller.Equals("None"))
         {
             animator.SetTrigger("Die");
@@ -47,10 +50,12 @@ public class PlayerDeaths : NetworkBehaviour
         respawn = DeathsController.ReturnRespawnPoint();
         
         yield return new WaitForSeconds(1f);
-        //Respawn
+
+        //respawn
         Respawn();
         RespawnAllClientRpc();
-        // reset animator
+
+        //reset animator
         animator.Rebind();
         animator.Update(0f);
 
@@ -62,10 +67,11 @@ public class PlayerDeaths : NetworkBehaviour
 
         //wait
         yield return new WaitForSeconds(5.5f);
+
         //turn on camera
         HidePanelClientRpc();
 
-        //player movement
+        //activate player movement
         playerController.enabled = true;
 
     }
@@ -75,11 +81,11 @@ public class PlayerDeaths : NetworkBehaviour
         StartCoroutine(die(enemyKiller));
     }
 
+    //respawn player with his initial values
     public void Respawn()
     {
         if (!IsServer) return;
 
-        //respawn player
         this.transform.position = respawn.position;
         this.transform.eulerAngles = respawn.eulerAngles;
         rb.angularVelocity = Vector3.zero;
@@ -91,6 +97,7 @@ public class PlayerDeaths : NetworkBehaviour
         }
     }
 
+    //respawn second player with his initial values
     [ClientRpc]
     private void RespawnClients_ClientRpc(Vector3 respawnPos, Vector3 respawnRot)
     {
@@ -98,7 +105,7 @@ public class PlayerDeaths : NetworkBehaviour
         if (sp != null)
         {
             GameObject gsp = sp.gameObject;
-            //respawn second player
+            
             gsp.transform.position = respawnPos;
             gsp.transform.eulerAngles = respawnRot;
             gsp.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
@@ -106,6 +113,7 @@ public class PlayerDeaths : NetworkBehaviour
         }
     }
 
+    //show fire particles also for the clients
     [ClientRpc]
     private void ShowParticlesClientRpc()
     {
@@ -113,6 +121,7 @@ public class PlayerDeaths : NetworkBehaviour
         fireParticles.Play();
     }
 
+    //hide fire particles also for the clients
     [ClientRpc]
     private void HideParticlesClientRpc()
     {
@@ -120,18 +129,21 @@ public class PlayerDeaths : NetworkBehaviour
         fireParticles.gameObject.SetActive(false);
     }
 
+    //show the death panel also for the clients
     [ClientRpc]
     private void ShowPanelClientRpc()
     {
         DeathsController.ActivatePanel();
     }
 
+    //hide the death panel also for the clients
     [ClientRpc]
     private void HidePanelClientRpc()
     {
         DeathsController.DeactivatePanel();
     }
 
+    //respawn all the objects also for the clients
     [ClientRpc]
     private void RespawnAllClientRpc()
     {

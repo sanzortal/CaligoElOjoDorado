@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class InteractablePanel : InteractionEmission
 {
+    //interaction objects
     [SerializeField] GameObject interactablePanel;
     [SerializeField] Key interactKey;
     private bool interacting = false;
@@ -41,6 +42,7 @@ public class InteractablePanel : InteractionEmission
         
     }
 
+    //when the object spawn deactivate its lights
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
@@ -55,12 +57,15 @@ public class InteractablePanel : InteractionEmission
         OpenPanel();
     }
 
+    //check if the player is inside and activate the emission materials
     private void OnCollisionEnter(Collision collision)
     {
         if (!IsServer) return;
         if (collision.gameObject.CompareTag("Player"))
         {
             interacting = true;
+
+            //stores the player controller for other things
             playerController = collision.gameObject.GetComponent<PlayerController>();
 
             if (!done)
@@ -70,6 +75,7 @@ public class InteractablePanel : InteractionEmission
         }
     }
 
+    //if the player leave the object, deactivate the emission materials
     private void OnCollisionExit(Collision collision)
     {
         if (!IsServer) return;
@@ -85,6 +91,7 @@ public class InteractablePanel : InteractionEmission
         }
     }
 
+    //show the canva with the buttons if the player press the interact key
     public void OpenPanel()
     {
         if (Keyboard.current[interactKey].wasPressedThisFrame && interacting && !done)
@@ -95,6 +102,7 @@ public class InteractablePanel : InteractionEmission
         }
     }
 
+    //hide the canva with the buttons
     public void ClosePanel()
     {
         interactablePanel.SetActive(false);
@@ -103,6 +111,7 @@ public class InteractablePanel : InteractionEmission
         playerController.enabled = true;
     }
 
+    //add the number that the player presses if there are 3 digits or less
     public void AddNumber(string number)
     {
         if (playerAnswer.Length <= 3)
@@ -112,6 +121,7 @@ public class InteractablePanel : InteractionEmission
         }
     }
 
+    //delete the last number from those shown
     public void DeleteNumber()
     {
         if (playerAnswer.Length > 0)
@@ -121,7 +131,7 @@ public class InteractablePanel : InteractionEmission
         }
     }
 
-
+    //check if the answer of the player is the correct code or not
     public void Confirm()
     {
         if (playerAnswer.Equals(correctCode))
@@ -137,6 +147,7 @@ public class InteractablePanel : InteractionEmission
         }
     }
 
+    //if the code is correct play some audios and open the door also for the clients 
     [ClientRpc]
     private void CorrectAnsClientRpc()
     {
@@ -148,6 +159,7 @@ public class InteractablePanel : InteractionEmission
         audios[0].Play();
     }
 
+    //if the code is incorrect play incorrect audio and show red light
     [ClientRpc]
     private void InCorrectAnsClientRpc()
     {
@@ -158,6 +170,7 @@ public class InteractablePanel : InteractionEmission
         audios[1].Play();
     }
 
+    //set the text that the player presses in real time
     public void SetText()
     {
         textField.text = playerAnswer;

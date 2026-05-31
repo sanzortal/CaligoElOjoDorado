@@ -6,14 +6,17 @@ public class OptionsMenu : MonoBehaviour
 {
     [SerializeField] AudioMixer audioMixer;
     [SerializeField] Slider volumeSlider;
-    //Set the volume to the slider
+    
+
+    //get the volume of the game
     private void Start()
     {
-       
         float masterVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
         volumeSlider.value = masterVolume;
         SetMasterVolume();
     }
+
+    //change the volume of all the game acording to the preferences of the player
     public void SetMasterVolume()
     {
         float volume = volumeSlider.value;
@@ -21,6 +24,7 @@ public class OptionsMenu : MonoBehaviour
         PlayerPrefs.SetFloat("MasterVolume", volume);
     }
 
+    //activate/deactivate full screen
     public void fullScreen()
     {
         Screen.fullScreen = !Screen.fullScreen;

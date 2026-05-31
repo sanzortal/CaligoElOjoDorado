@@ -10,6 +10,7 @@ public class EnemiesSoundController : NetworkBehaviour
         audioScream = GetComponent<AudioSource>();
     }
 
+    //play the scream sound also for all the clients
     [ClientRpc]
     public void playScreamClientRpc()
     {

@@ -5,16 +5,21 @@ using UnityEngine;
 
 public class TurnLights : NetworkBehaviour
 {
+    //objects to "modify"
     [SerializeField] private Light[] lights;
     [SerializeField] InteractablePanel codePanel;
     [SerializeField] GameObject historyObject;
     private AudioSource turnSound;
+
+    //checks
     public bool lightsOn { get; private set; }
     private bool playerInside;
 
+    //emissions
     [SerializeField] InteractionEmission boxEmission;
     [SerializeField] InteractionEmission boxDoorEmission;
 
+    //network check
     private NetworkVariable<bool> lightsActivation = new NetworkVariable<bool>(false, 
             NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
@@ -34,6 +39,7 @@ public class TurnLights : NetworkBehaviour
     {
         if (!IsServer) return;
 
+        //activate or desactivate the lights and advice text
         if (playerInside && Input.GetKeyDown(KeyCode.E))
         {
             lightsOn = !lightsOn;
@@ -55,6 +61,7 @@ public class TurnLights : NetworkBehaviour
         }
     }
 
+    //player inside check
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<PlayerController>() != null)
@@ -65,6 +72,7 @@ public class TurnLights : NetworkBehaviour
         }
     }
 
+    //player outside check
     private void OnTriggerExit(Collider other)
     {
         if (other.GetComponent<PlayerController>() != null)
@@ -75,6 +83,7 @@ public class TurnLights : NetworkBehaviour
         }
     }
 
+    //network activation
     private void SetLights(bool previousValue, bool newValue)
     {
         foreach (Light light in lights)
@@ -83,6 +92,7 @@ public class TurnLights : NetworkBehaviour
         }
     }
 
+    //play de sound in clients
     [ClientRpc]
     private void playSoundClientRpc()
     {
