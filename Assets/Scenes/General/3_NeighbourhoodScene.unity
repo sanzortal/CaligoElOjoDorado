@@ -18103,17 +18103,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 370053801}
     m_Modifications:
+    - target: {fileID: 2849434148279809852, guid: c470b7076b52c274dbb93fcb1f3f3343, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5604939729853840648, guid: c470b7076b52c274dbb93fcb1f3f3343, type: 3}
       propertyPath: m_Name
       value: PauseMenuPref
       objectReference: {fileID: 0}
     - target: {fileID: 5604939729853840648, guid: c470b7076b52c274dbb93fcb1f3f3343, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5906563628563427929, guid: c470b7076b52c274dbb93fcb1f3f3343, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6378308308327935688, guid: c470b7076b52c274dbb93fcb1f3f3343, type: 3}
       propertyPath: m_LocalPosition.x
@@ -18154,6 +18158,10 @@ PrefabInstance:
     - target: {fileID: 6378308308327935688, guid: c470b7076b52c274dbb93fcb1f3f3343, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226463534713895789, guid: c470b7076b52c274dbb93fcb1f3f3343, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
