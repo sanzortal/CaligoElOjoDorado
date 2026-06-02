@@ -38,7 +38,7 @@ public class NetworkM : NetworkBehaviour
         LoadSceneMode loadSceneMode, List<ulong> clientsCompleted, List<ulong> clientsTimedOut)
     {
 
-        if (!IsServer || SceneManager.GetActiveScene().name == "Main Menu") return;
+        if (!IsServer || SceneManager.GetActiveScene().name == "Main Menu" || SceneManager.GetActiveScene().name == "FinalScreen") return;
         foreach (ulong clientId in clientsCompleted)
         {
             SpawnPlayer(clientId);
